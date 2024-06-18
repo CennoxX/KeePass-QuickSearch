@@ -306,6 +306,7 @@
             // 
             this.comboBoxSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxSearch.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.comboBoxSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBoxSearch.Location = new System.Drawing.Point(19, 0);
             this.comboBoxSearch.Margin = new System.Windows.Forms.Padding(0);
