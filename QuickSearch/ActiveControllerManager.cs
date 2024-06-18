@@ -54,6 +54,7 @@ namespace QuickSearch
                 if (pair.Key == host.Database)
                 {
                     //this.qsControl.TextUpdate += pair.Value.TextUpdateHandler;
+                    this.qsControl.TextChanged -= pair.Value.TextUpdateHandler;
                     this.qsControl.TextChanged += pair.Value.TextUpdateHandler;
                 }
                 else
@@ -110,12 +111,12 @@ namespace QuickSearch
         {
             Debug.WriteLine("File opened");
             //add a new Controller for the opened Database
-            SearchController searchCcontroller = new SearchController(this.qsControl, e.Database, GetMainListViewControl());
-            dictionary.Add(e.Database, searchCcontroller);
+            SearchController searchController = new SearchController(this.qsControl, e.Database, GetMainListViewControl());
+            dictionary.Add(e.Database, searchController);
             //assuming the opened Database is also the active Database we subscribe it's SearchController
             //so user input will be handled by that Controller
-            qsControl.TextChanged += searchCcontroller.TextUpdateHandler;
-            //qsControl.comboBoxSearch.TextChanged += searchCcontroller.TextUpdateHandler;
+            qsControl.TextChanged += searchController.TextUpdateHandler;
+            //qsControl.comboBoxSearch.TextChanged += searchController.TextUpdateHandler;
             this.qsControl.Enabled = true;
             if (Settings.Default.FocusOnOpen)
             {
