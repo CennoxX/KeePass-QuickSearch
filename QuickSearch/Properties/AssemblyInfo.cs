@@ -7,9 +7,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("QuickSearch")]
 [assembly: AssemblyDescription("Toolbar item for searching the database")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Gordon Venem, Georgy Grigoryev")]
+[assembly: AssemblyCompany("Gordon Venem, Georgy Grigoryev, CennoxX")]
 [assembly: AssemblyProduct("KeePass Plugin")]
-[assembly: AssemblyCopyright("Copyright ©  2011")]
+[assembly: AssemblyCopyright("Copyright © 2011-2024")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -31,4 +31,4 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.30")]
+[assembly: AssemblyVersion("2.31")]
