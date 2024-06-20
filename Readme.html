@@ -1,43 +1,57 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>QuickSearch</title>
+<title>QuickSearch</title>
 </head>
 <body>
-
-    <h1 id="quicksearch">QuickSearch</h1>
-<p>original version: <a href="http://profon.wordpress.com/quicksearch/">profon.wordpress.com</a></p>
-<p>QuickSearch is a search plugin for KeePass Password Safe v2 <a href="http://www.KeePass.info">KeePass.info</a> . It can be used
-as a replacement for the built-in QuickFind toolbar control.</p>
+<h1 id="quicksearch">QuickSearch</h1>
+<p>QuickSearch is a search plugin for KeePass Password Safe v2 <a href="http://www.KeePass.info">KeePass.info</a>. It can be used as a replacement for the built-in QuickFind toolbar control.</p>
+<p>Original version: <a href="http://profon.wordpress.com/quicksearch/">profon.wordpress.com</a></p>
 <h2 id="development">Development</h2>
 <p>To start developing the pluging, you should place KeePass sources at directory at one level with project. For instance, you have following structure <strong>p:\projects\QuickSearch</strong>, KeePass must be placed in <strong>projects</strong> folder.</p>
-<p>For KeePass source you can use this github mirror <a href="https://github.com/dlech/KeePass2.x">dlech/KeePass2.x</a>
+<p>For KeePass source you can use this github mirror <a href="https://github.com/dlech/KeePass2.x">dlech/KeePass2.x</a>.
 Before starting debugging you have to enable dll signing for KeePass, otherwise you will get some errors.</p>
 <h2 id="installation">Installation</h2>
 <p>Place <strong>QuickSearch.plgx</strong> in your KeePass Plugins folder.</p>
 <h2 id="uninstallation">Uninstallation</h2>
 <p>Delete <strong>QuickSearch.plgx</strong> from your KeePass Plugins folder.</p>
 <h2 id="changelog">Changelog</h2>
-<p>v2.29
-Fix compatibility issue</p>
-<p>v2.27 - v2.28
-Added automatic check for updates</p>
-<p>v2.26
-CTRL+SHIFT+F - activate search textbox
-Knownig issue - doesn't work at linux</p>
-<p>v2.17
-updated: changed code to support KeePass 2.17</p>
-<p>v2.13 b0.0.0.2
-fixed: QuickSearch.config will now be saved in application directory if PreferUserConfiguration==false.
-added: different mouse cursor for ColorSelectButton</p>
+<p>v2.31</p>
+<ul>
+<li>Fixed: search not working after sync</li>
+<li>Added: CTRL+Backspace deletes last word</li>
+</ul>
+<p>v2.30</p>
+<ul>
+<li>Changes in build configuration</li>
+</ul>
+<p>v2.29</p>
+<ul>
+<li>Fixed: compatibility issue</li>
+</ul>
+<p>v2.27 - v2.28</p>
+<ul>
+<li>Added: automatic check for updates</li>
+</ul>
+<p>v2.26</p>
+<ul>
+<li>Added: CTRL+SHIFT+F activates search textbox</li>
+<li>Knownig issue: doesn't work at linux</li>
+</ul>
+<p>v2.17</p>
+<ul>
+<li>Updated: changed code to support KeePass 2.17</li>
+</ul>
+<p>v2.13 b0.0.0.2</p>
+<ul>
+<li>Fixed: QuickSearch.config will now be saved in application directory if PreferUserConfiguration==false.</li>
+<li>Added: different mouse cursor for ColorSelectButton</li>
+</ul>
 <p>v0.3</p>
 <ul>
-<li>Settings system changed: QuickSearch.config is no longer used and settings are now stored in the
-KeePass config file</li>
+<li>Settings system changed: QuickSearch.config is no longer used and settings are now stored in the KeePass config file</li>
 <li>Changed redistributable to plgx instead of dll</li>
 <li>Compatible with KeePass 2.28 (and probably earlier versions, but untested)</li>
 </ul>
-
-
 </body>
 </html>
