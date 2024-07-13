@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using KeePass.Plugins;
+﻿using KeePass.Plugins;
 using KeePassLib;
-using System.Windows.Forms;
-using System.Diagnostics;
 using QuickSearch.Properties;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Windows.Forms;
+
 namespace QuickSearch
 {
     class ActiveControllerManager
@@ -21,16 +22,15 @@ namespace QuickSearch
             host.MainWindow.FileClosed += new EventHandler<KeePass.Forms.FileClosedEventArgs>(MainWindow_FileClosed);
             host.MainWindow.DocumentManager.ActiveDocumentSelected += new EventHandler(DocumentManager_ActiveDocumentSelected);
             host.MainWindow.FocusChanging += new EventHandler<KeePass.Forms.FocusEventArgs>(MainWindow_FocusChanging);
-            this.qsControl.LostFocus += new EventHandler(qsControl_LostFocus);
-
+            qsControl.LostFocus += new EventHandler(QsControl_LostFocus);
         }
 
-        void qsControl_LostFocus(object sender, EventArgs e)
+        void QsControl_LostFocus(object sender, EventArgs e)
         {
             Debug.WriteLine("QuickSearch Control lost Focus");
             foreach (SearchController searchController in dictionary.Values)
             {
-                searchController.ClearPreaviousSeaches();
+                searchController.ClearPreviousSearches();
             }
         }
 
@@ -48,29 +48,20 @@ namespace QuickSearch
         {
             Debug.WriteLine("DocumentManager_ActiveDocumentSelected event");
 
-            foreach (KeyValuePair<PwDatabase, SearchController> pair in this.dictionary)
+            foreach (KeyValuePair<PwDatabase, SearchController> pair in dictionary)
             {
-                //this.qsControl.TextUpdate -= pair.Value.TextUpdateHandler;
+                qsControl.TextChanged -= pair.Value.TextUpdateHandler;
                 if (pair.Key == host.Database)
-                {
-                    //this.qsControl.TextUpdate += pair.Value.TextUpdateHandler;
-                    this.qsControl.TextChanged -= pair.Value.TextUpdateHandler;
-                    this.qsControl.TextChanged += pair.Value.TextUpdateHandler;
-                }
-                else
-                {
-                    this.qsControl.TextChanged -= pair.Value.TextUpdateHandler;
-                }
+                    qsControl.TextChanged += pair.Value.TextUpdateHandler;
             }
-
         }
 
         void MainWindow_FileClosed(object sender, KeePass.Forms.FileClosedEventArgs e)
         {
             Debug.WriteLine("File closed");
             // remove the event listeners of those Search Controllers whose databases have been closed
-            PwDatabase[] databases = new PwDatabase[this.dictionary.Count];
-            this.dictionary.Keys.CopyTo(databases, 0);
+            PwDatabase[] databases = new PwDatabase[dictionary.Count];
+            dictionary.Keys.CopyTo(databases, 0);
             //bool isDatabaseOpen
             bool disableQSControl = true;
             foreach (PwDatabase database in databases)
@@ -78,14 +69,9 @@ namespace QuickSearch
                 if (database.IsOpen == false)
                 {
                     SearchController controller;
-                    this.dictionary.TryGetValue(database, out controller);
-                    this.qsControl.TextChanged -=
-                    controller.TextUpdateHandler;
-
-                    //this.qsControl.comboBoxSearch.TextChanged -=
-                    //controller.TextUpdateHandler;
-
-                    this.dictionary.Remove(database);
+                    dictionary.TryGetValue(database, out controller);
+                    qsControl.TextChanged -= controller.TextUpdateHandler;
+                    dictionary.Remove(database);
                 }
                 else // database is open
                 {
@@ -94,8 +80,7 @@ namespace QuickSearch
             }
             if (disableQSControl)
             {
-                this.qsControl.Text = String.Empty;
-
+                qsControl.Text = String.Empty;
             }
             //to be improved once access to closed database is implemented in Keepass
             //dictionary.Clear();
@@ -104,35 +89,29 @@ namespace QuickSearch
             //    if (document.Database.IsOpen) 
             //    dictionary.Add(document.Database, new SearchController(this.qsControl, document.Database, GetMainListViewControl()));
             //}
-
         }
 
         void MainWindow_FileOpened(object sender, KeePass.Forms.FileOpenedEventArgs e)
         {
             Debug.WriteLine("File opened");
             //add a new Controller for the opened Database
-            SearchController searchController = new SearchController(this.qsControl, e.Database, GetMainListViewControl());
+            SearchController searchController = new SearchController(qsControl, e.Database, GetMainListViewControl());
             dictionary.Add(e.Database, searchController);
             //assuming the opened Database is also the active Database we subscribe it's SearchController
             //so user input will be handled by that Controller
             qsControl.TextChanged += searchController.TextUpdateHandler;
-            //qsControl.comboBoxSearch.TextChanged += searchController.TextUpdateHandler;
-            this.qsControl.Enabled = true;
+            qsControl.Enabled = true;
             if (Settings.Default.FocusOnOpen)
             {
                 // focus doesn't work if the Form is not yet visible. Use Select instead
-                this.qsControl.comboBoxSearch.Select();
-                //this.qsControl.comboBoxSearch.Focus();
-
+                qsControl.comboBoxSearch.Select();
             }
         }
 
-        ListView GetMainListViewControl()
+        private ListView GetMainListViewControl()
         {
-            Control.ControlCollection mainWindowControls = this.host.MainWindow.Controls;
-            //return (ListView)mainWindowControls["m_lvEntries"];
+            Control.ControlCollection mainWindowControls = host.MainWindow.Controls;
             return (ListView)mainWindowControls.Find("m_lvEntries", true)[0];
-
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace QuickSearch
+﻿namespace QuickSearch
 {
     public enum SearchStatus
     {

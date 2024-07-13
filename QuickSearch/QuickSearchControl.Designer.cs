@@ -75,8 +75,8 @@
             this.ButtonDropdownSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.ButtonDropdownSettings.UseVisualStyleBackColor = false;
             this.ButtonDropdownSettings.Click += new System.EventHandler(this.ButtonDropdownSettings_Click);
-            this.ButtonDropdownSettings.MouseEnter += new System.EventHandler(this.buttonConfig_MouseEnter);
-            this.ButtonDropdownSettings.MouseLeave += new System.EventHandler(this.buttonConfig_MouseLeave);
+            this.ButtonDropdownSettings.MouseEnter += new System.EventHandler(this.ButtonConfig_MouseEnter);
+            this.ButtonDropdownSettings.MouseLeave += new System.EventHandler(this.ButtonConfig_MouseLeave);
             // 
             // imageListSearchButton
             // 
@@ -92,7 +92,7 @@
             this.toolStripDropDownSettings.Name = "toolStripDropDown1";
             this.toolStripDropDownSettings.Padding = new System.Windows.Forms.Padding(1);
             this.toolStripDropDownSettings.Size = new System.Drawing.Size(2, 2);
-            this.toolStripDropDownSettings.Closed += new System.Windows.Forms.ToolStripDropDownClosedEventHandler(this.toolStripDropDownSettings_Closed);
+            this.toolStripDropDownSettings.Closed += new System.Windows.Forms.ToolStripDropDownClosedEventHandler(this.ToolStripDropDownSettings_Closed);
             this.toolStripDropDownSettings.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Control_PreviewKeyDown);
             // 
             // tableLayoutPanelMain

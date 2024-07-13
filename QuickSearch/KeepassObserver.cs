@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace QuickSearch
+﻿namespace QuickSearch
 {
     class KeepassObserver
     {

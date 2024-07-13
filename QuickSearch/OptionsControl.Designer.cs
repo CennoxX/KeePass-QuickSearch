@@ -40,7 +40,7 @@
             this.labelBGColorFocused = new System.Windows.Forms.Label();
             this.labelBGColorNormalUnFocused = new System.Windows.Forms.Label();
             this.labelBGColorSuccess = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelRemoveQuickFind = new System.Windows.Forms.Label();
             this.chBoxRemoveQuickFind = new System.Windows.Forms.CheckBox();
             this.labelWidth = new System.Windows.Forms.Label();
             this.labelFocusOnOpen = new System.Windows.Forms.Label();
@@ -69,7 +69,7 @@
             this.MainOptionsPanel.Controls.Add(this.labelBGColorFocused, 1, 5);
             this.MainOptionsPanel.Controls.Add(this.labelBGColorNormalUnFocused, 1, 4);
             this.MainOptionsPanel.Controls.Add(this.labelBGColorSuccess, 1, 1);
-            this.MainOptionsPanel.Controls.Add(this.label1, 0, 6);
+            this.MainOptionsPanel.Controls.Add(this.labelRemoveQuickFind, 0, 6);
             this.MainOptionsPanel.Controls.Add(this.chBoxRemoveQuickFind, 2, 6);
             this.MainOptionsPanel.Controls.Add(this.labelWidth, 0, 8);
             this.MainOptionsPanel.Controls.Add(this.labelFocusOnOpen, 0, 7);
@@ -220,18 +220,18 @@
             this.labelBGColorSuccess.Text = "Search Successful";
             this.labelBGColorSuccess.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label1
+            // labelRemoveQuickFind
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.labelRemoveQuickFind.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)));
-            this.label1.AutoSize = true;
-            this.MainOptionsPanel.SetColumnSpan(this.label1, 2);
-            this.label1.Location = new System.Drawing.Point(3, 196);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(142, 20);
-            this.label1.TabIndex = 12;
-            this.label1.Text = "Hide QuickFind from Toolbar";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelRemoveQuickFind.AutoSize = true;
+            this.MainOptionsPanel.SetColumnSpan(this.labelRemoveQuickFind, 2);
+            this.labelRemoveQuickFind.Location = new System.Drawing.Point(3, 196);
+            this.labelRemoveQuickFind.Name = "labelRemoveQuickFind";
+            this.labelRemoveQuickFind.Size = new System.Drawing.Size(142, 20);
+            this.labelRemoveQuickFind.TabIndex = 12;
+            this.labelRemoveQuickFind.Text = "Hide QuickFind from Toolbar";
+            this.labelRemoveQuickFind.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // chBoxRemoveQuickFind
             // 
@@ -339,7 +339,7 @@
         private System.Windows.Forms.CheckBox chBoxRemoveQuickFind;
         private System.Windows.Forms.NumericUpDown ControlWidth;
         private System.Windows.Forms.Label labelWidth;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelRemoveQuickFind;
         private System.Windows.Forms.Label labelFocusOnOpen;
         private System.Windows.Forms.CheckBox chBoxFocusOnOpen;
         private ColorSelectButton colorSelectButtonPending;

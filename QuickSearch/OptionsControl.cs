@@ -1,6 +1,6 @@
-﻿using System;
+﻿using QuickSearch.Properties;
+using System;
 using System.Windows.Forms;
-using QuickSearch.Properties;
 
 namespace QuickSearch
 {
@@ -17,8 +17,6 @@ namespace QuickSearch
             this.colorSelectButtonPending.Color = Settings.Default.BackColorSearching;
             this.colorSelectButtonUnfocused.Color = Settings.Default.BackColorNormalUnFocused;
             this.colorSelectButtonSuccess.Color = Settings.Default.BackColorSuccess;
-
-
         }
 
         public void OKButtonPressed(Object sender, EventArgs e)
@@ -31,9 +29,6 @@ namespace QuickSearch
             Settings.Default.BackColorSearching = this.colorSelectButtonPending.Color;
             Settings.Default.BackColorNormalUnFocused = this.colorSelectButtonUnfocused.Color;
             Settings.Default.BackColorSuccess = this.colorSelectButtonSuccess.Color;
-
         }
-
-
     }
 }
