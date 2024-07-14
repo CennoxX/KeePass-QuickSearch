@@ -38,8 +38,16 @@ namespace QuickSearch
             textUpdateHandler = new EventHandler(Control_TextUpdate);
             Debug.Assert(listview != null);
             backgroundWorker.WorkerSupportsCancellation = true;
+            quickSearchControl.PreviewKeyDown += new PreviewKeyDownEventHandler(QuickSearchControl_PreviewKeyDown);
         }
 
+        private void QuickSearchControl_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                listview.Focus();
+            }
+        }
         public void ClearPreviousSearches()
         {
             previousSearches.Clear();

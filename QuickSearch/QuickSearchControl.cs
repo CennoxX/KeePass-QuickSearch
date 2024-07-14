@@ -29,8 +29,18 @@ namespace QuickSearch
             }
         }
 
-
+        public new event PreviewKeyDownEventHandler PreviewKeyDown
+        {
+            add
+            {
+                comboBoxSearch.PreviewKeyDown += value;
+            }
+            remove
+            {
+                comboBoxSearch.PreviewKeyDown -= value;
+            }
         }
+
         public QuickSearchControl()
         {
             InitializeComponent();
