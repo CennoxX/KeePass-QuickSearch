@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace QuickSearch
@@ -23,6 +24,7 @@ namespace QuickSearch
         ListView listview;
         delegate void QsUpdateMethod(SearchStatus status, bool cancellationPending);
         QsUpdateMethod qsUpdateMethod;
+        bool secondEscape = false;
 
         public EventHandler TextUpdateHandler
         {
@@ -46,6 +48,23 @@ namespace QuickSearch
             if (e.KeyCode == Keys.Enter)
             {
                 listview.Focus();
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                if (!secondEscape && quickSearchControl.Text == string.Empty)
+                    return;
+
+                secondEscape = !secondEscape;
+                quickSearchControl.Text = string.Empty;
+                e.IsInputKey = true;
+                if (secondEscape)
+                    return;
+                var entries = database.RootGroup.Entries.AsEnumerable();
+                entries = entries.Concat(database.RootGroup.Groups.SelectMany(i => i.Entries));
+                listview.BeginUpdate();
+                listview.Items.Clear();
+                listview.Items.AddRange(entries.Select(pe => AddEntryToList(pe)).ToArray());
+                listview.EndUpdate();
             }
         }
         public void ClearPreviousSearches()
