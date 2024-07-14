@@ -74,7 +74,7 @@ namespace QuickSearch
             mainForm.KeyPreview = true;
             mainForm.KeyDown += (sender, args) =>
             {
-                if (args.KeyData == (Keys.Shift | Keys.Control | Keys.F))
+                if (args.KeyData == (Keys.Shift | Keys.Control | Keys.X))
                     myControl.comboBoxSearch.Focus();
             };
             mainForm.Resize += MainForm_Resize;
