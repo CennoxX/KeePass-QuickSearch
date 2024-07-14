@@ -77,8 +77,21 @@ namespace QuickSearch
                 if (args.KeyData == (Keys.Shift | Keys.Control | Keys.F))
                     myControl.comboBoxSearch.Focus();
             };
-
+            mainForm.Resize += MainForm_Resize;
             return myControl;
+        }
+
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            MainForm mainForm = sender as MainForm;
+            if (mainForm != null)
+            {
+                if (mainForm.WindowState != FormWindowState.Minimized && lastWindowState == FormWindowState.Minimized)
+                {
+                    qsControl.comboBoxSearch.Select();
+                }
+                lastWindowState = mainForm.WindowState;
+            }
         }
 
         /// <summary>
