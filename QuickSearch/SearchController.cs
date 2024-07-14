@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -218,11 +219,19 @@ namespace QuickSearch
             ListViewItem lvi = new ListViewItem();
             lvi.Tag = new PwListItem(pe);
 
-            if (pe.CustomIconUuid.EqualsValue(PwUuid.Zero))
+            if (pe.Expires && pe.ExpiryTime < DateTime.UtcNow)
+            {
+                lvi.ImageIndex = (int)PwIcon.Expired;
+                lvi.Font = FontUtil.CreateFont(lvi.Font, lvi.Font.Style | FontStyle.Strikeout);
+            }
+            else if (pe.CustomIconUuid.Equals(PwUuid.Zero))
+            {
                 lvi.ImageIndex = (int)pe.IconId;
+            }
             else
-                lvi.ImageIndex = (int)PwIcon.Count +
-                    database.GetCustomIconIndex(pe.CustomIconUuid);
+            {
+                lvi.ImageIndex = (int)PwIcon.Count + database.GetCustomIconIndex(pe.CustomIconUuid);
+            }
 
             if (!pe.ForegroundColor.IsEmpty)
                 lvi.ForeColor = pe.ForegroundColor;
