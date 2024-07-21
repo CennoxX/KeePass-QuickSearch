@@ -13,11 +13,15 @@ Place __QuickSearch.plgx__ in your KeePass Plugins folder.
 Delete __QuickSearch.plgx__ from your KeePass Plugins folder.
 
 ## Changelog
+v2.33
+* Added: respect KeePass settings when focussing search box on restoring from tray and minimized
+* Added: KeePass2.x as submodule
+
 v2.32
-* Fixed: shortcut to activate search bar, now CTRL+SHIFT+X
+* Fixed: shortcut to activate search box, now CTRL+SHIFT+X
 * Added: focus password list on ENTER
-* Added: clear search bar on ESCAPE, hide on ESCAPE if configured on empty search bar
-* Added: focus search bar on restoring from tray
+* Added: clear search box on ESCAPE, hide on ESCAPE if configured on empty search box
+* Added: focus search box on restoring from tray and minimized
 * Added: strike out expired entries
 
 v2.31
@@ -38,7 +42,6 @@ v2.27
 
 v2.26
 * Added: CTRL+SHIFT+F activates search textbox
-* Knownig issue: doesn't work at Linux
 
 v2.17
 * Fixed: support KeePass 2.17
