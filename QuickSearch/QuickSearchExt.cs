@@ -1,4 +1,5 @@
-﻿using KeePass.Forms;
+﻿using KeePass;
+using KeePass.Forms;
 using KeePass.Plugins;
 using KeePass.UI;
 using QuickSearch.Properties;
@@ -16,7 +17,9 @@ namespace QuickSearch
 
         QuickSearchControl qsControl;
 
-        FormWindowState lastWindowState;
+        FormWindowState wsLast;
+
+        bool tsLast;
 
         public override string UpdateUrl
         {
@@ -84,13 +87,17 @@ namespace QuickSearch
         private void MainForm_Resize(object sender, EventArgs e)
         {
             MainForm mainForm = sender as MainForm;
+            var test = mainForm.IsTrayed();
             if (mainForm != null)
             {
-                if (mainForm.WindowState != FormWindowState.Minimized && lastWindowState == FormWindowState.Minimized)
+                if (mainForm.WindowState != FormWindowState.Minimized && wsLast == FormWindowState.Minimized)
                 {
-                    qsControl.comboBoxSearch.Select();
+                    if (Program.Config.MainWindow.FocusQuickFindOnRestore && !tsLast
+                        || Program.Config.MainWindow.FocusQuickFindOnUntray && tsLast)
+                        qsControl.comboBoxSearch.Select();
                 }
-                lastWindowState = mainForm.WindowState;
+                wsLast = mainForm.WindowState;
+                tsLast = mainForm.IsTrayed();
             }
         }
 
