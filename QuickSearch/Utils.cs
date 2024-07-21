@@ -1,6 +1,0 @@
-﻿namespace QuickSearch
-{
-    class Utils
-    {
-    }
-}

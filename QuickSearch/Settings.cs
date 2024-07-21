@@ -5,8 +5,6 @@ using System.Diagnostics;
 
 namespace QuickSearch.Properties
 {
-
-
     internal sealed partial class Settings
     {
         private const string OptionsConfigRoot = "QuickSearchExt.";

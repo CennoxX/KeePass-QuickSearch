@@ -19,7 +19,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\KeePass2.x\Build\KeePass\Debug\Plugins\</OutputPath>
+    <OutputPath>..\KeePass2.x\Build\KeePass\Debug\Plugins\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -39,7 +39,7 @@
     <Otherwise>
       <ItemGroup>
         <Reference Include="KeePass">
-          <HintPath>..\..\KeePass\KeePass.exe</HintPath>
+          <HintPath>..\KeePass2.x\Build\KeePass\Release\KeePass.exe</HintPath>
           <Private>False</Private>
         </Reference>
       </ItemGroup>
@@ -59,7 +59,6 @@
     <Compile Include="ColorSelectButton.Designer.cs">
       <DependentUpon>ColorSelectButton.cs</DependentUpon>
     </Compile>
-    <Compile Include="KeepassObserver.cs" />
     <Compile Include="OptionsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -88,7 +87,6 @@
     <Compile Include="Search.cs" />
     <Compile Include="SearchController.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ColorSelectButton.resx">
@@ -122,7 +120,7 @@
     <None Include="Resources\Icon1.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\KeePass2.x\KeePass\KeePass.csproj">
+    <ProjectReference Include="..\KeePass2.x\KeePass\KeePass.csproj">
       <Project>{10938016-dee2-4a25-9a5a-8fd3444379ca}</Project>
       <Name>KeePass</Name>
     </ProjectReference>
@@ -131,11 +129,4 @@
   <PropertyGroup>
     <PostBuildEvent>IF $(ConfigurationName) == Release "$(ProjectDir)..\CreatePlgX.bat"</PostBuildEvent>
   </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

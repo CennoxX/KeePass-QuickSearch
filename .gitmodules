@@ -1,0 +1,3 @@
+[submodule "KeePass2.x"]
+	path = KeePass2.x
+	url = https://github.com/dlech/KeePass2.x

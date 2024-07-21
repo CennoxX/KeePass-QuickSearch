@@ -10,7 +10,7 @@ echo Copying files
 ls QuickSearch -p|grep -if plgxExclude-linux.txt -v|xargs -I '{}' cp 'QuickSearch/{}' Plgx/ -r
 
 echo Compiling Plgx
-../KeePass-Source/Build/KeePass/Release/KeePass.exe -plgx-create Plgx
+KeePass-Source/Build/KeePass/Release/KeePass.exe -plgx-create Plgx
 
 mkdir "Releases"
 mkdir "Releases/Build Outputs/"
