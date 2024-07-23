@@ -86,18 +86,6 @@ namespace QuickSearch.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool SearchInPassword {
-            get {
-                return ((bool)(this["SearchInPassword"]));
-            }
-            set {
-                this["SearchInPassword"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool SearchInUserName {
             get {
                 return ((bool)(this["SearchInUserName"]));
@@ -128,18 +116,6 @@ namespace QuickSearch.Properties {
             }
             set {
                 this["SearchInGroupName"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool SearchExcludeExpired {
-            get {
-                return ((bool)(this["SearchExcludeExpired"]));
-            }
-            set {
-                this["SearchExcludeExpired"] = value;
             }
         }
         

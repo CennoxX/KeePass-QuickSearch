@@ -47,9 +47,9 @@ namespace QuickSearch
             SearchInUrl = Settings.Default.SearchInUrl;
             SearchInUserName = Settings.Default.SearchInUserName;
             SearchInNotes = Settings.Default.SearchInNotes;
-            SearchInPassword = Settings.Default.SearchInPassword;
+            SearchInPassword = KeePass.Program.Config.MainWindow.QuickFindSearchInPasswords;
             searchInOther = Settings.Default.SearchInOther;
-            SearchExcludeExpired = Settings.Default.SearchExcludeExpired;
+            SearchExcludeExpired = KeePass.Program.Config.MainWindow.QuickFindExcludeExpired;
             if (Settings.Default.SearchCaseSensitive)
             {
                 searchStringComparison = StringComparison.Ordinal;
@@ -71,7 +71,7 @@ namespace QuickSearch
             SearchInUrl = Settings.Default.SearchInUrl;
             SearchInUserName = Settings.Default.SearchInUserName;
             SearchInNotes = Settings.Default.SearchInNotes;
-            SearchInPassword = Settings.Default.SearchInPassword;
+            SearchInPassword = KeePass.Program.Config.MainWindow.QuickFindSearchInPasswords;
             searchInOther = Settings.Default.SearchInOther;
         }
 

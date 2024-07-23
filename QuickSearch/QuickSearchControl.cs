@@ -122,7 +122,7 @@ namespace QuickSearch
 
         private void ButtonConfig_MouseLeave(object sender, EventArgs e)
         {
-            if (toolStripDropDownSettings.Visible == false)
+            if (!toolStripDropDownSettings.Visible)
             {
                 ButtonDropdownSettings.ImageIndex = 0;
             }
@@ -130,6 +130,10 @@ namespace QuickSearch
 
         private void ButtonDropdownSettings_Click(object sender, EventArgs e)
         {
+            // load KeePass settings
+            checkBoxExclude.Checked = KeePass.Program.Config.MainWindow.QuickFindExcludeExpired;
+            checkBoxPassword.Checked = KeePass.Program.Config.MainWindow.QuickFindSearchInPasswords;
+
             // show the DropDown
             toolStripDropDownSettings.Show(ButtonDropdownSettings, 0, ButtonDropdownSettings.Bottom);
 

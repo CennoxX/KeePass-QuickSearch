@@ -17,9 +17,6 @@
     <Setting Name="FocusOnOpen" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="SearchInPassword" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="SearchInUserName" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -27,9 +24,6 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="SearchInGroupName" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="SearchExcludeExpired" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="SearchInOther" Type="System.Boolean" Scope="User">

@@ -222,8 +222,8 @@
             // checkBoxPassword
             // 
             this.checkBoxPassword.AutoSize = true;
-            this.checkBoxPassword.Checked = global::QuickSearch.Properties.Settings.Default.SearchInPassword;
-            this.checkBoxPassword.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::QuickSearch.Properties.Settings.Default, "SearchInPassword", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBoxPassword.Checked = global::KeePass.Program.Config.MainWindow.QuickFindSearchInPasswords;
+            this.checkBoxPassword.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::KeePass.Program.Config.MainWindow, "QuickFindSearchInPasswords", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.checkBoxPassword.Location = new System.Drawing.Point(86, 49);
             this.checkBoxPassword.Name = "checkBoxPassword";
             this.checkBoxPassword.Size = new System.Drawing.Size(72, 17);
@@ -292,8 +292,8 @@
             // checkBoxExclude
             // 
             this.checkBoxExclude.AutoSize = true;
-            this.checkBoxExclude.Checked = global::QuickSearch.Properties.Settings.Default.SearchExcludeExpired;
-            this.checkBoxExclude.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::QuickSearch.Properties.Settings.Default, "SearchExcludeExpired", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBoxExclude.Checked = global::KeePass.Program.Config.MainWindow.QuickFindExcludeExpired;
+            this.checkBoxExclude.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::KeePass.Program.Config.MainWindow, "QuickFindExcludeExpired", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.checkBoxExclude.Location = new System.Drawing.Point(3, 26);
             this.checkBoxExclude.Name = "checkBoxExclude";
             this.checkBoxExclude.Size = new System.Drawing.Size(135, 17);
