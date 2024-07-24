@@ -98,8 +98,15 @@ namespace QuickSearch
 
         private void ResetSearch()
         {
-            var entries = database.RootGroup.Entries.AsEnumerable();
-            entries = entries.Concat(database.RootGroup.Groups.SelectMany(i => i.Entries));
+            List<PwEntry> entries = new List<PwEntry>();
+            List<PwGroup> pwGroups = new List<PwGroup> { database.RootGroup };
+            while (pwGroups.Count > 0)
+            {
+                PwGroup currentGroup = pwGroups.First();
+                pwGroups.RemoveAt(0);
+                pwGroups.AddRange(currentGroup.Groups);
+                entries.AddRange(currentGroup.Entries);
+            }
             listview.BeginUpdate();
             listview.Items.Clear();
             listview.Items.AddRange(entries.Select(pe => AddEntryToList(pe)).ToArray());
