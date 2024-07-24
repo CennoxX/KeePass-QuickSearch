@@ -5,7 +5,7 @@ echo Creating PlgX folder
 mkdir Plgx
 
 echo Copying files
-rsync -av --exclude-from='PlgXExclude.txt' QuickSearch/ PlgX/
+rsync -av --exclude-from='PlgxExclude.txt' QuickSearch/ PlgX/
 
 echo Compiling Plgx
 KeePass2.x/Build/KeePass/Release/KeePass.exe -plgx-create Plgx

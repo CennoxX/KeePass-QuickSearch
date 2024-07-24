@@ -7,7 +7,7 @@ echo Creating PlgX folder
 mkdir PlgX
 
 echo Copying files
-xcopy "QuickSearch" PlgX /s /e /exclude:PlgXExclude.txt
+xcopy "QuickSearch" PlgX /s /e /exclude:PlgxExclude.txt
 
 echo Compiling PlgX
 "KeePass2.x/Build/KeePass/Release/KeePass.exe" /plgx-create "%~dp0PlgX"
