@@ -106,7 +106,7 @@ namespace QuickSearch
                     return;
                 }
 
-                if (SearchExcludeExpired && entry.Expires && entry.ExpiryTime >= DateTime.Now)
+                if (SearchExcludeExpired && entry.Expires && DateTime.UtcNow > entry.ExpiryTime)
                 {
                     break;
                 }

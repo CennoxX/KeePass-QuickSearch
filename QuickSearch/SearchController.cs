@@ -219,7 +219,7 @@ namespace QuickSearch
             ListViewItem lvi = new ListViewItem();
             lvi.Tag = new PwListItem(pe);
 
-            if (pe.Expires && pe.ExpiryTime < DateTime.UtcNow)
+            if (pe.Expires && DateTime.UtcNow > pe.ExpiryTime)
             {
                 lvi.ImageIndex = (int)PwIcon.Expired;
                 lvi.Font = FontUtil.CreateFont(lvi.Font, lvi.Font.Style | FontStyle.Strikeout);
