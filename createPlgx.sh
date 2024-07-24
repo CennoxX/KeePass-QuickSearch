@@ -1,21 +1,18 @@
-
 echo Deleting existing PlgX folder
-
 rm -rf Plgx/
 
+echo Creating PlgX folder
 mkdir Plgx
 
 echo Copying files
-
-ls QuickSearch -p|grep -if plgxExclude-linux.txt -v|xargs -I '{}' cp 'QuickSearch/{}' Plgx/ -r
+rsync -av --exclude-from='PlgXExclude.txt' QuickSearch/ PlgX/
 
 echo Compiling Plgx
-KeePass-Source/Build/KeePass/Release/KeePass.exe -plgx-create Plgx
+KeePass2.x/Build/KeePass/Release/KeePass.exe -plgx-create Plgx
 
-mkdir "Releases"
-mkdir "Releases/Build Outputs/"
+echo Releasing PlgX
+mkdir "Release"
+mv Plgx.plgx "Release/QuickSearch.plgx"
 
-echo Releasing Plgx
-mv Plgx.plgx "Releases/Build Outputs/QuickSearch.plgx"
-
+echo Cleaning up
 rm -rf Plgx/

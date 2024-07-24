@@ -1,7 +1,7 @@
-\bin\
-\obj\
-.user
+bin
+obj
+packages
+packages.config
+.vs
 .sln
-.suo
-.pdb
-.xml
+*.sln
