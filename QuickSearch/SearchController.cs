@@ -60,12 +60,7 @@ namespace QuickSearch
                 e.IsInputKey = true;
                 if (secondEscape)
                     return;
-                var entries = database.RootGroup.Entries.AsEnumerable();
-                entries = entries.Concat(database.RootGroup.Groups.SelectMany(i => i.Entries));
-                listview.BeginUpdate();
-                listview.Items.Clear();
-                listview.Items.AddRange(entries.Select(pe => AddEntryToList(pe)).ToArray());
-                listview.EndUpdate();
+                ResetSearch();
             }
         }
         public void ClearPreviousSearches()
@@ -80,11 +75,12 @@ namespace QuickSearch
             {
                 backgroundWorker.CancelAsync();
             }
-            String userText = quickSearchControl.Text.Trim();
+            string userText = quickSearchControl.Text.Trim();
             // if there is no text, don't search
-            if (userText.Equals(String.Empty))
+            if (userText.Equals(string.Empty))
             {
                 quickSearchControl.UpdateSearchStatus(SearchStatus.Normal);
+                ResetSearch();
                 return;
             }
             else
@@ -98,6 +94,17 @@ namespace QuickSearch
             backgroundWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(BackgroundWorker_RunWorkerCompleted);
 
             backgroundWorker.RunWorkerAsync(userText);
+        }
+
+        private void ResetSearch()
+        {
+            var entries = database.RootGroup.Entries.AsEnumerable();
+            entries = entries.Concat(database.RootGroup.Groups.SelectMany(i => i.Entries));
+            listview.BeginUpdate();
+            listview.Items.Clear();
+            listview.Items.AddRange(entries.Select(pe => AddEntryToList(pe)).ToArray());
+            listview.EndUpdate();
+            ClearPreviousSearches();
         }
 
         /// <summary>
@@ -130,7 +137,7 @@ namespace QuickSearch
         {
             BackgroundWorker worker = (BackgroundWorker)sender;
 
-            String userText = (string)e.Argument;
+            string userText = (string)e.Argument;
             Search newSearch = new Search(userText);
 
             bool previousSearchFound = false;
