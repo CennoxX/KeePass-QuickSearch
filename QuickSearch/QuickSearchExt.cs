@@ -23,7 +23,7 @@ namespace QuickSearch
 
         public override string UpdateUrl
         {
-            get { return @"https://raw.githubusercontent.com/cennoxx/keepass-quicksearch/master/QuickSearchVersion.txt"; }
+            get { return @"https://raw.githubusercontent.com/CennoxX/KeePass-QuickSearch/master/QuickSearchVersion.txt"; }
         }
 
         public override bool Initialize(IPluginHost host)

@@ -15,7 +15,7 @@ namespace QuickSearch.Properties
             {
                 if (property.IsDirty)
                 {
-                    var value = property.SerializedValue as String;
+                    var value = property.SerializedValue as string;
                     if (value != null)
                     {
                         host.CustomConfig.SetString(OptionsConfigRoot + property.Name, value);

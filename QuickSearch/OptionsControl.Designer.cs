@@ -222,7 +222,7 @@
             this.labelWidth.Name = "labelWidth";
             this.labelWidth.Size = new System.Drawing.Size(111, 26);
             this.labelWidth.TabIndex = 11;
-            this.labelWidth.Text = "ToolBar Control Width";
+            this.labelWidth.Text = "Search Box Width";
             this.labelWidth.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // ControlWidth

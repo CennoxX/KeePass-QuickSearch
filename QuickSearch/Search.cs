@@ -41,7 +41,7 @@ namespace QuickSearch
 
         PwGroup rootGroup;
 
-        public Search(String userSearchText)
+        public Search(string userSearchText)
         {
             SearchInTitle = Settings.Default.SearchInTitle;
             SearchInUrl = Settings.Default.SearchInUrl;
@@ -129,7 +129,7 @@ namespace QuickSearch
                         )
                     {
                         bool allSearchStringsMatched = true;
-                        foreach (String searchString in searchStrings)
+                        foreach (string searchString in searchStrings)
                         {
                             // check if cancellation was requested. In this case don't continue with the search
                             if (worker.CancellationPending)
