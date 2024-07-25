@@ -40,8 +40,6 @@
             this.labelBGColorFocused = new System.Windows.Forms.Label();
             this.labelBGColorNormalUnFocused = new System.Windows.Forms.Label();
             this.labelBGColorSuccess = new System.Windows.Forms.Label();
-            this.labelRemoveQuickFind = new System.Windows.Forms.Label();
-            this.chBoxRemoveQuickFind = new System.Windows.Forms.CheckBox();
             this.labelWidth = new System.Windows.Forms.Label();
             this.ControlWidth = new System.Windows.Forms.NumericUpDown();
             this.MainOptionsPanel.SuspendLayout();
@@ -67,10 +65,8 @@
             this.MainOptionsPanel.Controls.Add(this.labelBGColorFocused, 1, 5);
             this.MainOptionsPanel.Controls.Add(this.labelBGColorNormalUnFocused, 1, 4);
             this.MainOptionsPanel.Controls.Add(this.labelBGColorSuccess, 1, 1);
-            this.MainOptionsPanel.Controls.Add(this.labelRemoveQuickFind, 0, 6);
-            this.MainOptionsPanel.Controls.Add(this.chBoxRemoveQuickFind, 2, 6);
-            this.MainOptionsPanel.Controls.Add(this.labelWidth, 0, 8);
-            this.MainOptionsPanel.Controls.Add(this.ControlWidth, 2, 8);
+            this.MainOptionsPanel.Controls.Add(this.labelWidth, 0, row: 6);
+            this.MainOptionsPanel.Controls.Add(this.ControlWidth, 2, 6);
             this.MainOptionsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainOptionsPanel.Location = new System.Drawing.Point(0, 12);
             this.MainOptionsPanel.Margin = new System.Windows.Forms.Padding(3, 12, 3, 3);
@@ -216,30 +212,6 @@
             this.labelBGColorSuccess.Text = "Search Successful";
             this.labelBGColorSuccess.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // labelRemoveQuickFind
-            // 
-            this.labelRemoveQuickFind.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelRemoveQuickFind.AutoSize = true;
-            this.MainOptionsPanel.SetColumnSpan(this.labelRemoveQuickFind, 2);
-            this.labelRemoveQuickFind.Location = new System.Drawing.Point(3, 196);
-            this.labelRemoveQuickFind.Name = "labelRemoveQuickFind";
-            this.labelRemoveQuickFind.Size = new System.Drawing.Size(142, 20);
-            this.labelRemoveQuickFind.TabIndex = 12;
-            this.labelRemoveQuickFind.Text = "Hide QuickFind from Toolbar";
-            this.labelRemoveQuickFind.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // chBoxRemoveQuickFind
-            // 
-            this.chBoxRemoveQuickFind.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.chBoxRemoveQuickFind.AutoSize = true;
-            this.chBoxRemoveQuickFind.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.chBoxRemoveQuickFind.Location = new System.Drawing.Point(170, 199);
-            this.chBoxRemoveQuickFind.Name = "chBoxRemoveQuickFind";
-            this.chBoxRemoveQuickFind.Size = new System.Drawing.Size(15, 14);
-            this.chBoxRemoveQuickFind.TabIndex = 9;
-            this.chBoxRemoveQuickFind.UseVisualStyleBackColor = true;
-            // 
             // labelWidth
             // 
             this.labelWidth.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
@@ -308,10 +280,8 @@
         private ColorSelectButton colorSelectButtonError;
         private ColorSelectButton colorSelectButtonUnfocused;
         private ColorSelectButton colorSelectButtonFocused;
-        private System.Windows.Forms.CheckBox chBoxRemoveQuickFind;
         private System.Windows.Forms.NumericUpDown ControlWidth;
         private System.Windows.Forms.Label labelWidth;
-        private System.Windows.Forms.Label labelRemoveQuickFind;
         private ColorSelectButton colorSelectButtonPending;
         private System.Windows.Forms.Label labelSearchPending;
 

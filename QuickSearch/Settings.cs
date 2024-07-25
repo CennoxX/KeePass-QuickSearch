@@ -30,7 +30,7 @@ namespace QuickSearch.Properties
 
         public void Load(IPluginHost host)
         {
-            var ignored = ShowQuickFind; //Access any property just to make it load settings.
+            var _ = SearchInUserName; //Access any property just to make it load settings.
 
             foreach (SettingsPropertyValue property in PropertyValues)
             {

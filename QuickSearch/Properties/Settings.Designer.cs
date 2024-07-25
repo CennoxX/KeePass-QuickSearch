@@ -133,18 +133,6 @@ namespace QuickSearch.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool ShowQuickFind {
-            get {
-                return ((bool)(this["ShowQuickFind"]));
-            }
-            set {
-                this["ShowQuickFind"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("204, 201, 145")]
         public global::System.Drawing.Color BackColorSearching {
             get {

@@ -29,9 +29,6 @@
     <Setting Name="SearchInOther" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="ShowQuickFind" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
     <Setting Name="BackColorSearching" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">204, 201, 145</Value>
     </Setting>

@@ -32,7 +32,7 @@ namespace QuickSearch
 
             Settings.Default.Load(host);
 
-            UpdateQuickFindControl();
+            HideQuickFindControl();
             qsControl = AddQuickSearchControl(host);
             new ActiveControllerManager(host, qsControl);
 
@@ -102,16 +102,14 @@ namespace QuickSearch
         }
 
         /// <summary>
-        /// Removes the builtin "QuickFind" ComboBox if neccessary
+        /// Removes the builtin "QuickFind" ComboBox
         /// </summary>
-        private void UpdateQuickFindControl()
+        private void HideQuickFindControl()
         {
             Control.ControlCollection mainWindowControls = host.MainWindow.Controls;
             CustomToolStripEx toolStrip = (CustomToolStripEx)mainWindowControls["m_toolMain"];
             ToolStripItem comboBox = toolStrip.Items["m_tbQuickFind"];
-
-            Binding binding = new Binding("Visible", Settings.Default, "ShowQuickFind");
-            ((ToolStripComboBox)comboBox).ComboBox.DataBindings.Add(binding);
+            ((ToolStripComboBox)comboBox).ComboBox.Visible = false;
         }
 
         public override Image SmallIcon

@@ -10,7 +10,6 @@ namespace QuickSearch
         {
             InitializeComponent();
             this.ControlWidth.Value = Settings.Default.ControlWidth;
-            this.chBoxRemoveQuickFind.Checked = !Settings.Default.ShowQuickFind;
             this.colorSelectButtonError.Color = Settings.Default.BackColorOnError;
             this.colorSelectButtonFocused.Color = Settings.Default.BackColorNormalFocused;
             this.colorSelectButtonPending.Color = Settings.Default.BackColorSearching;
@@ -21,7 +20,6 @@ namespace QuickSearch
         public void OKButtonPressed(Object sender, EventArgs e)
         {
             Settings.Default.ControlWidth = (int)this.ControlWidth.Value;
-            Settings.Default.ShowQuickFind = !this.chBoxRemoveQuickFind.Checked;
             Settings.Default.BackColorOnError = this.colorSelectButtonError.Color;
             Settings.Default.BackColorNormalFocused = this.colorSelectButtonFocused.Color;
             Settings.Default.BackColorSearching = this.colorSelectButtonPending.Color;
