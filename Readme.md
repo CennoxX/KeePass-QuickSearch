@@ -40,6 +40,16 @@ QuickSearch enhances KeePass’s search functionality, delivering instant result
 
 ## Changelog
 
+### v2.34
+- **Added**: Sync KeePass search settings
+- **Added**: Consistent use of KeePass settings for focus
+- **Added**: Reset search on empty search box
+- **Added**: Always hide KeePass QuickFind
+- **Changed**: Revised PlgX creation
+- **Fixed**: Option exclude expired entries
+- **Fixed**: Display of entries on reset
+- **Fixed**: Text formatting of expired entries
+
 ### v2.33
 - **Added**: Respect KeePass settings when focusing the search box on restoring from tray or minimized.
 - **Added**: KeePass 2.x as a submodule.
