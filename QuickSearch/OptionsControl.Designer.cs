@@ -43,9 +43,7 @@
             this.labelRemoveQuickFind = new System.Windows.Forms.Label();
             this.chBoxRemoveQuickFind = new System.Windows.Forms.CheckBox();
             this.labelWidth = new System.Windows.Forms.Label();
-            this.labelFocusOnOpen = new System.Windows.Forms.Label();
             this.ControlWidth = new System.Windows.Forms.NumericUpDown();
-            this.chBoxFocusOnOpen = new System.Windows.Forms.CheckBox();
             this.MainOptionsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ControlWidth)).BeginInit();
             this.SuspendLayout();
@@ -72,9 +70,7 @@
             this.MainOptionsPanel.Controls.Add(this.labelRemoveQuickFind, 0, 6);
             this.MainOptionsPanel.Controls.Add(this.chBoxRemoveQuickFind, 2, 6);
             this.MainOptionsPanel.Controls.Add(this.labelWidth, 0, 8);
-            this.MainOptionsPanel.Controls.Add(this.labelFocusOnOpen, 0, 7);
             this.MainOptionsPanel.Controls.Add(this.ControlWidth, 2, 8);
-            this.MainOptionsPanel.Controls.Add(this.chBoxFocusOnOpen, 2, 7);
             this.MainOptionsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainOptionsPanel.Location = new System.Drawing.Point(0, 12);
             this.MainOptionsPanel.Margin = new System.Windows.Forms.Padding(3, 12, 3, 3);
@@ -257,19 +253,6 @@
             this.labelWidth.Text = "ToolBar Control Width";
             this.labelWidth.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // labelFocusOnOpen
-            // 
-            this.labelFocusOnOpen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelFocusOnOpen.AutoSize = true;
-            this.MainOptionsPanel.SetColumnSpan(this.labelFocusOnOpen, 2);
-            this.labelFocusOnOpen.Location = new System.Drawing.Point(3, 216);
-            this.labelFocusOnOpen.Name = "labelFocusOnOpen";
-            this.labelFocusOnOpen.Size = new System.Drawing.Size(145, 20);
-            this.labelFocusOnOpen.TabIndex = 15;
-            this.labelFocusOnOpen.Text = "Focus On Database Opening";
-            this.labelFocusOnOpen.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // ControlWidth
             // 
             this.ControlWidth.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -294,17 +277,6 @@
             0,
             0,
             0});
-            // 
-            // chBoxFocusOnOpen
-            // 
-            this.chBoxFocusOnOpen.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.chBoxFocusOnOpen.AutoSize = true;
-            this.chBoxFocusOnOpen.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.chBoxFocusOnOpen.Location = new System.Drawing.Point(170, 219);
-            this.chBoxFocusOnOpen.Name = "chBoxFocusOnOpen";
-            this.chBoxFocusOnOpen.Size = new System.Drawing.Size(15, 14);
-            this.chBoxFocusOnOpen.TabIndex = 14;
-            this.chBoxFocusOnOpen.UseVisualStyleBackColor = true;
             // 
             // OptionsControl
             // 
@@ -340,8 +312,6 @@
         private System.Windows.Forms.NumericUpDown ControlWidth;
         private System.Windows.Forms.Label labelWidth;
         private System.Windows.Forms.Label labelRemoveQuickFind;
-        private System.Windows.Forms.Label labelFocusOnOpen;
-        private System.Windows.Forms.CheckBox chBoxFocusOnOpen;
         private ColorSelectButton colorSelectButtonPending;
         private System.Windows.Forms.Label labelSearchPending;
 

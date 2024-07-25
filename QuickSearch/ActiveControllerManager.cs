@@ -17,6 +17,7 @@ namespace QuickSearch
         public ActiveControllerManager(IPluginHost host, QuickSearchControl qsControl)
         {
             this.host = host;
+
             this.qsControl = qsControl;
             host.MainWindow.FileOpened += new EventHandler<KeePass.Forms.FileOpenedEventArgs>(MainWindow_FileOpened);
             host.MainWindow.FileClosed += new EventHandler<KeePass.Forms.FileClosedEventArgs>(MainWindow_FileClosed);
@@ -37,11 +38,8 @@ namespace QuickSearch
         void MainWindow_FocusChanging(object sender, KeePass.Forms.FocusEventArgs e)
         {
             Debug.WriteLine("MainWindow_FocusChanging");
-            if (Settings.Default.FocusOnOpen)
-            {
-                // prevent Keepass to set focus to some other control after file has been opened
-                e.Cancel = true;
-            }
+            // prevent Keepass to set focus to some other control after file has been opened
+            e.Cancel = true;
         }
 
         void DocumentManager_ActiveDocumentSelected(object sender, EventArgs e)
@@ -80,7 +78,7 @@ namespace QuickSearch
             }
             if (disableQSControl)
             {
-                qsControl.Text = String.Empty;
+                qsControl.Text = string.Empty;
             }
             //to be improved once access to closed database is implemented in Keepass
             //dictionary.Clear();
@@ -95,17 +93,15 @@ namespace QuickSearch
         {
             Debug.WriteLine("File opened");
             //add a new Controller for the opened Database
+
             SearchController searchController = new SearchController(qsControl, e.Database, GetMainListViewControl());
             dictionary.Add(e.Database, searchController);
             //assuming the opened Database is also the active Database we subscribe it's SearchController
             //so user input will be handled by that Controller
             qsControl.TextChanged += searchController.TextUpdateHandler;
             qsControl.Enabled = true;
-            if (Settings.Default.FocusOnOpen)
-            {
-                // focus doesn't work if the Form is not yet visible. Use Select instead
-                qsControl.comboBoxSearch.Select();
-            }
+            // focus doesn't work if the Form is not yet visible. Use Select instead
+            qsControl.comboBoxSearch.Select();
         }
 
         private ListView GetMainListViewControl()
