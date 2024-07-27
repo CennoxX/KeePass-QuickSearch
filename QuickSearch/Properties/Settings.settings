@@ -14,9 +14,6 @@
     <Setting Name="BackColorOnError" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">228, 160, 143</Value>
     </Setting>
-    <Setting Name="FocusOnOpen" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
     <Setting Name="SearchInUserName" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
