@@ -47,9 +47,8 @@ namespace QuickSearch
         private void QuickSearchControl_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
-            {
                 listview.Focus();
-            }
+            
             if (e.KeyCode == Keys.Escape)
             {
                 if (!secondEscape && quickSearchControl.Text == string.Empty)
@@ -72,9 +71,8 @@ namespace QuickSearch
         {
             Debug.WriteLine("Text changed to: " + quickSearchControl.Text);
             if (backgroundWorker.IsBusy)
-            {
                 backgroundWorker.CancelAsync();
-            }
+            
             string userText = quickSearchControl.Text.Trim();
             // if there is no text, don't search
             if (userText.Equals(string.Empty))
@@ -124,14 +122,8 @@ namespace QuickSearch
             ListViewItem[] items = e.Result as ListViewItem[];
             if (items != null)
             {
-                /* don't make this. text will be overriden when selection index in listview changes
-                string itemsFound = items.Length.ToString() + " " +
-                KPRes.SearchItemsFoundSmall;
-                Program.MainForm.SetStatusEx(itemsFound);
-                */
                 Stopwatch sw = Stopwatch.StartNew();
                 listview.BeginUpdate();
-
                 listview.Items.Clear();
                 listview.Items.AddRange(items);
                 listview.Items[0].Selected = true;
@@ -176,13 +168,10 @@ namespace QuickSearch
             }
 
             if (previousSearchFound == false)
-            {
                 newSearch.PerformSearch(database.RootGroup, worker);
-            }
 
             lock (this)
             {
-
                 previousSearches.Add(newSearch);
                 if (!worker.CancellationPending)
                 {
@@ -211,9 +200,7 @@ namespace QuickSearch
                     foreach (PwEntry entry in newSearch.resultEntries)
                     {
                         if (worker.CancellationPending)
-                        {
                             return;
-                        }
                         items[i] = AddEntryToList(entry);
                         i++;
                     }
@@ -258,8 +245,39 @@ namespace QuickSearch
             for (int iColumn = 1; iColumn < listview.Columns.Count; ++iColumn)
                 lvi.SubItems.Add(GetEntryFieldEx(pe, iColumn, true));
 
+            AddGroupToListview(lvi, pe);
+
             Debug.Assert(lvi != null);
             return lvi;
+        }
+
+        private void AddGroupToListview(ListViewItem lvi, PwEntry pe)
+        {
+            if (listview.InvokeRequired)
+            {
+                listview.Invoke(new MethodInvoker(delegate
+                {
+                    AddGroupToListview(lvi, pe);
+                }));
+            }
+            else
+            {
+                var nameGroup = pe.ParentGroup;
+                string groupId = nameGroup.Uuid.ToHexString();
+                string groupName = nameGroup.Name;
+                while(nameGroup.ParentGroup != null && nameGroup.ParentGroup.ParentGroup != null)
+                {
+                    nameGroup = nameGroup.ParentGroup;
+                    groupName = nameGroup.Name + " → " + groupName;
+                }
+                ListViewGroup group = listview.Groups[groupId];
+                if (group == null)
+                {
+                    group = new ListViewGroup(groupId, groupName);
+                    listview.Groups.Add(group);
+                }
+                lvi.Group = group;
+            }
         }
 
         private string GetEntryFieldEx(PwEntry pe, int iColumnID, bool bAsterisksIfHidden)
@@ -309,7 +327,6 @@ namespace QuickSearch
                     break;
                 default: Debug.Assert(false); break;
             }
-
             return str;
         }
 
