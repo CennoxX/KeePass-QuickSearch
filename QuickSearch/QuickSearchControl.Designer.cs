@@ -197,7 +197,6 @@
             this.checkBoxGroupName.AutoSize = true;
             this.checkBoxGroupName.Checked = global::QuickSearch.Properties.Settings.Default.SearchInGroupName;
             this.checkBoxGroupName.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::QuickSearch.Properties.Settings.Default, "SearchInGroupName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.checkBoxGroupName.Enabled = false;
             this.checkBoxGroupName.Location = new System.Drawing.Point(86, 3);
             this.checkBoxGroupName.Name = "checkBoxGroupName";
             this.checkBoxGroupName.Size = new System.Drawing.Size(84, 17);

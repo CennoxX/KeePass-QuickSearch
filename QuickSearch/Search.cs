@@ -32,6 +32,7 @@ namespace QuickSearch
         bool SearchInUserName;
         bool SearchInNotes;
         bool SearchInPassword;
+        bool SearchInGroupName;
         bool searchInOther;
         bool SearchExcludeExpired;
 
@@ -49,6 +50,7 @@ namespace QuickSearch
             SearchInNotes = Settings.Default.SearchInNotes;
             SearchInPassword = KeePass.Program.Config.MainWindow.QuickFindSearchInPasswords;
             searchInOther = Settings.Default.SearchInOther;
+            SearchInGroupName = Settings.Default.SearchInGroupName;
             SearchExcludeExpired = KeePass.Program.Config.MainWindow.QuickFindExcludeExpired;
             if (Settings.Default.SearchCaseSensitive)
             {
@@ -71,6 +73,7 @@ namespace QuickSearch
             SearchInUrl = Settings.Default.SearchInUrl;
             SearchInUserName = Settings.Default.SearchInUserName;
             SearchInNotes = Settings.Default.SearchInNotes;
+            SearchInGroupName = Settings.Default.SearchInGroupName;
             SearchInPassword = KeePass.Program.Config.MainWindow.QuickFindSearchInPasswords;
             searchInOther = Settings.Default.SearchInOther;
         }
@@ -102,60 +105,41 @@ namespace QuickSearch
             {
                 // check if cancellation was requested. In this case don't continue with the search
                 if (worker.CancellationPending)
-                {
                     return;
-                }
 
                 if (SearchExcludeExpired && entry.Expires && DateTime.UtcNow > entry.ExpiryTime)
-                {
                     break;
-                }
-
+                
+                if (SearchInGroupName && AddEntryIfMatched(entry.ParentGroup.Name, entry, worker))
+                    break;
+                
                 foreach (KeyValuePair<string, ProtectedString> pair in entry.Strings)
                 {
                     // check if cancellation was requested. In this case don't continue with the search
                     if (worker.CancellationPending)
-                    {
                         return;
-                    }
 
-                    if (
-                           (SearchInTitle && pair.Key.Equals(PwDefs.TitleField))
+                    if (((SearchInTitle && pair.Key.Equals(PwDefs.TitleField))
                         || (SearchInUrl && pair.Key.Equals(PwDefs.UrlField))
                         || (SearchInUserName && pair.Key.Equals(PwDefs.UserNameField))
                         || (SearchInNotes && pair.Key.Equals(PwDefs.NotesField))
                         || (SearchInPassword && pair.Key.Equals(PwDefs.PasswordField))
-                        || (searchInOther && !PwDefs.IsStandardField(pair.Key))
-                        )
-                    {
-                        bool allSearchStringsMatched = true;
-                        foreach (string searchString in searchStrings)
-                        {
-                            // check if cancellation was requested. In this case don't continue with the search
-                            if (worker.CancellationPending)
-                            {
-                                return;
-                            }
-                            if (pair.Value.ReadString().IndexOf(searchString, searchStringComparison) < 0)
-                            {
-                                // no match in this field
-                                // continue with next field
-                                allSearchStringsMatched = false;
-                                break;
-                            }
-                            // if no break occured all words have been found. This entry is a match
-
-                        }
-                        if (allSearchStringsMatched)
-                        {
-                            resultEntries.Add(entry);
-                            // this entry was a match. The other fields can be skipped
-                            // continue with the next entry
-                            break;
-                        }
-                    }
+                        || (searchInOther && !PwDefs.IsStandardField(pair.Key)))
+                        && (AddEntryIfMatched(pair.Value.ReadString(), entry, worker)))
+                        break;
                 }
             }
+        }
+
+        private bool AddEntryIfMatched(string source, PwEntry entry, BackgroundWorker worker)
+        {
+            foreach (string searchString in searchStrings)
+            {
+                if (worker.CancellationPending || source.IndexOf(searchString, searchStringComparison) < 0)
+                    return false;
+            }
+            resultEntries.Add(entry);
+            return true;
         }
 
         public bool SettingsEquals(Search search)
