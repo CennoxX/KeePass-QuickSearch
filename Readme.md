@@ -40,6 +40,10 @@ QuickSearch enhances KeePass’s search functionality, delivering instant result
 
 ## Changelog
 
+### v2.35
+- **Added**: Show passwords in groups
+- **Added**: Search in group names
+
 ### v2.34
 - **Added**: Sync KeePass search settings
 - **Added**: Consistent use of KeePass settings for focus
