@@ -15,16 +15,20 @@ Original version: [profon.wordpress.com](http://profon.wordpress.com/quicksearch
 
 ### Installation
 
-1. Download the latest version of `QuickSearch.plgx` from the [latest Release](https://github.com/CennoxX/keepass-quicksearch/releases/latest).
-2. Move `QuickSearch.plgx` into your KeePass Plugins folder.
+1. Download `QuickSearch.plgx` from the [latest Release](https://github.com/CennoxX/keepass-quicksearch/releases/latest).
+2. Move `QuickSearch.plgx` into your KeePass Plugins folder (`Tools` > `Plugins…` > `Open Folder`).
+3. Provide administrator permission to copy to the folder.
+4. Restart KeePass to complete the update.
 
 ### Uninstallation
 
 1. Remove `QuickSearch.plgx` from your KeePass Plugins folder.
+2. Provide administrator permission to remove the file.
+3. Restart KeePass to complete the update.
 
 ## Usage
 
-QuickSearch enhances KeePass’s search functionality, delivering instant results as you type.
+QuickSearch enhances KeePass’s search functionality, delivering instant results as you type. If you need to make a more complex search, you can still use `CTRL+F` to open the search from KeePass.
 
 ### Shortcuts
 
