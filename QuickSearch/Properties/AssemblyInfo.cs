@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("QuickSearch")]
-[assembly: AssemblyDescription("Toolbar item for searching the database")]
+[assembly: AssemblyDescription("A search plugin for KeePass that provides instant results, replacing the built-in search.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Gordon Venem, Georgy Grigoryev, CennoxX")]
 [assembly: AssemblyProduct("KeePass Plugin")]
