@@ -53,12 +53,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActiveControllerManager.cs" />
-    <Compile Include="ColorSelectButton.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ColorSelectButton.Designer.cs">
-      <DependentUpon>ColorSelectButton.cs</DependentUpon>
-    </Compile>
     <Compile Include="OptionsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -89,9 +83,6 @@
     <Compile Include="Settings.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ColorSelectButton.resx">
-      <DependentUpon>ColorSelectButton.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="OptionsControl.resx">
       <DependentUpon>OptionsControl.cs</DependentUpon>
     </EmbeddedResource>
