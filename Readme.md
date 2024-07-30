@@ -1,6 +1,6 @@
 # QuickSearch
 
-QuickSearch is a search plugin for [KeePass Password Safe 2](http://www.KeePass.info), designed to provide instant search results. It serves as replacement to the built-in QuickFind toolbar control, offering an enhanced user experience.
+QuickSearch is a search plugin for [KeePass 2](http://www.KeePass.info), designed to provide instant search results. It serves as replacement to the built-in QuickFind toolbar control, offering an enhanced user experience.
 
 Original version: [profon.wordpress.com](http://profon.wordpress.com/quicksearch/)
 
@@ -8,8 +8,9 @@ Original version: [profon.wordpress.com](http://profon.wordpress.com/quicksearch
 
 - [Installation and Uninstallation](#installation-and-uninstallation)
 - [Usage](#usage)
+- [Development](#development)
 - [Changelog](#changelog)
-- [Contributing and Contact](#contributing-and-contact)
+- [Contact](#contact)
 
 ## Installation and Uninstallation
 
@@ -18,13 +19,13 @@ Original version: [profon.wordpress.com](http://profon.wordpress.com/quicksearch
 1. Download `QuickSearch.plgx` from the [latest Release](https://github.com/CennoxX/keepass-quicksearch/releases/latest).
 2. Move `QuickSearch.plgx` into your KeePass Plugins folder (`Tools` > `Plugins…` > `Open Folder`).
 3. Provide administrator permission to copy to the folder.
-4. Restart KeePass to complete the update.
+4. Restart KeePass to complete the installation.
 
 ### Uninstallation
 
 1. Remove `QuickSearch.plgx` from your KeePass Plugins folder.
 2. Provide administrator permission to remove the file.
-3. Restart KeePass to complete the update.
+3. Restart KeePass to complete the uninstallation.
 
 ## Usage
 
@@ -38,15 +39,29 @@ QuickSearch enhances KeePass’s search functionality, delivering instant result
 
 ### Additional Features
 
-- **Dynamic Search Box Color**: Changes based on search results and focus (Adjust in Tools > Options… > Quick Search).
+- **Dynamic Search Box Color**: Changes based on search results and focus (adjust in `Tools` > `Options…` > `Quick Search`).
 - **Quick Access Panel**: Customize search settings easily by clicking the magnifying glass icon next to the search box.
 - **KeePass Integration**: Respects KeePass settings for focusing the search box when restoring from tray or minimized state.
 
+## Development
+1. **Clone the repository**
+2. **Install dependencies**:
+   - Ensure you have the "Microsoft .NET Framework 4.6.2 Developer Pack" installed. You can download it from the [official Microsoft website](https://dotnet.microsoft.com/download/dotnet-framework).
+3. **Build the project**:
+   - After making changes, rebuild the QuickSearch project in the solution
+4. **Ensure KeePass is not running**:
+   - Before starting the debug process, make sure there are no running instances of KeePass.
+5. **Start debugging**:
+   - Start the debug process to test your changes.
+   
 ## Changelog
 
 ### v2.35
 - **Added**: Show passwords in groups
 - **Added**: Search in group names
+
+<details>
+<summary>Full Changelog</summary>
 
 ### v2.34
 - **Added**: Sync KeePass search settings
@@ -100,13 +115,7 @@ QuickSearch enhances KeePass’s search functionality, delivering instant result
 - **Changed**: Redistributable format updated to `.plgx` from `.dll`.
 - **Fixed**: Support KeePass 2.28 and likely earlier versions (untested).
 
-## Contributing and Contact
+</details>
 
-Contributions to enhance QuickSearch are welcomed! To contribute:
-
-1. **Fork** the repository.
-2. **Create** a new branch.
-3. **Make** your changes.
-4. **Submit** a pull request.
-
+## Contact
 For questions, issues, or discussions, visit the [GitHub Issues page](https://github.com/CennoxX/keepass-quicksearch/issues) or check out the [GitHub Discussions page](https://github.com/CennoxX/keepass-quicksearch/discussions).
