@@ -59,6 +59,7 @@
     <Compile Include="OptionsControl.Designer.cs">
       <DependentUpon>OptionsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="KeyboardHook.cs" />
     <Compile Include="SearchStatus.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

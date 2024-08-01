@@ -26,6 +26,8 @@ namespace QuickSearch
             get { return @"https://raw.githubusercontent.com/CennoxX/KeePass-QuickSearch/master/QuickSearchVersion.txt"; }
         }
 
+        private KeyboardHook _keyboardHook;
+
         public override bool Initialize(IPluginHost host)
         {
             QuickSearchExt.host = host;
@@ -74,13 +76,15 @@ namespace QuickSearch
             toolStrip.Items.Add(myToolStripControlHost);
 
             var mainForm = host.MainWindow;
+            mainForm.Resize += MainForm_Resize;
+            
             mainForm.KeyPreview = true;
-            mainForm.KeyDown += (sender, args) =>
+            _keyboardHook = new KeyboardHook();
+            _keyboardHook.KeyDown += (sender, e) =>
             {
-                if (args.KeyData == (Keys.Shift | Keys.Control | Keys.X))
+                if (e.Control && e.KeyCode == Keys.E)
                     myControl.comboBoxSearch.Focus();
             };
-            mainForm.Resize += MainForm_Resize;
             return myControl;
         }
 
