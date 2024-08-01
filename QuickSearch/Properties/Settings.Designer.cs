@@ -61,7 +61,7 @@ namespace QuickSearch.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("228, 160, 143")]
+        [global::System.Configuration.DefaultSettingValueAttribute("255, 192, 192")]
         public global::System.Drawing.Color BackColorOnError {
             get {
                 return ((global::System.Drawing.Color)(this["BackColorOnError"]));
@@ -121,7 +121,7 @@ namespace QuickSearch.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("204, 201, 145")]
+        [global::System.Configuration.DefaultSettingValueAttribute("255, 247, 204")]
         public global::System.Drawing.Color BackColorSearching {
             get {
                 return ((global::System.Drawing.Color)(this["BackColorSearching"]));
@@ -133,7 +133,7 @@ namespace QuickSearch.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("216, 233, 214")]
+        [global::System.Configuration.DefaultSettingValueAttribute("230, 247, 233")]
         public global::System.Drawing.Color BackColorSuccess {
             get {
                 return ((global::System.Drawing.Color)(this["BackColorSuccess"]));
@@ -145,7 +145,7 @@ namespace QuickSearch.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        [global::System.Configuration.DefaultSettingValueAttribute("WhiteSmoke")]
         public global::System.Drawing.Color BackColorNormalUnFocused {
             get {
                 return ((global::System.Drawing.Color)(this["BackColorNormalUnFocused"]));
@@ -157,7 +157,7 @@ namespace QuickSearch.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("255, 255, 206")]
+        [global::System.Configuration.DefaultSettingValueAttribute("229, 243, 255")]
         public global::System.Drawing.Color BackColorNormalFocused {
             get {
                 return ((global::System.Drawing.Color)(this["BackColorNormalFocused"]));

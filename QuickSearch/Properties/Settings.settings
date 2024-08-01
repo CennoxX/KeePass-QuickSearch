@@ -12,7 +12,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="BackColorOnError" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">228, 160, 143</Value>
+      <Value Profile="(Default)">255, 192, 192</Value>
     </Setting>
     <Setting Name="SearchInUserName" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -27,16 +27,16 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="BackColorSearching" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">204, 201, 145</Value>
+      <Value Profile="(Default)">255, 247, 204</Value>
     </Setting>
     <Setting Name="BackColorSuccess" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">216, 233, 214</Value>
+      <Value Profile="(Default)">230, 247, 233</Value>
     </Setting>
     <Setting Name="BackColorNormalUnFocused" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">White</Value>
+      <Value Profile="(Default)">WhiteSmoke</Value>
     </Setting>
     <Setting Name="BackColorNormalFocused" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">255, 255, 206</Value>
+      <Value Profile="(Default)">229, 243, 255</Value>
     </Setting>
     <Setting Name="ControlWidth" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">200</Value>
