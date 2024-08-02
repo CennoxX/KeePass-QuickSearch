@@ -25,7 +25,8 @@ Original version: [profon.wordpress.com](http://profon.wordpress.com/quicksearch
 
 1. Remove `QuickSearch.plgx` from your KeePass Plugins folder.
 2. Provide administrator permission to remove the file.
-3. Restart KeePass to complete the uninstallation.
+3. Remove all `Item`s in `%AppData%\KeePass\KeePass.config.xml` under `/Configuration/Custom` with `Key`s beginning with `QuickSearch`
+4. Restart KeePass to complete the uninstallation.
 
 ## Usage
 
@@ -41,18 +42,22 @@ QuickSearch enhances KeePass’s search functionality, delivering instant result
 
 - **Dynamic Search Box Color**: Changes based on search results and focus (adjust in `Tools` > `Options…` > `Quick Search`).
 - **Quick Access Panel**: Customize search settings easily by clicking the magnifying glass icon next to the search box.
-- **KeePass Integration**: Respects KeePass settings for focusing the search box when restoring from tray or minimized state.
+- **Integrates seamlessly with KeePass**: Respects KeePass settings for focusing the search box when restoring from tray or minimized state.
 
 ## Development
 1. **Clone the repository**
 2. **Install dependencies**:
    - Ensure you have the "Microsoft .NET Framework 4.6.2 Developer Pack" installed. You can download it from the [official Microsoft website](https://dotnet.microsoft.com/download/dotnet-framework).
 3. **Build the project**:
-   - After making changes, rebuild the QuickSearch project in the solution
+   - Every time after making changes, rebuild the QuickSearch project in the solution
 4. **Ensure KeePass is not running**:
    - Before starting the debug process, make sure there are no running instances of KeePass.
 5. **Start debugging**:
    - Start the debug process to test your changes.
+6. **Ignore assertion errors**:
+   - Ignore potential KeePass assertion errors that may occur when using DPI scaling settings.
+
+You can skip step 3 by adding the following as a pre-build event to the Build Events of the KeePass project: `if "$(BuildingInsideVisualStudio)" == "true" "$(MSBuildBinPath)\msbuild.exe" "$(ProjectDir)..\..\QuickSearch\QuickSearch.csproj" /p:Configuration=$(ConfigurationName)`
    
 ## Changelog
 
