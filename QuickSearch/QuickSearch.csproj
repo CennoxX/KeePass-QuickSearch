@@ -106,10 +106,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Resources\16-settings-icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Icon1.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KeePass2.x\KeePass\KeePass.csproj">
