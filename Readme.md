@@ -2,8 +2,6 @@
 
 QuickSearch is a search plugin for [KeePass 2](http://www.KeePass.info), designed to provide instant search results. It serves as replacement to the built-in QuickFind toolbar control, offering an enhanced user experience.
 
-Original version: [profon.wordpress.com](http://profon.wordpress.com/quicksearch/)
-
 ## Table of Contents
 
 - [Installation and Uninstallation](#installation-and-uninstallation)
@@ -29,12 +27,18 @@ Original version: [profon.wordpress.com](http://profon.wordpress.com/quicksearch
 4. Restart KeePass to complete the uninstallation.
 
 ## Usage
+QuickSearch delivers instant results as you type. A password entry is a match if all words separated by whitespace occur within a single one of its fields, regardless of their position in the field.
 
-QuickSearch enhances KeePass’s search functionality, delivering instant results as you type. If you need to make a more complex search, you can still use `CTRL+F` to open the search from KeePass.
+ If you need to make a more complex search, you can still use `CTRL+F` to open the search from KeePass.
+
+**Warning:** If you search in fields that have in-memory protection, they will be decrypted and remain unencrypted in memory for a while.
+
+<img src="https://github.com/user-attachments/assets/eda32581-5e2a-4f3e-b7b7-2068922221bd" height="440" />
+
 
 ### Shortcuts
 
-- **Activate Search Box**: `CTRL+SHIFT+X`
+- **Activate Search Box**: `CTRL+E`
 - **Focus Password List**: `ENTER`
 - **Clear Search Box**: `ESCAPE` (if the search box is empty, the `ESCAPE` action configured in KeePass is executed)
 
@@ -43,6 +47,9 @@ QuickSearch enhances KeePass’s search functionality, delivering instant result
 - **Dynamic Search Box Color**: Changes based on search results and focus (adjust in `Tools` > `Options…` > `Quick Search`).
 - **Quick Access Panel**: Customize search settings easily by clicking the magnifying glass icon next to the search box.
 - **Integrates seamlessly with KeePass**: Respects KeePass settings for focusing the search box when restoring from tray or minimized state.
+
+<img src="https://github.com/user-attachments/assets/e2cd2c2c-bf5a-4ae7-bc94-afee530f05e4" height="310" align="left" />
+<img src="https://github.com/user-attachments/assets/6bf2e29b-3043-4c11-a7db-87f378a28025" height="310" />
 
 ## Development
 1. **Clone the repository**
@@ -61,26 +68,33 @@ You can skip step 3 by adding the following as a pre-build event to the Build Ev
    
 ## Changelog
 
-### v2.35
-- **Added**: Show passwords in groups
-- **Added**: Search in group names
+### v2.36
+- **Changed**: Shortcut to activate search box now `CTRL+E`.
+- **Changed**: Use modern default colors.
+- **Changed**: Updated icons to avoid copyright issues.
+- **Changed**: Align settings with KeePass aesthetics.
+- **Fixed**: Color selection with the dark theme from the KeeTheme plugin.
 
 <details>
 <summary>Full Changelog</summary>
 
+### v2.35
+- **Added**: Show passwords in groups.
+- **Added**: Search in group names.
+
 ### v2.34
-- **Added**: Sync KeePass search settings
-- **Added**: Consistent use of KeePass settings for focus
-- **Added**: Reset search on empty search box
-- **Added**: Always hide KeePass QuickFind
-- **Changed**: Revised PlgX creation
-- **Fixed**: Option exclude expired entries
-- **Fixed**: Display of entries on reset
-- **Fixed**: Text formatting of expired entries
+- **Added**: Sync KeePass search settings.
+- **Added**: Consistent use of KeePass settings for focus.
+- **Added**: Reset search on empty search box.
+- **Added**: Always hide KeePass QuickFind.
+- **Changed**: Revised PlgX creation.
+- **Fixed**: Option exclude expired entries.
+- **Fixed**: Display of entries on reset.
+- **Fixed**: Text formatting of expired entries.
 
 ### v2.33
 - **Added**: Respect KeePass settings when focusing the search box on restoring from tray or minimized.
-- **Added**: KeePass 2.x as a submodule.
+- **Added**: KeePass2.x as a submodule.
 
 ### v2.32
 - **Fixed**: Shortcut to activate search box, now `CTRL+SHIFT+X`.
@@ -121,6 +135,12 @@ You can skip step 3 by adding the following as a pre-build event to the Build Ev
 - **Fixed**: Support KeePass 2.28 and likely earlier versions (untested).
 
 </details>
+
+## Credit
+Original version by [Gordon Venem](https://profon.wordpress.com/quicksearch/)<br />
+With contributions by [Dominik Reichl](https://sourceforge.net/u/dreichl/profile/), [Alex Vallat](https://sourceforge.net/u/alexvallat/profile/) and [Laurens von Assel](https://github.com/biolauri)<br />
+Current development by [CennoxX](https://github.com/CennoxX/)<br />
+Icons by David Vignoni, licensed under the [LGPL 2.1](https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html)
 
 ## Contact
 For questions, issues, or discussions, visit the [GitHub Issues page](https://github.com/CennoxX/keepass-quicksearch/issues) or check out the [GitHub Discussions page](https://github.com/CennoxX/keepass-quicksearch/discussions).
