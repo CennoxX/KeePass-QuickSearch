@@ -33,6 +33,7 @@ namespace QuickSearch
         bool SearchInNotes;
         bool SearchInPassword;
         bool SearchInGroupName;
+        bool SearchInTags;
         bool searchInOther;
         bool SearchExcludeExpired;
 
@@ -51,6 +52,7 @@ namespace QuickSearch
             SearchInPassword = KeePass.Program.Config.MainWindow.QuickFindSearchInPasswords;
             searchInOther = Settings.Default.SearchInOther;
             SearchInGroupName = Settings.Default.SearchInGroupName;
+            SearchInTags = Settings.Default.SearchInTags;
             SearchExcludeExpired = KeePass.Program.Config.MainWindow.QuickFindExcludeExpired;
             if (Settings.Default.SearchCaseSensitive)
             {
@@ -74,6 +76,7 @@ namespace QuickSearch
             SearchInUserName = Settings.Default.SearchInUserName;
             SearchInNotes = Settings.Default.SearchInNotes;
             SearchInGroupName = Settings.Default.SearchInGroupName;
+            SearchInTags = Settings.Default.SearchInTags;
             SearchInPassword = KeePass.Program.Config.MainWindow.QuickFindSearchInPasswords;
             searchInOther = Settings.Default.SearchInOther;
         }
@@ -111,8 +114,23 @@ namespace QuickSearch
                     continue;
                 
                 if (SearchInGroupName && AddEntryIfMatched(entry.ParentGroup.Name, entry, worker))
-                
                     continue;
+
+                if (SearchInTags)
+                {
+                    var tagFound = false;
+                    foreach (var tag in entry.Tags)
+                    {
+                        if (AddEntryIfMatched(tag, entry, worker))
+                        {
+                            tagFound = true;
+                            break;
+                        }
+                    }
+                    if (tagFound)
+                        continue;
+                }
+
                 foreach (KeyValuePair<string, ProtectedString> pair in entry.Strings)
                 {
                     // check if cancellation was requested. In this case don't continue with the search

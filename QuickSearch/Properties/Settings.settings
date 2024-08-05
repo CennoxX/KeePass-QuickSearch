@@ -23,6 +23,9 @@
     <Setting Name="SearchInGroupName" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="SearchInTags" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="SearchInOther" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>

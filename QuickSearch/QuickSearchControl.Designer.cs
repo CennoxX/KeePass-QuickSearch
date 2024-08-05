@@ -47,6 +47,7 @@
             this.tableLayoutPanelOptions = new System.Windows.Forms.TableLayoutPanel();
             this.checkBoxCase = new System.Windows.Forms.CheckBox();
             this.checkBoxExclude = new System.Windows.Forms.CheckBox();
+            this.checkBoxTags = new System.Windows.Forms.CheckBox();
             this.comboBoxSearch = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanelMain.SuspendLayout();
             this.groupBoxSearchIn.SuspendLayout();
@@ -138,9 +139,10 @@
             this.tableLayoutPanelSearchIn.Controls.Add(this.checkBoxUserName, 0, 1);
             this.tableLayoutPanelSearchIn.Controls.Add(this.checkBoxNotes, 0, 2);
             this.tableLayoutPanelSearchIn.Controls.Add(this.checkBoxGroupName, 1, 0);
-            this.tableLayoutPanelSearchIn.Controls.Add(this.checkBoxOther, 2, 0);
             this.tableLayoutPanelSearchIn.Controls.Add(this.checkBoxPassword, 1, 2);
             this.tableLayoutPanelSearchIn.Controls.Add(this.checkBoxUrl, 1, 1);
+            this.tableLayoutPanelSearchIn.Controls.Add(this.checkBoxTags, 2, 0);
+            this.tableLayoutPanelSearchIn.Controls.Add(this.checkBoxOther, 2, 1);
             this.tableLayoutPanelSearchIn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelSearchIn.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             this.tableLayoutPanelSearchIn.Location = new System.Drawing.Point(3, 16);
@@ -301,6 +303,19 @@
             this.checkBoxExclude.UseVisualStyleBackColor = true;
             this.checkBoxExclude.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Control_PreviewKeyDown);
             // 
+            // checkBoxTags
+            // 
+            this.checkBoxTags.AutoSize = true;
+            this.checkBoxTags.Checked = global::QuickSearch.Properties.Settings.Default.SearchInTags;
+            this.checkBoxTags.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::QuickSearch.Properties.Settings.Default, "SearchInTags", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBoxTags.Location = new System.Drawing.Point(176, 3);
+            this.checkBoxTags.Name = "checkBoxTags";
+            this.checkBoxTags.Size = new System.Drawing.Size(79, 17);
+            this.checkBoxTags.TabIndex = 6;
+            this.checkBoxTags.Text = "Tags";
+            this.checkBoxTags.UseVisualStyleBackColor = true;
+            this.checkBoxTags.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Control_PreviewKeyDown);
+            // 
             // comboBoxSearch
             // 
             this.comboBoxSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
@@ -357,6 +372,7 @@
         private System.Windows.Forms.CheckBox checkBoxGroupName;
         private System.Windows.Forms.CheckBox checkBoxPassword;
         private System.Windows.Forms.CheckBox checkBoxUrl;
+        private System.Windows.Forms.CheckBox checkBoxTags;
         private System.Windows.Forms.CheckBox checkBoxOther;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelOptions;
         private System.Windows.Forms.CheckBox checkBoxCase;
