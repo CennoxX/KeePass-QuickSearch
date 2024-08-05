@@ -1,7 +1,9 @@
 ﻿using QuickSearch.Properties;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace QuickSearch
@@ -11,34 +13,19 @@ namespace QuickSearch
         public new string Text
         {
             get { return comboBoxSearch.Text; }
-            set
-            {
-                comboBoxSearch.Text = value;
-            }
+            set { comboBoxSearch.Text = value; }
         }
 
         public new event EventHandler TextChanged
         {
-            add
-            {
-                comboBoxSearch.TextChanged += value;
-            }
-            remove
-            {
-                comboBoxSearch.TextChanged -= value;
-            }
+            add { comboBoxSearch.TextChanged += value; }
+            remove { comboBoxSearch.TextChanged -= value; }
         }
 
         public new event PreviewKeyDownEventHandler PreviewKeyDown
         {
-            add
-            {
-                comboBoxSearch.PreviewKeyDown += value;
-            }
-            remove
-            {
-                comboBoxSearch.PreviewKeyDown -= value;
-            }
+            add { comboBoxSearch.PreviewKeyDown += value; }
+            remove { comboBoxSearch.PreviewKeyDown -= value; }
         }
 
         public QuickSearchControl()
@@ -47,6 +34,7 @@ namespace QuickSearch
             UpdateWidth();
             comboBoxSearch.GotFocus += new EventHandler(ComboBoxSearch_GotFocus);
             comboBoxSearch.LostFocus += new EventHandler(ComboBoxSearch_LostFocus);
+            comboBoxSearch.DropDown += new EventHandler(comboBoxSearch_DropDown);
 
             Controls.Remove(tableLayoutPanelMain);
 
@@ -69,14 +57,29 @@ namespace QuickSearch
             toolStripDropDownSettings.Items.Add(settingsPanelHost);
         }
 
-        void ComboBoxSearch_LostFocus(object sender, EventArgs e)
+        private void comboBoxSearch_DropDown(object sender, EventArgs e)
+        {
+            SetBackColor(Settings.Default.BackColorNormalUnFocused);
+        }
+
+        private void ComboBoxSearch_LostFocus(object sender, EventArgs e)
         {
             Debug.WriteLine("Focus Lost");
             SetBackColorNormal();
+            SaveEnteredSearch();
             OnLostFocus(e);
         }
 
-        void ComboBoxSearch_GotFocus(object sender, EventArgs e)
+        private void SaveEnteredSearch()
+        {
+            if (!string.IsNullOrEmpty(this.Text) && !comboBoxSearch.Items.Cast<string>().Any(i => i.StartsWith(this.Text)))
+                comboBoxSearch.Items.Add(this.Text);
+            
+            if (comboBoxSearch.Items.Count > 8)
+                comboBoxSearch.Items.RemoveAt(0);
+        }
+
+        private void ComboBoxSearch_GotFocus(object sender, EventArgs e)
         {
             Debug.WriteLine("Got Focus");
             SetBackColorNormal();
@@ -84,7 +87,7 @@ namespace QuickSearch
 
         // this event has to be consumed by all checkboxes and the DropDown. 
         // The TableLayoutPanels and GroupBoxes don't seem to raise this event
-        void Control_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        private void Control_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             if (e.KeyCode != Keys.Space)
             {
@@ -99,13 +102,13 @@ namespace QuickSearch
             switch (status)
             {
                 case SearchStatus.Success:
-                    SetBackColorSuccess();
+                    SetBackColor(Settings.Default.BackColorSuccess);
                     break;
                 case SearchStatus.Error:
-                    SetBackColorError();
+                    SetBackColor(Settings.Default.BackColorOnError);
                     break;
                 case SearchStatus.Pending:
-                    SetBackColorSearching();
+                    SetBackColor(Settings.Default.BackColorSearching);
                     break;
                 case SearchStatus.Normal:
                     SetBackColorNormal();
@@ -154,7 +157,7 @@ namespace QuickSearch
             ButtonDropdownSettings.Enabled = true;
         }
 
-        void SetBackColor(Color color)
+        private void SetBackColor(Color color)
         {
             comboBoxSearch.BackColor = color;
             ButtonDropdownSettings.BackColor = color;
@@ -162,22 +165,7 @@ namespace QuickSearch
             ButtonDropdownSettings.FlatAppearance.MouseOverBackColor = color;
         }
 
-        void SetBackColorError()
-        {
-            SetBackColor(Settings.Default.BackColorOnError);
-        }
-
-        void SetBackColorSearching()
-        {
-            SetBackColor(Settings.Default.BackColorSearching);
-        }
-
-        void SetBackColorSuccess()
-        {
-            SetBackColor(Settings.Default.BackColorSuccess);
-        }
-
-        void SetBackColorNormal()
+        private void SetBackColorNormal()
         {
             SetBackColor(comboBoxSearch.Focused ? Settings.Default.BackColorNormalFocused : Settings.Default.BackColorNormalUnFocused);
         }
