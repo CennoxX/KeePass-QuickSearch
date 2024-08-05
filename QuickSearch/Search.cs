@@ -108,11 +108,11 @@ namespace QuickSearch
                     return;
 
                 if (SearchExcludeExpired && entry.Expires && DateTime.UtcNow > entry.ExpiryTime)
-                    break;
+                    continue;
                 
                 if (SearchInGroupName && AddEntryIfMatched(entry.ParentGroup.Name, entry, worker))
-                    break;
                 
+                    continue;
                 foreach (KeyValuePair<string, ProtectedString> pair in entry.Strings)
                 {
                     // check if cancellation was requested. In this case don't continue with the search
