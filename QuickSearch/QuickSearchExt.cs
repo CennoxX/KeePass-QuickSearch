@@ -1,10 +1,16 @@
 ﻿using KeePass;
+using KeePass.App;
+using KeePass.App.Configuration;
 using KeePass.Forms;
 using KeePass.Plugins;
 using KeePass.UI;
+using KeePass.Util;
+using KeePass.Util.XmlSerialization;
+using KeePassLib.Translation;
 using QuickSearch.Properties;
 using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace QuickSearch
@@ -35,12 +41,32 @@ namespace QuickSearch
             Settings.Default.Load(host);
 
             HideQuickFindControl();
+            LocalizeSettingsPanel();
             qsControl = AddQuickSearchControl(host);
             new ActiveControllerManager(host, qsControl);
 
             GlobalWindowManager.WindowAdded += new EventHandler<GwmWindowEventArgs>(GlobalWindowManager_WindowAdded);
 
             return true;
+        }
+
+        private void LocalizeSettingsPanel()
+        {
+            string strDir = WinUtil.IsAppX ? AppConfigSerializer.AppDataDirectory : Path.GetDirectoryName(WinUtil.GetExecutable());
+            string strPath = Path.Combine(strDir, AppDefs.LanguagesDir, Program.Config.Application.LanguageFile);
+            if (string.IsNullOrEmpty(Program.Config.Application.LanguageFile) || !File.Exists(strPath))
+                return;
+            XmlSerializerEx xs = new XmlSerializerEx(typeof(KPTranslation));
+            var kpTranslation = KPTranslation.Load(strPath, xs);
+            var searchForm = kpTranslation.Forms.Find(i => i.FullName == "KeePass.Forms.SearchForm");
+            if (searchForm == null)
+                return;
+            foreach (var field in typeof(LocalizedStrings).GetFields())
+            {
+                var control = searchForm.Controls.Find(i => i.Name == field.Name);
+                if (control != null)
+                    field.SetValue(null, control.Text.Replace("&", ""));
+            }
         }
 
         private void GlobalWindowManager_WindowAdded(object sender, GwmWindowEventArgs e)

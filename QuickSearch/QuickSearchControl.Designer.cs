@@ -125,7 +125,7 @@
             this.groupBoxSearchIn.Size = new System.Drawing.Size(264, 88);
             this.groupBoxSearchIn.TabIndex = 0;
             this.groupBoxSearchIn.TabStop = false;
-            this.groupBoxSearchIn.Text = "Search in";
+            this.groupBoxSearchIn.Text = LocalizedStrings.m_grpSearchIn;
             // 
             // tableLayoutPanelSearchIn
             // 
@@ -164,7 +164,7 @@
             this.checkBoxTitle.Name = "checkBoxTitle";
             this.checkBoxTitle.Size = new System.Drawing.Size(46, 17);
             this.checkBoxTitle.TabIndex = 0;
-            this.checkBoxTitle.Text = "Title";
+            this.checkBoxTitle.Text = LocalizedStrings.m_cbTitle;
             this.checkBoxTitle.UseVisualStyleBackColor = true;
             this.checkBoxTitle.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Control_PreviewKeyDown);
             // 
@@ -177,7 +177,7 @@
             this.checkBoxUserName.Name = "checkBoxUserName";
             this.checkBoxUserName.Size = new System.Drawing.Size(77, 17);
             this.checkBoxUserName.TabIndex = 1;
-            this.checkBoxUserName.Text = "User name";
+            this.checkBoxUserName.Text = LocalizedStrings.m_cbUserName;
             this.checkBoxUserName.UseVisualStyleBackColor = true;
             this.checkBoxUserName.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Control_PreviewKeyDown);
             // 
@@ -190,7 +190,7 @@
             this.checkBoxNotes.Name = "checkBoxNotes";
             this.checkBoxNotes.Size = new System.Drawing.Size(54, 17);
             this.checkBoxNotes.TabIndex = 2;
-            this.checkBoxNotes.Text = "Notes";
+            this.checkBoxNotes.Text = LocalizedStrings.m_cbNotes;
             this.checkBoxNotes.UseVisualStyleBackColor = true;
             this.checkBoxNotes.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Control_PreviewKeyDown);
             // 
@@ -203,7 +203,7 @@
             this.checkBoxGroupName.Name = "checkBoxGroupName";
             this.checkBoxGroupName.Size = new System.Drawing.Size(84, 17);
             this.checkBoxGroupName.TabIndex = 3;
-            this.checkBoxGroupName.Text = "Group name";
+            this.checkBoxGroupName.Text = LocalizedStrings.m_cbGroupName;
             this.checkBoxGroupName.UseVisualStyleBackColor = true;
             this.checkBoxGroupName.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Control_PreviewKeyDown);
             // 
@@ -216,7 +216,7 @@
             this.checkBoxOther.Name = "checkBoxOther";
             this.checkBoxOther.Size = new System.Drawing.Size(79, 17);
             this.checkBoxOther.TabIndex = 6;
-            this.checkBoxOther.Text = "Other fields";
+            this.checkBoxOther.Text = LocalizedStrings.m_cbStringsOther;
             this.checkBoxOther.UseVisualStyleBackColor = true;
             this.checkBoxOther.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Control_PreviewKeyDown);
             // 
@@ -229,7 +229,7 @@
             this.checkBoxPassword.Name = "checkBoxPassword";
             this.checkBoxPassword.Size = new System.Drawing.Size(72, 17);
             this.checkBoxPassword.TabIndex = 4;
-            this.checkBoxPassword.Text = "Password";
+            this.checkBoxPassword.Text = LocalizedStrings.m_cbPassword;
             this.checkBoxPassword.UseVisualStyleBackColor = true;
             this.checkBoxPassword.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Control_PreviewKeyDown);
             // 
@@ -243,7 +243,7 @@
             this.checkBoxUrl.Name = "checkBoxUrl";
             this.checkBoxUrl.Size = new System.Drawing.Size(48, 17);
             this.checkBoxUrl.TabIndex = 5;
-            this.checkBoxUrl.Text = "URL";
+            this.checkBoxUrl.Text = LocalizedStrings.m_cbUrl;
             this.checkBoxUrl.UseVisualStyleBackColor = true;
             this.checkBoxUrl.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Control_PreviewKeyDown);
             // 
@@ -257,7 +257,7 @@
             this.groupBoxOptions.Size = new System.Drawing.Size(264, 65);
             this.groupBoxOptions.TabIndex = 1;
             this.groupBoxOptions.TabStop = false;
-            this.groupBoxOptions.Text = "Options";
+            this.groupBoxOptions.Text = LocalizedStrings.m_grpOptions;
             // 
             // tableLayoutPanelOptions
             // 
@@ -286,7 +286,7 @@
             this.checkBoxCase.Name = "checkBoxCase";
             this.checkBoxCase.Size = new System.Drawing.Size(94, 17);
             this.checkBoxCase.TabIndex = 0;
-            this.checkBoxCase.Text = "Case-sensitive";
+            this.checkBoxCase.Text = LocalizedStrings.m_cbCaseSensitive;
             this.checkBoxCase.UseVisualStyleBackColor = true;
             this.checkBoxCase.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Control_PreviewKeyDown);
             // 
@@ -299,7 +299,7 @@
             this.checkBoxExclude.Name = "checkBoxExclude";
             this.checkBoxExclude.Size = new System.Drawing.Size(135, 17);
             this.checkBoxExclude.TabIndex = 1;
-            this.checkBoxExclude.Text = "Exclude expired entries";
+            this.checkBoxExclude.Text = LocalizedStrings.m_cbExcludeExpired;
             this.checkBoxExclude.UseVisualStyleBackColor = true;
             this.checkBoxExclude.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Control_PreviewKeyDown);
             // 
@@ -312,7 +312,7 @@
             this.checkBoxTags.Name = "checkBoxTags";
             this.checkBoxTags.Size = new System.Drawing.Size(79, 17);
             this.checkBoxTags.TabIndex = 6;
-            this.checkBoxTags.Text = "Tags";
+            this.checkBoxTags.Text = LocalizedStrings.m_cbTags;
             this.checkBoxTags.UseVisualStyleBackColor = true;
             this.checkBoxTags.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Control_PreviewKeyDown);
             // 

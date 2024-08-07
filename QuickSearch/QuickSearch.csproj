@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActiveControllerManager.cs" />
+    <Compile Include="LocalizedStrings.cs" />
     <Compile Include="OptionsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
