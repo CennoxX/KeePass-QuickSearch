@@ -1,6 +1,6 @@
-﻿using QuickSearch.Properties;
+﻿using KeePass;
+using QuickSearch.Properties;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
@@ -55,6 +55,13 @@ namespace QuickSearch
             tableLayoutPanelMain.Location = Point.Empty;
             // add the ToolStripControlHost to the DropDown
             toolStripDropDownSettings.Items.Add(settingsPanelHost);
+
+            var isDarkThemeEnabled = Program.Config.CustomConfig.GetString("KeeTheme.Enabled").Equals("true", StringComparison.OrdinalIgnoreCase); ;
+            if (isDarkThemeEnabled)
+            {
+                groupBoxSearchIn.ForeColor = Color.LightGray;
+                groupBoxOptions.ForeColor = Color.LightGray;
+            }
         }
 
         private void comboBoxSearch_DropDown(object sender, EventArgs e)
