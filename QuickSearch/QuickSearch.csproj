@@ -116,6 +116,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>IF $(ConfigurationName) == Release "$(ProjectDir)..\CreatePlgx.bat"</PostBuildEvent>
+    <PostBuildEvent>if $(ConfigurationName) == Release (
+    cd "$(ProjectDir).."
+    CreatePlgx.bat
+)</PostBuildEvent>
   </PropertyGroup>
 </Project>
