@@ -1,4 +1,6 @@
-﻿namespace QuickSearch
+﻿using KeePass.Resources;
+
+namespace QuickSearch
 {
     partial class QuickSearchControl
     {
@@ -49,6 +51,7 @@
             this.checkBoxExclude = new System.Windows.Forms.CheckBox();
             this.checkBoxTags = new System.Windows.Forms.CheckBox();
             this.comboBoxSearch = new System.Windows.Forms.ComboBox();
+            this.toolTipSearch = new System.Windows.Forms.ToolTip();
             this.tableLayoutPanelMain.SuspendLayout();
             this.groupBoxSearchIn.SuspendLayout();
             this.tableLayoutPanelSearchIn.SuspendLayout();
@@ -329,6 +332,10 @@
             this.comboBoxSearch.Size = new System.Drawing.Size(412, 21);
             this.comboBoxSearch.TabIndex = 2;
             // 
+            // toolTipSearch
+            // 
+            this.toolTipSearch.SetToolTip(this.comboBoxSearch, KPRes.SearchQuickPrompt + " (" + KPRes.KeyboardKeyCtrl + "+E)");
+            // 
             // QuickSearchControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -378,6 +385,7 @@
         private System.Windows.Forms.CheckBox checkBoxCase;
         private System.Windows.Forms.CheckBox checkBoxExclude;
         public System.Windows.Forms.ComboBox comboBoxSearch;
+        public System.Windows.Forms.ToolTip toolTipSearch;
 
     }
 }
