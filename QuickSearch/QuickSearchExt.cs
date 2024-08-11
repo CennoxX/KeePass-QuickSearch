@@ -45,7 +45,7 @@ namespace QuickSearch
             qsControl = AddQuickSearchControl(host);
             new ActiveControllerManager(host, qsControl);
 
-            GlobalWindowManager.WindowAdded += new EventHandler<GwmWindowEventArgs>(GlobalWindowManager_WindowAdded);
+            GlobalWindowManager.WindowAdded += GlobalWindowManager_WindowAdded;
 
             return true;
         }

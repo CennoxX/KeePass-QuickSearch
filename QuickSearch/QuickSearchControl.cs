@@ -32,9 +32,9 @@ namespace QuickSearch
         {
             InitializeComponent();
             UpdateWidth();
-            comboBoxSearch.GotFocus += new EventHandler(ComboBoxSearch_GotFocus);
-            comboBoxSearch.LostFocus += new EventHandler(ComboBoxSearch_LostFocus);
-            comboBoxSearch.DropDown += new EventHandler(comboBoxSearch_DropDown);
+            comboBoxSearch.GotFocus += ComboBoxSearch_GotFocus;
+            comboBoxSearch.LostFocus += ComboBoxSearch_LostFocus;
+            comboBoxSearch.DropDown += ComboBoxSearch_DropDown;
 
             Controls.Remove(tableLayoutPanelMain);
 
@@ -64,7 +64,7 @@ namespace QuickSearch
             }
         }
 
-        private void comboBoxSearch_DropDown(object sender, EventArgs e)
+        private void ComboBoxSearch_DropDown(object sender, EventArgs e)
         {
             SetBackColor(Settings.Default.BackColorNormalUnFocused);
         }

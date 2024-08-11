@@ -1,6 +1,5 @@
 ﻿using KeePass.Plugins;
 using KeePassLib;
-using QuickSearch.Properties;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -19,14 +18,14 @@ namespace QuickSearch
             this.host = host;
 
             this.qsControl = qsControl;
-            host.MainWindow.FileOpened += new EventHandler<KeePass.Forms.FileOpenedEventArgs>(MainWindow_FileOpened);
-            host.MainWindow.FileClosed += new EventHandler<KeePass.Forms.FileClosedEventArgs>(MainWindow_FileClosed);
-            host.MainWindow.DocumentManager.ActiveDocumentSelected += new EventHandler(DocumentManager_ActiveDocumentSelected);
-            host.MainWindow.FocusChanging += new EventHandler<KeePass.Forms.FocusEventArgs>(MainWindow_FocusChanging);
-            qsControl.LostFocus += new EventHandler(QsControl_LostFocus);
+            host.MainWindow.FileOpened += MainWindow_FileOpened;
+            host.MainWindow.FileClosed += MainWindow_FileClosed;
+            host.MainWindow.DocumentManager.ActiveDocumentSelected += DocumentManager_ActiveDocumentSelected;
+            host.MainWindow.FocusChanging += MainWindow_FocusChanging;
+            qsControl.LostFocus += QsControl_LostFocus;
         }
 
-        void QsControl_LostFocus(object sender, EventArgs e)
+        private void QsControl_LostFocus(object sender, EventArgs e)
         {
             Debug.WriteLine("QuickSearch Control lost Focus");
             foreach (SearchController searchController in dictionary.Values)
@@ -35,14 +34,14 @@ namespace QuickSearch
             }
         }
 
-        void MainWindow_FocusChanging(object sender, KeePass.Forms.FocusEventArgs e)
+        private void MainWindow_FocusChanging(object sender, KeePass.Forms.FocusEventArgs e)
         {
             Debug.WriteLine("MainWindow_FocusChanging");
             // prevent Keepass to set focus to some other control after file has been opened
             e.Cancel = true;
         }
 
-        void DocumentManager_ActiveDocumentSelected(object sender, EventArgs e)
+        private void DocumentManager_ActiveDocumentSelected(object sender, EventArgs e)
         {
             Debug.WriteLine("DocumentManager_ActiveDocumentSelected event");
 
@@ -54,7 +53,7 @@ namespace QuickSearch
             }
         }
 
-        void MainWindow_FileClosed(object sender, KeePass.Forms.FileClosedEventArgs e)
+        private void MainWindow_FileClosed(object sender, KeePass.Forms.FileClosedEventArgs e)
         {
             Debug.WriteLine("File closed");
             // remove the event listeners of those Search Controllers whose databases have been closed
@@ -89,7 +88,7 @@ namespace QuickSearch
             //}
         }
 
-        void MainWindow_FileOpened(object sender, KeePass.Forms.FileOpenedEventArgs e)
+        private void MainWindow_FileOpened(object sender, KeePass.Forms.FileOpenedEventArgs e)
         {
             Debug.WriteLine("File opened");
             //add a new Controller for the opened Database

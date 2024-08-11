@@ -38,10 +38,10 @@ namespace QuickSearch
             this.listview = listview;
             qsUpdateMethod = QsUpdate;
             quickSearchControl = qsControl;
-            textUpdateHandler = new EventHandler(Control_TextUpdate);
+            textUpdateHandler = Control_TextUpdate;
             Debug.Assert(listview != null);
             backgroundWorker.WorkerSupportsCancellation = true;
-            quickSearchControl.PreviewKeyDown += new PreviewKeyDownEventHandler(QuickSearchControl_PreviewKeyDown);
+            quickSearchControl.PreviewKeyDown += QuickSearchControl_PreviewKeyDown;
         }
 
         private void QuickSearchControl_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -88,8 +88,8 @@ namespace QuickSearch
             backgroundWorker = new BackgroundWorker();
             backgroundWorker.WorkerSupportsCancellation = true;
 
-            backgroundWorker.DoWork += new DoWorkEventHandler(BackgroundWorker_DoWork);
-            backgroundWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(BackgroundWorker_RunWorkerCompleted);
+            backgroundWorker.DoWork += BackgroundWorker_DoWork;
+            backgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
 
             backgroundWorker.RunWorkerAsync(userText);
         }
