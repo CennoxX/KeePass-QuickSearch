@@ -1,9 +1,11 @@
 ﻿using KeePass;
+using KeePass.Resources;
 using QuickSearch.Properties;
 using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace QuickSearch
@@ -35,6 +37,10 @@ namespace QuickSearch
             comboBoxSearch.GotFocus += ComboBoxSearch_GotFocus;
             comboBoxSearch.LostFocus += ComboBoxSearch_LostFocus;
             comboBoxSearch.DropDown += ComboBoxSearch_DropDown;
+            if (comboBoxSearch.IsHandleCreated)
+                ComboBoxSearch_HandleCreated();
+            else
+                comboBoxSearch.HandleCreated += ComboBoxSearch_HandleCreated; 
 
             Controls.Remove(tableLayoutPanelMain);
 
@@ -62,6 +68,15 @@ namespace QuickSearch
                 groupBoxSearchIn.ForeColor = Color.LightGray;
                 groupBoxOptions.ForeColor = Color.LightGray;
             }
+        }
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        static extern int SendMessage(IntPtr hWnd, int msg, int wParam, string lParam);
+
+        private void ComboBoxSearch_HandleCreated(object sender = null, EventArgs e = null)
+        {
+            const int CB_SETCUEBANNER = 0x1703;
+            SendMessage(comboBoxSearch.Handle, CB_SETCUEBANNER, 0, KPRes.Search);
         }
 
         private void ComboBoxSearch_DropDown(object sender, EventArgs e)
