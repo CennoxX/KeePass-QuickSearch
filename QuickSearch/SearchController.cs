@@ -108,6 +108,7 @@ namespace QuickSearch
             listview.BeginUpdate();
             listview.Items.Clear();
             listview.Items.AddRange(entries.Select(pe => AddEntryToList(pe)).ToArray());
+            ApplyAlternatingItemStyles(listview);
             listview.EndUpdate();
             ClearPreviousSearches();
         }
@@ -127,6 +128,7 @@ namespace QuickSearch
                 listview.Items.Clear();
                 listview.Items.AddRange(items);
                 listview.Items[0].Selected = true;
+                ApplyAlternatingItemStyles(listview);
                 listview.EndUpdate();
                 Debug.WriteLine("ListView updated in elapsed Ticks: " + sw.ElapsedTicks.ToString() + ", elapsed ms: " + sw.ElapsedMilliseconds);
             }
@@ -336,6 +338,12 @@ namespace QuickSearch
             {
                 quickSearchControl.UpdateSearchStatus(status);
             }
+        }
+
+        private void ApplyAlternatingItemStyles(ListView listview)
+        {
+            Color clrAlt = UIUtil.GetAlternateColorEx(listview.BackColor);
+            UIUtil.SetAlternatingBgColors(listview, clrAlt, Program.Config.MainWindow.EntryListAlternatingBgColors);
         }
     }
 }
