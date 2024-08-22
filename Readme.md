@@ -34,8 +34,8 @@ QuickSearch delivers instant results as you type. A password entry is a match if
   - Alternating item background color
   - Grouping in Entry List
 
-<img src="https://github.com/user-attachments/assets/e2cd2c2c-bf5a-4ae7-bc94-afee530f05e4" height="310" width="392" align="left" alt="Settings for QuickSearch in KeePass" />
-<img src="https://github.com/user-attachments/assets/e1ecf93a-da98-4c3b-8924-9c32c425ff19" height="310" width="420" alt="KeePass with opened Quick Settings Panel" />
+<img src="https://github.com/user-attachments/assets/e2cd2c2c-bf5a-4ae7-bc94-afee530f05e4" height="300" width="379" align="left" alt="Settings for QuickSearch in KeePass" />
+<img src="https://github.com/user-attachments/assets/e1ecf93a-da98-4c3b-8924-9c32c425ff19" height="300" width="406" alt="KeePass with opened Quick Settings Panel" />
 
 ## Installation and Uninstallation
 ### Installation
@@ -66,6 +66,13 @@ QuickSearch delivers instant results as you type. A password entry is a match if
 You can skip step 3 by adding the following as a pre-build event to the Build Events of the KeePass project: `if "$(BuildingInsideVisualStudio)" == "true" "$(MSBuildBinPath)\msbuild.exe" "$(ProjectDir)..\..\QuickSearch\QuickSearch.csproj" /p:Configuration=$(ConfigurationName)`
    
 ## Changelog
+### v2.38
+- **Added**: Alternating item backgrounds in search.
+- **Added**: Add placeholder text to search box.
+
+<details>
+<summary>Full Changelog</summary>
+
 ### v2.37
 - **Added**: Localize the quick settings panel using KeePass localization.
 - **Added**: Use search combobox items like KeePass search.
@@ -73,9 +80,6 @@ You can skip step 3 by adding the following as a pre-build event to the Build Ev
 - **Added**: Add tooltip to search box.
 - **Fixed**: Group search and exclude expired entries in some cases.
 - **Fixed**: Groupbox color with the dark theme from the KeeTheme plugin.
-
-<details>
-<summary>Full Changelog</summary>
 
 ### v2.36
 - **Changed**: Shortcut to activate search box now `CTRL+E`.
