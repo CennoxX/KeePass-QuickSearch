@@ -16,7 +16,7 @@ QuickSearch delivers instant results as you type. A password entry is a match if
 
 **Warning:** If you search in fields that have in-memory protection, they will be decrypted and remain unencrypted in memory for a while.
 
-<img src="https://github.com/user-attachments/assets/eda32581-5e2a-4f3e-b7b7-2068922221bd" width="603" height="440" />
+<img src="https://github.com/user-attachments/assets/04a44465-8d92-4a78-ba3b-5f0d6fdf890c" height="440" alt="QuickSearch plugin filtering entries" />
 
 ### Shortcuts
 - **Activate Search Box**: `CTRL+E`
@@ -25,15 +25,21 @@ QuickSearch delivers instant results as you type. A password entry is a match if
 
 ### Additional Features
 - **Dynamic Search Box Color**: Changes based on search results and focus (adjust in `Tools` > `Options…` > `Quick Search`).
-- **Quick Access Panel**: Customize search settings easily by clicking the magnifying glass icon next to the search box.
-- **Integrates seamlessly with KeePass**: Respects KeePass settings for focusing the search box when restoring from tray or minimized state.
+- **Quick Settings Panel**: Customize search settings easily by clicking the magnifying glass icon next to the search box.
+- **Integrates seamlessly with KeePass**: Respects following KeePass settings
+  - Search for passwords in quick searches
+  - Exclude expired entries in quick searches
+  - Focus quick search box when restoring from taskbar
+  - Focus quick search box when restoring from tray
+  - Alternating item background color
+  - Grouping in Entry List
 
-<img src="https://github.com/user-attachments/assets/e2cd2c2c-bf5a-4ae7-bc94-afee530f05e4" height="310" width="392" align="left" />
-<img src="https://github.com/user-attachments/assets/6bf2e29b-3043-4c11-a7db-87f378a28025" height="310" width="402" />
+<img src="https://github.com/user-attachments/assets/e2cd2c2c-bf5a-4ae7-bc94-afee530f05e4" height="310" width="392" align="left" alt="Settings for QuickSearch in KeePass" />
+<img src="https://github.com/user-attachments/assets/e1ecf93a-da98-4c3b-8924-9c32c425ff19" height="310" width="420" alt="KeePass with opened Quick Settings Panel" />
 
 ## Installation and Uninstallation
 ### Installation
-1. Download `QuickSearch.plgx` from the [latest Release](https://github.com/CennoxX/keepass-quicksearch/releases/latest).
+1. Download `QuickSearch.plgx` from the [latest Release](https://github.com/CennoxX/KeePass-QuickSearch/releases/latest).
 2. Move `QuickSearch.plgx` into your KeePass Plugins folder (`Tools` > `Plugins…` > `Open Folder`).
 3. Provide administrator permission to copy to the folder.
 4. Restart KeePass to complete the installation.
