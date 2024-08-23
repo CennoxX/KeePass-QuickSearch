@@ -62,8 +62,8 @@ namespace QuickSearch
             // add the ToolStripControlHost to the DropDown
             toolStripDropDownSettings.Items.Add(settingsPanelHost);
 
-            var isDarkThemeEnabled = Program.Config.CustomConfig.GetString("KeeTheme.Enabled").Equals("true", StringComparison.OrdinalIgnoreCase); ;
-            if (isDarkThemeEnabled)
+            var isDarkThemeEnabled = Program.Config.CustomConfig.GetString("KeeTheme.Enabled");
+            if (isDarkThemeEnabled != null && isDarkThemeEnabled.Equals("true", StringComparison.OrdinalIgnoreCase))
             {
                 groupBoxSearchIn.ForeColor = Color.LightGray;
                 groupBoxOptions.ForeColor = Color.LightGray;
