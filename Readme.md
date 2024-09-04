@@ -66,11 +66,14 @@ QuickSearch delivers instant results as you type. A password entry is a match if
 You can skip step 3 by adding the following as a pre-build event to the Build Events of the KeePass project: `if "$(BuildingInsideVisualStudio)" == "true" "$(MSBuildBinPath)\msbuild.exe" "$(ProjectDir)..\..\QuickSearch\QuickSearch.csproj" /p:Configuration=$(ConfigurationName)`
    
 ## Changelog
-### v2.39
-- **Fixed**: Crash on missing KeeTheme.
+### v2.40
+- **Fixed**: Show previously partially cut off text in options.
 
 <details>
 <summary>Full Changelog</summary>
+
+### v2.39
+- **Fixed**: Crash on missing KeeTheme.
 
 ### v2.38
 - **Added**: Alternating item backgrounds in search.
