@@ -105,7 +105,7 @@ namespace QuickSearch
             mainForm.Resize += MainForm_Resize;
             
             mainForm.KeyPreview = true;
-            _keyboardHook = new KeyboardHook();
+            _keyboardHook = new KeyboardHook(host);
             _keyboardHook.KeyDown += (sender, e) =>
             {
                 if (e.Control && e.KeyCode == Keys.E)
