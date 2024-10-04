@@ -17,33 +17,33 @@ namespace QuickSearch
 {
     public class QuickSearchExt : Plugin
     {
-        public static IPluginHost host;
+        private static IPluginHost _host;
 
-        public static Search search;
+        private static Search _search;
+        
+        private QuickSearchControl _qsControl;
+        
+        private KeyboardHook _keyboardHook;
 
-        QuickSearchControl qsControl;
-
-        FormWindowState wsLast;
-
-        bool tsLast;
+        private FormWindowState _wsLast;
+        
+        private bool _tsLast;
 
         public override string UpdateUrl
         {
             get { return @"https://raw.githubusercontent.com/CennoxX/KeePass-QuickSearch/master/QuickSearchVersion.txt"; }
         }
 
-        private KeyboardHook _keyboardHook;
-
         public override bool Initialize(IPluginHost host)
         {
-            QuickSearchExt.host = host;
+            _host = host;
 
             Settings.Default.Load(host);
 
             HideQuickFindControl();
             LocalizeSettingsPanel();
-            qsControl = AddQuickSearchControl(host);
-            new ActiveControllerManager(host, qsControl);
+            _qsControl = AddQuickSearchControl(host);
+            new ActiveControllerManager(host, _qsControl);
 
             GlobalWindowManager.WindowAdded += GlobalWindowManager_WindowAdded;
 
@@ -86,7 +86,7 @@ namespace QuickSearch
                 buttonOK.Click += delegate (object senderr, EventArgs evtarg)
                 {
                     optionsControl.OKButtonPressed(senderr, evtarg);
-                    qsControl.UpdateWidth();
+                    _qsControl.UpdateWidth();
                 };
             }
         }
@@ -120,14 +120,14 @@ namespace QuickSearch
             var test = mainForm.IsTrayed();
             if (mainForm != null)
             {
-                if (mainForm.WindowState != FormWindowState.Minimized && wsLast == FormWindowState.Minimized)
+                if (mainForm.WindowState != FormWindowState.Minimized && _wsLast == FormWindowState.Minimized)
                 {
-                    if (Program.Config.MainWindow.FocusQuickFindOnRestore && !tsLast
-                        || Program.Config.MainWindow.FocusQuickFindOnUntray && tsLast)
-                        qsControl.comboBoxSearch.Select();
+                    if (Program.Config.MainWindow.FocusQuickFindOnRestore && !_tsLast
+                        || Program.Config.MainWindow.FocusQuickFindOnUntray && _tsLast)
+                        _qsControl.comboBoxSearch.Select();
                 }
-                wsLast = mainForm.WindowState;
-                tsLast = mainForm.IsTrayed();
+                _wsLast = mainForm.WindowState;
+                _tsLast = mainForm.IsTrayed();
             }
         }
 
@@ -136,7 +136,7 @@ namespace QuickSearch
         /// </summary>
         private void HideQuickFindControl()
         {
-            Control.ControlCollection mainWindowControls = host.MainWindow.Controls;
+            Control.ControlCollection mainWindowControls = _host.MainWindow.Controls;
             CustomToolStripEx toolStrip = (CustomToolStripEx)mainWindowControls["m_toolMain"];
             ToolStripItem comboBox = toolStrip.Items["m_tbQuickFind"];
             ((ToolStripComboBox)comboBox).ComboBox.Visible = false;
@@ -152,7 +152,7 @@ namespace QuickSearch
 
         public override void Terminate()
         {
-            Settings.Default.Save(host);
+            Settings.Default.Save(_host);
             base.Terminate();
         }
     }

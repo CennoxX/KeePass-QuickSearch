@@ -72,7 +72,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="QuickSearchExt.cs" />
+    <Compile Include="QuickSearch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuickSearchControl.cs">
       <SubType>UserControl</SubType>
