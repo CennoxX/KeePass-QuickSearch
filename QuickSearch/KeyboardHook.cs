@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using KeePass.Plugins;
 
 namespace QuickSearch
 {
@@ -12,27 +13,14 @@ namespace QuickSearch
 
         private LowLevelKeyboardProc _proc;
         private IntPtr _hookID = IntPtr.Zero;
-        private bool _isWindowActive;
-
+        private IPluginHost _host;
         public event KeyEventHandler KeyDown;
 
-        public KeyboardHook(KeePass.Plugins.IPluginHost host)
+        public KeyboardHook(IPluginHost host)
         {
             _proc = HookCallback;
             _hookID = SetHook(_proc);
-
-            host.MainWindow.Activated += MainWindow_OnWindowActivated;
-            host.MainWindow.Deactivate += MainWindow_OnWindowDeactivated;
-        }
-
-        private void MainWindow_OnWindowDeactivated(object sender, EventArgs e)
-        {
-            _isWindowActive = false;
-        }
-
-        private void MainWindow_OnWindowActivated(object sender, EventArgs e)
-        {
-            _isWindowActive = true;
+            _host = host;
         }
 
         private IntPtr SetHook(LowLevelKeyboardProc proc)
@@ -54,7 +42,7 @@ namespace QuickSearch
                 int vkCode = Marshal.ReadInt32(lParam);
                 Keys key = (Keys)vkCode;
 
-                if ((Control.ModifierKeys & Keys.Control) == Keys.Control && key == Keys.E && _isWindowActive)
+                if ((Control.ModifierKeys & Keys.Control) == Keys.Control && key == Keys.E && _host.MainWindow.ContainsFocus)
                 {
                     KeyDown.Invoke(this, new KeyEventArgs(Keys.Control | Keys.E));
                     return (IntPtr)1; // Suppress the key event
