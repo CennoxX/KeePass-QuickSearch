@@ -94,10 +94,13 @@ namespace QuickSearch
             if (pwGroup != null)
             {
                 SearchInList(pwGroup.Entries, worker);
+                if (Program.Config.MainWindow.ShowEntriesOfSubGroups)
+                {
                 foreach (PwGroup group in pwGroup.Groups)
                 {
                     PerformSearch(group, worker);
                 }
+            }
             }
             Debug.WriteLine("End of Search in Group. Worker cancelled: " + worker.CancellationPending + ". elapsed Ticks: " + sw.ElapsedTicks.ToString() + " elapsed ms: " + sw.ElapsedMilliseconds);
         }
