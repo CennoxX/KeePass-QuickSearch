@@ -1,4 +1,5 @@
-﻿using KeePassLib;
+﻿using KeePass;
+using KeePassLib;
 using KeePassLib.Security;
 using QuickSearch.Properties;
 using System;
@@ -13,57 +14,57 @@ namespace QuickSearch
         /// <summary>
         /// the text the user put into the search box
         /// </summary>
-        string userSearchString;
+        private string _userSearchString;
 
         /// <summary>
         /// the splitted user input text
         /// </summary>
-        string[] searchStrings;
+        private string[] _searchStrings;
 
         /// <summary>
         /// names of the standard fields that will be searched in a Password entry. 
         /// </summary>
-        List<string> searchFields;
+        private List<string> _searchFields;
 
-        StringComparison searchStringComparison;
+        private StringComparison _searchStringComparison;
 
-        bool SearchInTitle;
-        bool SearchInUrl;
-        bool SearchInUserName;
-        bool SearchInNotes;
-        bool SearchInPassword;
-        bool SearchInGroupName;
-        bool SearchInTags;
-        bool searchInOther;
-        bool SearchExcludeExpired;
+        private bool _searchInTitle;
+        private bool _searchInUrl;
+        private bool _searchInUserName;
+        private bool _searchInNotes;
+        private bool _searchInPassword;
+        private bool _searchInGroupName;
+        private bool _searchInTags;
+        private bool _searchInOther;
+        private bool _searchExcludeExpired;
 
         public List<PwEntry> resultEntries;
 
-        Properties.Settings searchSettings = Properties.Settings.Default;
+        private Properties.Settings searchSettings = Properties.Settings.Default;
 
-        PwGroup rootGroup;
+        private PwGroup rootGroup;
 
         public Search(string userSearchText)
         {
-            SearchInTitle = Settings.Default.SearchInTitle;
-            SearchInUrl = Settings.Default.SearchInUrl;
-            SearchInUserName = Settings.Default.SearchInUserName;
-            SearchInNotes = Settings.Default.SearchInNotes;
-            SearchInPassword = KeePass.Program.Config.MainWindow.QuickFindSearchInPasswords;
-            searchInOther = Settings.Default.SearchInOther;
-            SearchInGroupName = Settings.Default.SearchInGroupName;
-            SearchInTags = Settings.Default.SearchInTags;
-            SearchExcludeExpired = KeePass.Program.Config.MainWindow.QuickFindExcludeExpired;
+            _searchInTitle = Settings.Default.SearchInTitle;
+            _searchInUrl = Settings.Default.SearchInUrl;
+            _searchInUserName = Settings.Default.SearchInUserName;
+            _searchInNotes = Settings.Default.SearchInNotes;
+            _searchInPassword = KeePass.Program.Config.MainWindow.QuickFindSearchInPasswords;
+            _searchInOther = Settings.Default.SearchInOther;
+            _searchInGroupName = Settings.Default.SearchInGroupName;
+            _searchInTags = Settings.Default.SearchInTags;
+            _searchExcludeExpired = KeePass.Program.Config.MainWindow.QuickFindExcludeExpired;
             if (Settings.Default.SearchCaseSensitive)
             {
-                searchStringComparison = StringComparison.Ordinal;
+                _searchStringComparison = StringComparison.Ordinal;
             }
             else
             {
-                searchStringComparison = StringComparison.OrdinalIgnoreCase;
+                _searchStringComparison = StringComparison.OrdinalIgnoreCase;
             }
-            userSearchString = userSearchText;
-            searchStrings = userSearchString.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            _userSearchString = userSearchText;
+            _searchStrings = _userSearchString.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
             resultEntries = new List<PwEntry>();
         }
 
@@ -71,14 +72,14 @@ namespace QuickSearch
         {
             this.rootGroup = rootGroup;
 
-            SearchInTitle = Settings.Default.SearchInTitle;
-            SearchInUrl = Settings.Default.SearchInUrl;
-            SearchInUserName = Settings.Default.SearchInUserName;
-            SearchInNotes = Settings.Default.SearchInNotes;
-            SearchInGroupName = Settings.Default.SearchInGroupName;
-            SearchInTags = Settings.Default.SearchInTags;
-            SearchInPassword = KeePass.Program.Config.MainWindow.QuickFindSearchInPasswords;
-            searchInOther = Settings.Default.SearchInOther;
+            _searchInTitle = Settings.Default.SearchInTitle;
+            _searchInUrl = Settings.Default.SearchInUrl;
+            _searchInUserName = Settings.Default.SearchInUserName;
+            _searchInNotes = Settings.Default.SearchInNotes;
+            _searchInGroupName = Settings.Default.SearchInGroupName;
+            _searchInTags = Settings.Default.SearchInTags;
+            _searchInPassword = KeePass.Program.Config.MainWindow.QuickFindSearchInPasswords;
+            _searchInOther = Settings.Default.SearchInOther;
         }
 
         public void PerformSearch(List<PwEntry> entries, BackgroundWorker worker)
@@ -96,11 +97,11 @@ namespace QuickSearch
                 SearchInList(pwGroup.Entries, worker);
                 if (Program.Config.MainWindow.ShowEntriesOfSubGroups)
                 {
-                foreach (PwGroup group in pwGroup.Groups)
-                {
-                    PerformSearch(group, worker);
+                    foreach (PwGroup group in pwGroup.Groups)
+                    {
+                        PerformSearch(group, worker);
+                    }
                 }
-            }
             }
             Debug.WriteLine("End of Search in Group. Worker cancelled: " + worker.CancellationPending + ". elapsed Ticks: " + sw.ElapsedTicks.ToString() + " elapsed ms: " + sw.ElapsedMilliseconds);
         }
@@ -113,13 +114,13 @@ namespace QuickSearch
                 if (worker.CancellationPending)
                     return;
 
-                if (SearchExcludeExpired && entry.Expires && DateTime.UtcNow > entry.ExpiryTime)
+                if (_searchExcludeExpired && entry.Expires && DateTime.UtcNow > entry.ExpiryTime)
                     continue;
                 
-                if (SearchInGroupName && AddEntryIfMatched(entry.ParentGroup.Name, entry, worker))
+                if (_searchInGroupName && AddEntryIfMatched(entry.ParentGroup.Name, entry, worker))
                     continue;
 
-                if (SearchInTags)
+                if (_searchInTags)
                 {
                     var tagFound = false;
                     foreach (var tag in entry.Tags)
@@ -140,12 +141,12 @@ namespace QuickSearch
                     if (worker.CancellationPending)
                         return;
 
-                    if (((SearchInTitle && pair.Key.Equals(PwDefs.TitleField))
-                        || (SearchInUrl && pair.Key.Equals(PwDefs.UrlField))
-                        || (SearchInUserName && pair.Key.Equals(PwDefs.UserNameField))
-                        || (SearchInNotes && pair.Key.Equals(PwDefs.NotesField))
-                        || (SearchInPassword && pair.Key.Equals(PwDefs.PasswordField))
-                        || (searchInOther && !PwDefs.IsStandardField(pair.Key)))
+                    if (((_searchInTitle && pair.Key.Equals(PwDefs.TitleField))
+                        || (_searchInUrl && pair.Key.Equals(PwDefs.UrlField))
+                        || (_searchInUserName && pair.Key.Equals(PwDefs.UserNameField))
+                        || (_searchInNotes && pair.Key.Equals(PwDefs.NotesField))
+                        || (_searchInPassword && pair.Key.Equals(PwDefs.PasswordField))
+                        || (_searchInOther && !PwDefs.IsStandardField(pair.Key)))
                         && (AddEntryIfMatched(pair.Value.ReadString(), entry, worker)))
                         break;
                 }
@@ -154,9 +155,9 @@ namespace QuickSearch
 
         private bool AddEntryIfMatched(string source, PwEntry entry, BackgroundWorker worker)
         {
-            foreach (string searchString in searchStrings)
+            foreach (string searchString in _searchStrings)
             {
-                if (worker.CancellationPending || source.IndexOf(searchString, searchStringComparison) < 0)
+                if (worker.CancellationPending || source.IndexOf(searchString, _searchStringComparison) < 0)
                     return false;
             }
             resultEntries.Add(entry);
@@ -165,14 +166,14 @@ namespace QuickSearch
 
         public bool SettingsEquals(Search search)
         {
-            return SearchInTitle == search.SearchInTitle &&
-            SearchInUrl == search.SearchInUrl &&
-            SearchInUserName == search.SearchInUserName &&
-            SearchInNotes == search.SearchInNotes &&
-            SearchInPassword == search.SearchInPassword &&
-            searchInOther == search.searchInOther &&
-            SearchExcludeExpired == search.SearchExcludeExpired &&
-            searchStringComparison == search.searchStringComparison;
+            return _searchInTitle == search._searchInTitle &&
+            _searchInUrl == search._searchInUrl &&
+            _searchInUserName == search._searchInUserName &&
+            _searchInNotes == search._searchInNotes &&
+            _searchInPassword == search._searchInPassword &&
+            _searchInOther == search._searchInOther &&
+            _searchExcludeExpired == search._searchExcludeExpired &&
+            _searchStringComparison == search._searchStringComparison;
         }
 
         /// <summary>
@@ -182,12 +183,12 @@ namespace QuickSearch
         /// <returns>true if search is a refinement of this</returns>
         public bool IsRefinedSearch(Search search)
         {
-            return SettingsEquals(search) && search.userSearchString.Contains(userSearchString);
+            return SettingsEquals(search) && search._userSearchString.Contains(_userSearchString);
         }
 
         public bool ParamEquals(Search search)
         {
-            return userSearchString.Equals(search.userSearchString) && SettingsEquals(search);
+            return _userSearchString.Equals(search._userSearchString) && SettingsEquals(search);
         }
     }
 }
