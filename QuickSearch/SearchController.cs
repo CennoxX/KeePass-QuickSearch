@@ -26,6 +26,7 @@ namespace QuickSearch
         delegate void QsUpdateMethod(SearchStatus status, bool cancellationPending);
         QsUpdateMethod qsUpdateMethod;
         bool secondEscape = false;
+        bool isTextUpdated = false;
 
         public EventHandler TextUpdateHandler
         {
@@ -78,11 +79,13 @@ namespace QuickSearch
             if (userText.Equals(string.Empty))
             {
                 quickSearchControl.UpdateSearchStatus(SearchStatus.Normal);
-                ResetSearch();
+                if (isTextUpdated)
+                    ResetSearch();
                 return;
             }
             else
             {
+                isTextUpdated = true;
                 quickSearchControl.UpdateSearchStatus(SearchStatus.Pending);
             }
             backgroundWorker = new BackgroundWorker();
