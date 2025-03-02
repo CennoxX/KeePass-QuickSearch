@@ -92,18 +92,28 @@ namespace QuickSearch
             Debug.WriteLine("Starting a new Search in Group");
             Stopwatch sw = Stopwatch.StartNew();
 
-            if (pwGroup != null)
+            if (pwGroup != null && IsSearchingEnabled(pwGroup))
             {
                 SearchInList(pwGroup.Entries, worker);
-                if (Program.Config.MainWindow.ShowEntriesOfSubGroups)
+                foreach (PwGroup group in pwGroup.Groups)
                 {
-                    foreach (PwGroup group in pwGroup.Groups)
-                    {
-                        PerformSearch(group, worker);
-                    }
+                    PerformSearch(group, worker);
                 }
             }
             Debug.WriteLine("End of Search in Group. Worker cancelled: " + worker.CancellationPending + ". elapsed Ticks: " + sw.ElapsedTicks.ToString() + " elapsed ms: " + sw.ElapsedMilliseconds);
+        }
+
+        private bool IsSearchingEnabled(PwGroup group)
+        {
+            while (group != null)
+            {
+                if (group.EnableSearching.HasValue)
+                {
+                    return group.EnableSearching.Value;
+                }
+                group = group.ParentGroup;
+            }
+            return true;
         }
 
         private void SearchInList(IEnumerable<PwEntry> pWList, BackgroundWorker worker)
@@ -116,7 +126,7 @@ namespace QuickSearch
 
                 if (_searchExcludeExpired && entry.Expires && DateTime.UtcNow > entry.ExpiryTime)
                     continue;
-                
+
                 if (_searchInGroupName && AddEntryIfMatched(entry.ParentGroup.Name, entry, worker))
                     continue;
 
