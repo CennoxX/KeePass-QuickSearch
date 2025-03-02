@@ -20,7 +20,7 @@ QuickSearch delivers instant results as you type. A password entry is a match if
 
 ### Shortcuts
 - **Activate Search Box**: `CTRL+E`
-- **Focus Password List**: `ENTER`
+- **Focus Password List from Search Box**: `ENTER`
 - **Clear Search Box**: `ESCAPE` (if the search box is empty, the `ESCAPE` action configured in KeePass is executed)
 
 ### Additional Features
@@ -33,6 +33,7 @@ QuickSearch delivers instant results as you type. A password entry is a match if
   - Focus quick search box when restoring from tray
   - Alternating item background color
   - Grouping in Entry List
+  - Group search options
 
 <img src="https://github.com/user-attachments/assets/e2cd2c2c-bf5a-4ae7-bc94-afee530f05e4" height="300" width="379" align="left" alt="Settings for QuickSearch in KeePass" />
 <img src="https://github.com/user-attachments/assets/e1ecf93a-da98-4c3b-8924-9c32c425ff19" height="300" width="406" alt="KeePass with opened Quick Settings Panel" />
@@ -61,7 +62,7 @@ QuickSearch delivers instant results as you type. A password entry is a match if
 5. **Start debugging**:
    - Start the debug process to test your changes.
 6. **Ignore assertion errors**:
-   - Ignore potential KeePass assertion errors that may occur when using DPI scaling settings.
+   - Ignore potential KeePass assertion errors that may occur, for example when using custom DPI scaling settings.
 
 You can skip step 3 by adding the following as a pre-build event to the Build Events of the KeePass project: `if "$(BuildingInsideVisualStudio)" == "true" "$(MSBuildBinPath)\msbuild.exe" "$(ProjectDir)..\..\QuickSearch\QuickSearch.csproj" /p:Configuration=$(ConfigurationName)`
    
@@ -72,6 +73,7 @@ You can skip step 3 by adding the following as a pre-build event to the Build Ev
 
 <details>
 <summary>Full Changelog</summary>
+
 ### v2.41
 - **Fixed**: `CTRL+E` was captured globally
 
@@ -120,7 +122,7 @@ You can skip step 3 by adding the following as a pre-build event to the Build Ev
 
 ### v2.32
 - **Fixed**: Shortcut to activate search box, now `CTRL+SHIFT+X`.
-- **Added**: Focus password list on `ENTER`.
+- **Added**: Focus password list from search box on `ENTER`.
 - **Added**: Clear search box on `ESCAPE`, use the `ESCAPE` action configured in KeePass if the search box is empty.
 - **Added**: Focus search box on restoring from tray or minimized state.
 - **Added**: Strike out expired entries.
@@ -162,7 +164,7 @@ You can skip step 3 by adding the following as a pre-build event to the Build Ev
 Original version by [Gordon Venem](https://profon.wordpress.com/quicksearch/)<br />
 With contributions by [Dominik Reichl](https://sourceforge.net/u/dreichl/profile/), [Alex Vallat](https://sourceforge.net/u/alexvallat/profile/) and [Laurens von Assel](https://github.com/biolauri)<br />
 Current development by [CennoxX](https://github.com/CennoxX/)<br />
-Icons by David Vignoni, licensed under the [LGPL 2.1](https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html)
+Icons by David Vignoni, licensed under [LGPL 2.1](https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html)
 
 ## Contact
 For questions, issues, or discussions, visit the [GitHub Issues page](https://github.com/CennoxX/keepass-quicksearch/issues) or check out the [GitHub Discussions page](https://github.com/CennoxX/keepass-quicksearch/discussions).
