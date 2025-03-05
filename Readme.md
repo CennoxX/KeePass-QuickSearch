@@ -10,7 +10,7 @@ QuickSearch is a search plugin for [KeePass 2](http://www.KeePass.info), designe
 - [Contact](#contact)
 
 ## Usage
-QuickSearch delivers instant results as you type. A password entry is a match if all words separated by whitespace occur within a single one of its fields, regardless of their position in the field.
+QuickSearch provides instant results as you type. A password entry is a match if all words separated by whitespace occur within one or multiple fields, regardless of their position in the field.
 
  If you need to make a more complex search, you can still use `CTRL+F` to open the search from KeePass.
 

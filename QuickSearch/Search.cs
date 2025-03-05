@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 
 namespace QuickSearch
 {
@@ -127,24 +128,7 @@ namespace QuickSearch
                 if (_searchExcludeExpired && entry.Expires && DateTime.UtcNow > entry.ExpiryTime)
                     continue;
 
-                if (_searchInGroupName && AddEntryIfMatched(entry.ParentGroup.Name, entry, worker))
-                    continue;
-
-                if (_searchInTags)
-                {
-                    var tagFound = false;
-                    foreach (var tag in entry.Tags)
-                    {
-                        if (AddEntryIfMatched(tag, entry, worker))
-                        {
-                            tagFound = true;
-                            break;
-                        }
-                    }
-                    if (tagFound)
-                        continue;
-                }
-
+                HashSet<string> matchedWords = new HashSet<string>();
                 foreach (KeyValuePair<string, ProtectedString> pair in entry.Strings)
                 {
                     // check if cancellation was requested. In this case don't continue with the search
@@ -157,21 +141,50 @@ namespace QuickSearch
                         || (_searchInNotes && pair.Key.Equals(PwDefs.NotesField))
                         || (_searchInPassword && pair.Key.Equals(PwDefs.PasswordField))
                         || (_searchInOther && !PwDefs.IsStandardField(pair.Key)))
-                        && (AddEntryIfMatched(pair.Value.ReadString(), entry, worker)))
-                        break;
+                        && AddMatchingWords(pair.Value.ReadString(), _searchStrings, matchedWords, worker)
+                        && matchedWords.Count == _searchStrings.Length)
+                            break;
                 }
+
+                // Check tags
+                if (_searchInTags)
+                {
+                    foreach (var tag in entry.Tags)
+                    {
+                        if (worker.CancellationPending)
+                            return;
+
+                        if (AddMatchingWords(tag, _searchStrings, matchedWords, worker)
+                        && matchedWords.Count == _searchStrings.Length)
+                            break;
+                    }
+                }
+
+                // Check group name
+                if (_searchInGroupName)
+                    AddMatchingWords(entry.ParentGroup.Name, _searchStrings, matchedWords, worker);
+                
+                // If all words are found across multiple fields, add the entry
+                if (matchedWords.Count == _searchStrings.Length)
+                    resultEntries.Add(entry);
             }
         }
 
-        private bool AddEntryIfMatched(string source, PwEntry entry, BackgroundWorker worker)
+        private bool AddMatchingWords(string fieldValue, string[] searchWords, HashSet<string> matchedWords, BackgroundWorker worker)
         {
-            foreach (string searchString in _searchStrings)
+            if (string.IsNullOrWhiteSpace(fieldValue))
+                return false;
+
+            foreach (var word in searchWords)
             {
-                if (worker.CancellationPending || source.IndexOf(searchString, _searchStringComparison) < 0)
+                if (worker.CancellationPending)
                     return false;
+
+                if (!matchedWords.Contains(word) && fieldValue.IndexOf(word, StringComparison.OrdinalIgnoreCase) >= 0)
+                    matchedWords.Add(word);
             }
-            resultEntries.Add(entry);
-            return true;
+
+            return matchedWords.Count == searchWords.Length;
         }
 
         public bool SettingsEquals(Search search)
