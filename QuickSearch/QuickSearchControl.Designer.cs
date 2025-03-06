@@ -1,6 +1,4 @@
-﻿using KeePass.Resources;
-
-namespace QuickSearch
+﻿namespace QuickSearch
 {
     partial class QuickSearchControl
     {
@@ -84,10 +82,10 @@ namespace QuickSearch
             // 
             // imageListSearchButton
             // 
-            this.imageListSearchButton.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListSearchButton.ImageStream")));
             this.imageListSearchButton.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageListSearchButton.Images.SetKeyName(0, "16-search-icon.png");
-            this.imageListSearchButton.Images.SetKeyName(1, "16-settings-icon.png");
+            this.imageListSearchButton.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.imageListSearchButton.Images.Add(global::QuickSearch.Properties.Resources.search_icon_16);
+            this.imageListSearchButton.Images.Add(global::QuickSearch.Properties.Resources.settings_icon_16);
             // 
             // toolStripDropDownSettings
             // 
@@ -334,7 +332,7 @@ namespace QuickSearch
             // 
             // toolTipSearch
             // 
-            this.toolTipSearch.SetToolTip(this.comboBoxSearch, KPRes.SearchQuickPrompt + " (" + KPRes.KeyboardKeyCtrl + "+E)");
+            this.toolTipSearch.SetToolTip(this.comboBoxSearch, KeePass.Resources.KPRes.SearchQuickPrompt + " (" + KeePass.Resources.KPRes.KeyboardKeyCtrl + "+E)");
             // 
             // QuickSearchControl
             // 
