@@ -39,6 +39,7 @@ namespace QuickSearch
         private bool _searchInTags;
         private bool _searchInOther;
         private bool _searchExcludeExpired;
+        private bool _searchIgnoreGroupSettings;
 
         public List<PwEntry> resultEntries;
 
@@ -52,12 +53,13 @@ namespace QuickSearch
             _searchInUrl = Settings.Default.SearchInUrl;
             _searchInUserName = Settings.Default.SearchInUserName;
             _searchInNotes = Settings.Default.SearchInNotes;
-            _searchInPassword = KeePass.Program.Config.MainWindow.QuickFindSearchInPasswords;
+            _searchInPassword = Program.Config.MainWindow.QuickFindSearchInPasswords;
             _searchInOther = Settings.Default.SearchInOther;
             _searchInGroupName = Settings.Default.SearchInGroupName;
             _searchInGroupPath = Settings.Default.SearchInGroupPath;
             _searchInTags = Settings.Default.SearchInTags;
-            _searchExcludeExpired = KeePass.Program.Config.MainWindow.QuickFindExcludeExpired;
+            _searchExcludeExpired = Program.Config.MainWindow.QuickFindExcludeExpired;
+            _searchIgnoreGroupSettings = Settings.Default.SearchIgnoreGroupSettings;
             if (Settings.Default.SearchCaseSensitive)
             {
                 _searchStringComparison = StringComparison.Ordinal;
@@ -82,7 +84,7 @@ namespace QuickSearch
             _searchInGroupName = Settings.Default.SearchInGroupName;
             _searchInGroupPath = Settings.Default.SearchInGroupPath;
             _searchInTags = Settings.Default.SearchInTags;
-            _searchInPassword = KeePass.Program.Config.MainWindow.QuickFindSearchInPasswords;
+            _searchInPassword = Program.Config.MainWindow.QuickFindSearchInPasswords;
             _searchInOther = Settings.Default.SearchInOther;
         }
 
@@ -96,7 +98,7 @@ namespace QuickSearch
             Debug.WriteLine("Starting a new Search in Group");
             Stopwatch sw = Stopwatch.StartNew();
 
-            if (pwGroup != null && IsSearchingEnabled(pwGroup))
+            if (pwGroup != null && (_searchIgnoreGroupSettings || IsSearchingEnabled(pwGroup)))
             {
                 SearchInList(pwGroup.Entries, worker);
                 foreach (PwGroup group in pwGroup.Groups)
@@ -203,8 +205,12 @@ namespace QuickSearch
             _searchInNotes == search._searchInNotes &&
             _searchInPassword == search._searchInPassword &&
             _searchInOther == search._searchInOther &&
+            _searchInGroupName == search._searchInGroupName &&
+            _searchInGroupPath == search._searchInGroupPath &&
+            _searchInTags == search._searchInTags &&
             _searchExcludeExpired == search._searchExcludeExpired &&
-            _searchStringComparison == search._searchStringComparison;
+            _searchStringComparison == search._searchStringComparison &&
+            _searchIgnoreGroupSettings == search._searchIgnoreGroupSettings;
         }
 
         /// <summary>

@@ -15,5 +15,6 @@
         public static string m_grpOptions = "Options";
         public static string m_cbCaseSensitive = "Case-sensitive";
         public static string m_cbExcludeExpired = "Exclude expired entries";
+        public static string m_cbIgnoreGroupSettings = "Ignore search settings of groups";
     }
 }

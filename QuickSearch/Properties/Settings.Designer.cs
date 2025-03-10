@@ -61,6 +61,18 @@ namespace QuickSearch.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SearchIgnoreGroupSettings {
+            get {
+                return ((bool)(this["SearchIgnoreGroupSettings"]));
+            }
+            set {
+                this["SearchIgnoreGroupSettings"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("255, 192, 192")]
         public global::System.Drawing.Color BackColorOnError {
             get {
