@@ -7,6 +7,7 @@
         public static string m_cbUserName = "User name";
         public static string m_cbNotes = "Notes";
         public static string m_cbGroupName = "Group name";
+        public static string m_cbGroupPath = "Group path";
         public static string m_cbUrl = "URL";
         public static string m_cbPassword = "Password";
         public static string m_cbTags = "Tags";

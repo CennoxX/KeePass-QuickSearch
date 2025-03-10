@@ -37,6 +37,8 @@ namespace QuickSearch
             comboBoxSearch.GotFocus += ComboBoxSearch_GotFocus;
             comboBoxSearch.LostFocus += ComboBoxSearch_LostFocus;
             comboBoxSearch.DropDown += ComboBoxSearch_DropDown;
+            checkBoxGroupPath.CheckedChanged += CheckBoxGroupPath_CheckedChanged;
+
             if (comboBoxSearch.IsHandleCreated)
                 ComboBoxSearch_HandleCreated();
             else
@@ -196,6 +198,22 @@ namespace QuickSearch
         {
             Width = Settings.Default.ControlWidth;
             comboBoxSearch.Invalidate();
+        }
+
+        private void CheckBoxGroupPath_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxGroupPath.Checked)
+            {
+                Settings.Default.SearchInGroupPath = true;
+                Settings.Default.SearchInGroupName = true;
+                checkBoxGroupName.Enabled = false;
+                checkBoxGroupName.Checked = true;
+            }
+            else
+            {
+                Settings.Default.SearchInGroupPath = false;
+                checkBoxGroupName.Enabled = true;
+            }
         }
     }
 }

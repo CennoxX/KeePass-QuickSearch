@@ -40,6 +40,7 @@
             this.checkBoxUserName = new System.Windows.Forms.CheckBox();
             this.checkBoxNotes = new System.Windows.Forms.CheckBox();
             this.checkBoxGroupName = new System.Windows.Forms.CheckBox();
+            this.checkBoxGroupPath = new System.Windows.Forms.CheckBox();
             this.checkBoxOther = new System.Windows.Forms.CheckBox();
             this.checkBoxPassword = new System.Windows.Forms.CheckBox();
             this.checkBoxUrl = new System.Windows.Forms.CheckBox();
@@ -137,13 +138,14 @@
             this.tableLayoutPanelSearchIn.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanelSearchIn.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanelSearchIn.Controls.Add(this.checkBoxTitle, 0, 0);
-            this.tableLayoutPanelSearchIn.Controls.Add(this.checkBoxUserName, 0, 1);
-            this.tableLayoutPanelSearchIn.Controls.Add(this.checkBoxNotes, 0, 2);
-            this.tableLayoutPanelSearchIn.Controls.Add(this.checkBoxGroupName, 1, 0);
-            this.tableLayoutPanelSearchIn.Controls.Add(this.checkBoxPassword, 1, 2);
-            this.tableLayoutPanelSearchIn.Controls.Add(this.checkBoxUrl, 1, 1);
-            this.tableLayoutPanelSearchIn.Controls.Add(this.checkBoxTags, 2, 0);
+            this.tableLayoutPanelSearchIn.Controls.Add(this.checkBoxUserName, 1, 0);
+            this.tableLayoutPanelSearchIn.Controls.Add(this.checkBoxPassword, 2, 0);
+            this.tableLayoutPanelSearchIn.Controls.Add(this.checkBoxUrl, 0, 1);
+            this.tableLayoutPanelSearchIn.Controls.Add(this.checkBoxNotes, 1, 1);
             this.tableLayoutPanelSearchIn.Controls.Add(this.checkBoxOther, 2, 1);
+            this.tableLayoutPanelSearchIn.Controls.Add(this.checkBoxGroupPath, 0, 2);
+            this.tableLayoutPanelSearchIn.Controls.Add(this.checkBoxGroupName, 1, 2);
+            this.tableLayoutPanelSearchIn.Controls.Add(this.checkBoxTags, 2, 2);
             this.tableLayoutPanelSearchIn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelSearchIn.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             this.tableLayoutPanelSearchIn.Location = new System.Drawing.Point(3, 16);
@@ -207,6 +209,19 @@
             this.checkBoxGroupName.Text = LocalizedStrings.m_cbGroupName;
             this.checkBoxGroupName.UseVisualStyleBackColor = true;
             this.checkBoxGroupName.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Control_PreviewKeyDown);
+            // 
+            // checkBoxGroupPath
+            // 
+            this.checkBoxGroupPath.AutoSize = true;
+            this.checkBoxGroupPath.Checked = global::QuickSearch.Properties.Settings.Default.SearchInGroupPath;
+            this.checkBoxGroupPath.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::QuickSearch.Properties.Settings.Default, "SearchInGroupPath", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBoxGroupPath.Location = new System.Drawing.Point(86, 3);
+            this.checkBoxGroupPath.Name = "checkBoxGroupPath";
+            this.checkBoxGroupPath.Size = new System.Drawing.Size(84, 17);
+            this.checkBoxGroupPath.TabIndex = 7;
+            this.checkBoxGroupPath.Text = LocalizedStrings.m_cbGroupPath;
+            this.checkBoxGroupPath.UseVisualStyleBackColor = true;
+            this.checkBoxGroupPath.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Control_PreviewKeyDown);
             // 
             // checkBoxOther
             // 
@@ -375,6 +390,7 @@
         private System.Windows.Forms.CheckBox checkBoxUserName;
         private System.Windows.Forms.CheckBox checkBoxNotes;
         private System.Windows.Forms.CheckBox checkBoxGroupName;
+        private System.Windows.Forms.CheckBox checkBoxGroupPath;
         private System.Windows.Forms.CheckBox checkBoxPassword;
         private System.Windows.Forms.CheckBox checkBoxUrl;
         private System.Windows.Forms.CheckBox checkBoxTags;

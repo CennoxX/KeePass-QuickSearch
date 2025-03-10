@@ -35,6 +35,7 @@ namespace QuickSearch
         private bool _searchInNotes;
         private bool _searchInPassword;
         private bool _searchInGroupName;
+        private bool _searchInGroupPath;
         private bool _searchInTags;
         private bool _searchInOther;
         private bool _searchExcludeExpired;
@@ -54,6 +55,7 @@ namespace QuickSearch
             _searchInPassword = KeePass.Program.Config.MainWindow.QuickFindSearchInPasswords;
             _searchInOther = Settings.Default.SearchInOther;
             _searchInGroupName = Settings.Default.SearchInGroupName;
+            _searchInGroupPath = Settings.Default.SearchInGroupPath;
             _searchInTags = Settings.Default.SearchInTags;
             _searchExcludeExpired = KeePass.Program.Config.MainWindow.QuickFindExcludeExpired;
             if (Settings.Default.SearchCaseSensitive)
@@ -78,6 +80,7 @@ namespace QuickSearch
             _searchInUserName = Settings.Default.SearchInUserName;
             _searchInNotes = Settings.Default.SearchInNotes;
             _searchInGroupName = Settings.Default.SearchInGroupName;
+            _searchInGroupPath = Settings.Default.SearchInGroupPath;
             _searchInTags = Settings.Default.SearchInTags;
             _searchInPassword = KeePass.Program.Config.MainWindow.QuickFindSearchInPasswords;
             _searchInOther = Settings.Default.SearchInOther;
@@ -160,10 +163,15 @@ namespace QuickSearch
                     }
                 }
 
-                // Check group name
-                if (_searchInGroupName)
-                    AddMatchingWords(entry.ParentGroup.Name, _searchStrings, matchedWords, worker);
-                
+                // Check group name and path
+                if (_searchInGroupName || _searchInGroupPath)
+                {
+                    var groupPath = entry.ParentGroup.Name;
+                    for (var group = entry.ParentGroup; _searchInGroupPath && group.ParentGroup != null; group = group.ParentGroup)
+                        groupPath = group.ParentGroup.Name + "\\" + groupPath;
+                    AddMatchingWords(groupPath, _searchStrings, matchedWords, worker);
+                }
+
                 // If all words are found across multiple fields, add the entry
                 if (matchedWords.Count == _searchStrings.Length)
                     resultEntries.Add(entry);

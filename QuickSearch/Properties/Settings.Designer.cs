@@ -110,6 +110,18 @@ namespace QuickSearch.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SearchInGroupPath {
+            get {
+                return ((bool)(this["SearchInGroupPath"]));
+            }
+            set {
+                this["SearchInGroupPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool SearchInTags {
             get {
                 return ((bool)(this["SearchInTags"]));
