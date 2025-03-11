@@ -300,7 +300,10 @@ namespace QuickSearch
                 case AceColumnType.UserName: str = pe.Strings.ReadSafe(PwDefs.UserNameField); break;
                 case AceColumnType.Password: str = pe.Strings.ReadSafe(PwDefs.PasswordField); break;
                 case AceColumnType.Url: str = pe.Strings.ReadSafe(PwDefs.UrlField); break;
-                case AceColumnType.Notes: str = pe.Strings.ReadSafe(PwDefs.NotesField); break;
+                case AceColumnType.Notes:
+                    str = pe.Strings.ReadSafe(PwDefs.NotesField);
+                    str = str.Replace("\r\n", "\n").Replace("\r", "\n").Replace("\n", " ");
+                    break;
                 case AceColumnType.CreationTime: str = TimeUtil.ToDisplayString(pe.CreationTime); break;
                 case AceColumnType.LastAccessTime: str = TimeUtil.ToDisplayString(pe.LastAccessTime); break;
                 case AceColumnType.LastModificationTime: str = TimeUtil.ToDisplayString(pe.LastModificationTime); break;
