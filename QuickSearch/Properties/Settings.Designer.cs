@@ -12,7 +12,7 @@ namespace QuickSearch.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.8.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.13.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -37,6 +37,18 @@ namespace QuickSearch.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SearchInUserName {
+            get {
+                return ((bool)(this["SearchInUserName"]));
+            }
+            set {
+                this["SearchInUserName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool SearchInUrl {
             get {
@@ -44,6 +56,66 @@ namespace QuickSearch.Properties {
             }
             set {
                 this["SearchInUrl"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SearchInNotes {
+            get {
+                return ((bool)(this["SearchInNotes"]));
+            }
+            set {
+                this["SearchInNotes"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SearchInOther {
+            get {
+                return ((bool)(this["SearchInOther"]));
+            }
+            set {
+                this["SearchInOther"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SearchInGroupPath {
+            get {
+                return ((bool)(this["SearchInGroupPath"]));
+            }
+            set {
+                this["SearchInGroupPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SearchInGroupName {
+            get {
+                return ((bool)(this["SearchInGroupName"]));
+            }
+            set {
+                this["SearchInGroupName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SearchInTags {
+            get {
+                return ((bool)(this["SearchInTags"]));
+            }
+            set {
+                this["SearchInTags"] = value;
             }
         }
         
@@ -73,85 +145,13 @@ namespace QuickSearch.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("255, 192, 192")]
-        public global::System.Drawing.Color BackColorOnError {
+        [global::System.Configuration.DefaultSettingValueAttribute("230, 247, 233")]
+        public global::System.Drawing.Color BackColorSuccess {
             get {
-                return ((global::System.Drawing.Color)(this["BackColorOnError"]));
+                return ((global::System.Drawing.Color)(this["BackColorSuccess"]));
             }
             set {
-                this["BackColorOnError"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool SearchInUserName {
-            get {
-                return ((bool)(this["SearchInUserName"]));
-            }
-            set {
-                this["SearchInUserName"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool SearchInNotes {
-            get {
-                return ((bool)(this["SearchInNotes"]));
-            }
-            set {
-                this["SearchInNotes"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool SearchInGroupName {
-            get {
-                return ((bool)(this["SearchInGroupName"]));
-            }
-            set {
-                this["SearchInGroupName"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool SearchInGroupPath {
-            get {
-                return ((bool)(this["SearchInGroupPath"]));
-            }
-            set {
-                this["SearchInGroupPath"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool SearchInTags {
-            get {
-                return ((bool)(this["SearchInTags"]));
-            }
-            set {
-                this["SearchInTags"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool SearchInOther {
-            get {
-                return ((bool)(this["SearchInOther"]));
-            }
-            set {
-                this["SearchInOther"] = value;
+                this["BackColorSuccess"] = value;
             }
         }
         
@@ -169,13 +169,13 @@ namespace QuickSearch.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("230, 247, 233")]
-        public global::System.Drawing.Color BackColorSuccess {
+        [global::System.Configuration.DefaultSettingValueAttribute("255, 192, 192")]
+        public global::System.Drawing.Color BackColorOnError {
             get {
-                return ((global::System.Drawing.Color)(this["BackColorSuccess"]));
+                return ((global::System.Drawing.Color)(this["BackColorOnError"]));
             }
             set {
-                this["BackColorSuccess"] = value;
+                this["BackColorOnError"] = value;
             }
         }
         
