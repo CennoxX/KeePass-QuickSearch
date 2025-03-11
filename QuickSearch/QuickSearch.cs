@@ -141,12 +141,26 @@ namespace QuickSearch
             ToolStripItem comboBox = toolStrip.Items["m_tbQuickFind"];
             ((ToolStripComboBox)comboBox).ComboBox.Visible = false;
         }
+        public static Image SearchImage
+		{
+			get
+			{
+				return _host.Resources.GetObject("B16x16_XMag") as Image;
+			}
+		}
+        public static Image OptionsImage
+		{
+			get
+			{
+				return _host.Resources.GetObject("B16x16_Misc") as Image;
+			}
+		}
 
-        public override Image SmallIcon
+		public override Image SmallIcon
         {
             get
             {
-                return Resources.search_icon_16;
+                return SearchImage;
             }
         }
 

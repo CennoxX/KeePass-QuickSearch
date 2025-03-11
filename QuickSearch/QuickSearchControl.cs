@@ -158,8 +158,8 @@ namespace QuickSearch
         private void ButtonDropdownSettings_Click(object sender, EventArgs e)
         {
             // load KeePass settings
-            checkBoxExclude.Checked = KeePass.Program.Config.MainWindow.QuickFindExcludeExpired;
-            checkBoxPassword.Checked = KeePass.Program.Config.MainWindow.QuickFindSearchInPasswords;
+            checkBoxExclude.Checked = Program.Config.MainWindow.QuickFindExcludeExpired;
+            checkBoxPassword.Checked = Program.Config.MainWindow.QuickFindSearchInPasswords;
 
             // show the DropDown
             toolStripDropDownSettings.Show(ButtonDropdownSettings, 0, ButtonDropdownSettings.Bottom);
@@ -174,7 +174,7 @@ namespace QuickSearch
             // we need to check if mouse is over config button. Otherwise icon would be resetted although mouse is over config button.
             // get a mouse position relative to the Button
             Point mousePosition = ButtonDropdownSettings.PointToClient(Control.MousePosition);
-            if (!ButtonDropdownSettings.ClientRectangle.IntersectsWith(new Rectangle(mousePosition, System.Drawing.Size.Empty)))
+            if (!ButtonDropdownSettings.ClientRectangle.IntersectsWith(new Rectangle(mousePosition, Size.Empty)))
             {
                 ButtonDropdownSettings.ImageIndex = 0;
             }

@@ -86,8 +86,8 @@
             // 
             this.imageListSearchButton.TransparentColor = System.Drawing.Color.Transparent;
             this.imageListSearchButton.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-            this.imageListSearchButton.Images.Add(global::QuickSearch.Properties.Resources.search_icon_16);
-            this.imageListSearchButton.Images.Add(global::QuickSearch.Properties.Resources.settings_icon_16);
+            this.imageListSearchButton.Images.Add(global::QuickSearch.QuickSearchExt.SearchImage);
+            this.imageListSearchButton.Images.Add(global::QuickSearch.QuickSearchExt.OptionsImage);
             // 
             // toolStripDropDownSettings
             // 
