@@ -67,27 +67,36 @@ QuickSearch provides instant results as you type. A password entry is a match if
 You can skip step 3 by adding the following as a pre-build event: `if "$(BuildingInsideVisualStudio)" == "true" "$(MSBuildBinPath)\msbuild.exe" "$(SolutionDir)QuickSearch.csproj" /p:Configuration=$(Configuration)` and the following as the post-build event: `del /s /q "$(ProjectDir)obj\*.*"` to the Build Events of the KeePass project.
 
 ## Changelog
-### v2.42
-- **Added**: Respect group search options (right click on group > Edit Group... > Properties > Searching entries in this group: ...)
-- **Fixed**: Don't reset password list from searched tag etc. initially, when no search was done
+### [v2.43](../../releases/tag/2.43)
+- **Added**: Search in group path option
+- **Added**: Ignore search settings of groups option
+- **Changed**: Search word parts in all fields at the same time
+- **Changed**: Use KeePass resources directly
+- **Fixed**: Fix display of line breaks in comments
+- **Fixed**: Update deprecated GitHub actions
+- **Fixed**: Update KeePass submodule
 
 <details>
 <summary>Full Changelog</summary>
 
-### v2.41
+### [v2.42](../../releases/tag/2.42)
+- **Added**: Respect group search options (right click on group > Edit Group... > Properties > Searching entries in this group: ...)
+- **Fixed**: Don't reset password list from searched tag etc. initially, when no search was done
+
+### [v2.41](../../releases/tag/2.41)
 - **Fixed**: `CTRL+E` was captured globally
 
-### v2.40
+### [v2.40](../../releases/tag/2.40)
 - **Fixed**: Show previously partially cut off text in options.
 
-### v2.39
+### [v2.39](../../releases/tag/2.39)
 - **Fixed**: Crash on missing KeeTheme.
 
-### v2.38
+### [v2.38](../../releases/tag/2.38)
 - **Added**: Alternating item backgrounds in search.
 - **Added**: Add placeholder text to search box.
 
-### v2.37
+### [v2.37](../../releases/tag/2.37)
 - **Added**: Localize the quick settings panel using KeePass localization.
 - **Added**: Use search combobox items like KeePass search.
 - **Added**: Search in tags.
@@ -95,18 +104,18 @@ You can skip step 3 by adding the following as a pre-build event: `if "$(Buildin
 - **Fixed**: Group search and exclude expired entries in some cases.
 - **Fixed**: Groupbox color with the dark theme from the KeeTheme plugin.
 
-### v2.36
+### [v2.36](../../releases/tag/2.36)
 - **Changed**: Shortcut to activate search box now `CTRL+E`.
 - **Changed**: Use modern default colors.
 - **Changed**: Updated icons to avoid copyright issues.
 - **Changed**: Align settings with KeePass aesthetics.
 - **Fixed**: Color selection with the dark theme from the KeeTheme plugin.
 
-### v2.35
+### [v2.35](../../releases/tag/2.35)
 - **Added**: Show passwords in groups.
 - **Added**: Search in group names.
 
-### v2.34
+### [v2.34](../../releases/tag/2.34)
 - **Added**: Sync KeePass search settings.
 - **Added**: Consistent use of KeePass settings for focus.
 - **Added**: Reset search on empty search box.
@@ -116,18 +125,18 @@ You can skip step 3 by adding the following as a pre-build event: `if "$(Buildin
 - **Fixed**: Display of entries on reset.
 - **Fixed**: Text formatting of expired entries.
 
-### v2.33
+### [v2.33](../../releases/tag/2.33)
 - **Added**: Respect KeePass settings when focusing the search box on restoring from tray or minimized.
 - **Added**: KeePass2.x as a submodule.
 
-### v2.32
+### [v2.32](../../releases/tag/2.32)
 - **Fixed**: Shortcut to activate search box, now `CTRL+SHIFT+X`.
 - **Added**: Focus password list from search box on `ENTER`.
 - **Added**: Clear search box on `ESCAPE`, use the `ESCAPE` action configured in KeePass if the search box is empty.
 - **Added**: Focus search box on restoring from tray or minimized state.
 - **Added**: Strike out expired entries.
 
-### v2.31
+### [v2.31](../../releases/tag/2.31)
 - **Fixed**: Search functionality issue after sync.
 - **Added**: `CTRL+Backspace` deletes the last word.
 
