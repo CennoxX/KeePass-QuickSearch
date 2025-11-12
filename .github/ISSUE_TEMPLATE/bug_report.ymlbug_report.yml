@@ -1,0 +1,85 @@
+name: Bug Report
+description: Report an issue or unexpected behavior with the QuickSearch plugin.
+title: "[Bug] <Short description>"
+labels: ["bug"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting a problem with **QuickSearch**.  
+        Please fill out all required (*) fields. The more detail you provide, the faster it can be reproduced and fixed.
+
+  - type: input
+    id: version_plugin
+    attributes:
+      label: QuickSearch Version
+      description: Enter the version of the QuickSearch plugin you are using.
+      placeholder: "e.g., 2.43"
+    validations:
+      required: true
+
+  - type: input
+    id: version_keepass
+    attributes:
+      label: KeePass Version
+      description: Enter the version of KeePass you are using.
+      placeholder: "e.g., 2.60"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: environment
+    attributes:
+      label: Test Conditions
+      description: Confirm what you have tested to isolate the issue.
+      options:
+        - label: Tested without other plugins
+        - label: Tested with a new database
+        - label: Tested with a new configuration (fresh KeePass.config.xml)
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Describe how to reproduce the issue step-by-step.
+      placeholder: |
+        1. Open KeePass
+        2. Activate QuickSearch (CTRL+E)
+        3. Type "<search term>"
+        4. Observe the behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual_result
+    attributes:
+      label: What Do You See?
+      description: Describe the actual behavior or error message.
+      placeholder: "Explain what happens when the issue occurs."
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_result
+    attributes:
+      label: What Are You Expecting?
+      description: Describe what you expected to happen instead.
+      placeholder: "Explain the expected correct behavior."
+    validations:
+      required: true
+
+  - type: textarea
+    id: minimal_config
+    attributes:
+      label: Minimal Working Database, Config
+      description: Provide a minimal test database or configuration (if applicable).
+      placeholder: "Describe or attach a minimal setup that reproduces the issue."
+
+  - type: textarea
+    id: other
+    attributes:
+      label: Other Data
+      description: Add any additional notes, environment details, screenshots, or related information.
+      placeholder: "Additional system info, special conditions, related plugins, etc."
