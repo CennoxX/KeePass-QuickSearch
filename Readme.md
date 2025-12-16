@@ -54,7 +54,12 @@ QuickSearch provides instant results as you type. A password entry is a match if
 ## Development
 1. **Clone the repository**
 2. **Install dependencies**:
-   - Ensure you have the "Microsoft .NET Framework 4.6.2 Developer Pack" installed. You can download it from the [official Microsoft website](https://dotnet.microsoft.com/download/dotnet-framework).
+   - Install **Microsoft .NET Framework 4.6.2 Developer Pack** from the official Microsoft website:  
+     https://dotnet.microsoft.com/download/dotnet-framework
+   - Alternatively, install it via winget:
+     ```powershell
+     winget install Microsoft.DotNet.Framework.DeveloperPack.4.6
+     ```
 3. **Build the project**:
    - Every time after making changes, rebuild the QuickSearch project in the solution
 4. **Ensure KeePass is not running**:
