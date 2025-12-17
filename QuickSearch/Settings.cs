@@ -26,7 +26,7 @@ namespace QuickSearch.Properties
                     {
                         val = property.SerializedValue as string;
                     }
-                    if (value != null)
+                    if (val != null)
                     {
                         host.CustomConfig.SetString(OptionsConfigRoot + property.Name, val);
                     }
