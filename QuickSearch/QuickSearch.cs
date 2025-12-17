@@ -87,6 +87,13 @@ namespace QuickSearch
                     Settings.Default.Save(_host);
                     _qsControl.UpdateWidth();
                 };
+                optionsForm.Shown += (s, ev) =>
+                {
+                    const string iconKey = "QuickSearchIcon";
+                    tc.ImageList.Images.Add(iconKey, Program.Resources.GetObject("B16x16_XMag") as Image);
+                    tp.ImageKey = iconKey;
+                    tc.Refresh();
+                };
             }
         }
 
