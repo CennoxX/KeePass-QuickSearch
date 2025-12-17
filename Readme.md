@@ -61,7 +61,7 @@ QuickSearch provides instant results as you type. A password entry is a match if
      winget install Microsoft.DotNet.Framework.DeveloperPack.4.6
      ```
 3. **Build the project**:
-   - Every time after making changes, rebuild the QuickSearch project in the solution
+   - Every time after making changes, build the QuickSearch project in the solution
 4. **Ensure KeePass is not running**:
    - Before starting the debug process, make sure there are no running instances of KeePass.
 5. **Start debugging**:
