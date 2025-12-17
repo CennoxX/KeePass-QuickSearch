@@ -2,6 +2,7 @@
 using System;
 using System.Configuration;
 using System.Diagnostics;
+using System.Drawing;
 
 namespace QuickSearch.Properties
 {
@@ -15,10 +16,19 @@ namespace QuickSearch.Properties
             {
                 if (property.IsDirty)
                 {
-                    var value = property.SerializedValue as string;
+                    string val;
+                    if (property.PropertyValue is Color)
+                    {
+                        Color color = (Color)property.PropertyValue;
+                        val = string.Format("{0}, {1}, {2}", color.R, color.G, color.B);
+                    }
+                    else
+                    {
+                        val = property.SerializedValue as string;
+                    }
                     if (value != null)
                     {
-                        host.CustomConfig.SetString(OptionsConfigRoot + property.Name, value);
+                        host.CustomConfig.SetString(OptionsConfigRoot + property.Name, val);
                     }
                     else
                     {
