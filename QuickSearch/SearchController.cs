@@ -48,8 +48,15 @@ namespace QuickSearch
         private void QuickSearchControl_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
+            {
                 listview.Focus();
-            
+
+                quickSearchControl.BeginInvoke((Action)(() =>
+                {
+                    quickSearchControl.ClearSelection();
+                }));
+            }
+
             if (e.KeyCode == Keys.Escape)
             {
                 if (!secondEscape && quickSearchControl.Text == string.Empty)

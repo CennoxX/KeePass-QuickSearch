@@ -72,8 +72,41 @@ namespace QuickSearch
             }
         }
 
+        public void UpdateSearchStatus(SearchStatus status)
+        {
+            switch (status)
+            {
+                case SearchStatus.Success:
+                    SetBackColor(Settings.Default.BackColorSuccess);
+                    break;
+                case SearchStatus.Error:
+                    SetBackColor(Settings.Default.BackColorOnError);
+                    break;
+                case SearchStatus.Pending:
+                    SetBackColor(Settings.Default.BackColorSearching);
+                    break;
+                case SearchStatus.Normal:
+                    SetBackColorNormal();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void UpdateWidth()
+        {
+            Width = Settings.Default.ControlWidth;
+            comboBoxSearch.Invalidate();
+        }
+
+        public void ClearSelection()
+        {
+            comboBoxSearch.SelectionStart = comboBoxSearch.Text.Length;
+            comboBoxSearch.SelectionLength = 0;
+        }
+
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
-        static extern int SendMessage(IntPtr hWnd, int msg, int wParam, string lParam);
+        private static extern int SendMessage(IntPtr hWnd, int msg, int wParam, string lParam);
 
         private void ComboBoxSearch_HandleCreated(object sender = null, EventArgs e = null)
         {
@@ -92,6 +125,7 @@ namespace QuickSearch
             SetBackColorNormal();
             SaveEnteredSearch();
             OnLostFocus(e);
+            ClearSelection();
         }
 
         private void SaveEnteredSearch()
@@ -119,27 +153,6 @@ namespace QuickSearch
                 comboBoxSearch.Focus();
             }
             Debug.WriteLine("in preview");
-        }
-
-        public void UpdateSearchStatus(SearchStatus status)
-        {
-            switch (status)
-            {
-                case SearchStatus.Success:
-                    SetBackColor(Settings.Default.BackColorSuccess);
-                    break;
-                case SearchStatus.Error:
-                    SetBackColor(Settings.Default.BackColorOnError);
-                    break;
-                case SearchStatus.Pending:
-                    SetBackColor(Settings.Default.BackColorSearching);
-                    break;
-                case SearchStatus.Normal:
-                    SetBackColorNormal();
-                    break;
-                default:
-                    break;
-            }
         }
 
         private void ButtonConfig_MouseEnter(object sender, EventArgs e)
@@ -192,12 +205,6 @@ namespace QuickSearch
         private void SetBackColorNormal()
         {
             SetBackColor(comboBoxSearch.Focused ? Settings.Default.BackColorNormalFocused : Settings.Default.BackColorNormalUnFocused);
-        }
-
-        public void UpdateWidth()
-        {
-            Width = Settings.Default.ControlWidth;
-            comboBoxSearch.Invalidate();
         }
 
         private void CheckBoxGroupPath_CheckedChanged(object sender, EventArgs e)
