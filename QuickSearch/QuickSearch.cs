@@ -18,8 +18,6 @@ namespace QuickSearch
     public class QuickSearchExt : Plugin
     {
         private static IPluginHost _host;
-
-        private static Search _search;
         
         private QuickSearchControl _qsControl;
         
@@ -78,14 +76,15 @@ namespace QuickSearch
                 tp.BackColor = SystemColors.Window;
                 tp.AutoScroll = true;
                 OptionsControl optionsControl = new OptionsControl();
+                optionsControl.Dock = DockStyle.Top;
                 tp.Controls.Add(optionsControl);
                 TabControl tc = optionsForm.Controls.Find("m_tabMain", false)[0] as TabControl;
                 tc.TabPages.Add(tp);
-                optionsControl.Dock = DockStyle.Top;
                 Button buttonOK = optionsForm.Controls.Find("m_btnOK", false)[0] as Button;
                 buttonOK.Click += delegate (object senderr, EventArgs evtarg)
                 {
                     optionsControl.OKButtonPressed(senderr, evtarg);
+                    Settings.Default.Save(_host);
                     _qsControl.UpdateWidth();
                 };
             }
