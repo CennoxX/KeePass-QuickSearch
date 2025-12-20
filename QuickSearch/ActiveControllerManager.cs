@@ -9,15 +9,15 @@ namespace QuickSearch
 {
     class ActiveControllerManager
     {
-        IPluginHost host;
-        Dictionary<PwDatabase, SearchController> dictionary = new Dictionary<PwDatabase, SearchController>();
-        QuickSearchControl qsControl;
+        private readonly IPluginHost _host;
+        private readonly Dictionary<PwDatabase, SearchController> _dictionary = new Dictionary<PwDatabase, SearchController>();
+        private readonly QuickSearchControl _qsControl;
 
         public ActiveControllerManager(IPluginHost host, QuickSearchControl qsControl)
         {
-            this.host = host;
+            _host = host;
 
-            this.qsControl = qsControl;
+            _qsControl = qsControl;
             host.MainWindow.FileOpened += MainWindow_FileOpened;
             host.MainWindow.FileClosed += MainWindow_FileClosed;
             host.MainWindow.DocumentManager.ActiveDocumentSelected += DocumentManager_ActiveDocumentSelected;
@@ -28,7 +28,7 @@ namespace QuickSearch
         private void QsControl_LostFocus(object sender, EventArgs e)
         {
             Debug.WriteLine("QuickSearch Control lost Focus");
-            foreach (SearchController searchController in dictionary.Values)
+            foreach (SearchController searchController in _dictionary.Values)
             {
                 searchController.ClearPreviousSearches();
             }
@@ -45,11 +45,11 @@ namespace QuickSearch
         {
             Debug.WriteLine("DocumentManager_ActiveDocumentSelected event");
 
-            foreach (KeyValuePair<PwDatabase, SearchController> pair in dictionary)
+            foreach (KeyValuePair<PwDatabase, SearchController> pair in _dictionary)
             {
-                qsControl.TextChanged -= pair.Value.TextUpdateHandler;
-                if (pair.Key == host.Database)
-                    qsControl.TextChanged += pair.Value.TextUpdateHandler;
+                _qsControl.TextChanged -= pair.Value.TextUpdateHandler;
+                if (pair.Key == _host.Database)
+                    _qsControl.TextChanged += pair.Value.TextUpdateHandler;
             }
         }
 
@@ -57,18 +57,18 @@ namespace QuickSearch
         {
             Debug.WriteLine("File closed");
             // remove the event listeners of those Search Controllers whose databases have been closed
-            PwDatabase[] databases = new PwDatabase[dictionary.Count];
-            dictionary.Keys.CopyTo(databases, 0);
+            PwDatabase[] databases = new PwDatabase[_dictionary.Count];
+            _dictionary.Keys.CopyTo(databases, 0);
             //bool isDatabaseOpen
             bool disableQSControl = true;
             foreach (PwDatabase database in databases)
             {
-                if (database.IsOpen == false)
+                if (!database.IsOpen)
                 {
                     SearchController controller;
-                    dictionary.TryGetValue(database, out controller);
-                    qsControl.TextChanged -= controller.TextUpdateHandler;
-                    dictionary.Remove(database);
+                    _dictionary.TryGetValue(database, out controller);
+                    _qsControl.TextChanged -= controller.TextUpdateHandler;
+                    _dictionary.Remove(database);
                 }
                 else // database is open
                 {
@@ -77,14 +77,14 @@ namespace QuickSearch
             }
             if (disableQSControl)
             {
-                qsControl.Text = string.Empty;
+                _qsControl.Text = string.Empty;
             }
             //to be improved once access to closed database is implemented in Keepass
-            //dictionary.Clear();
+            //_dictionary.Clear();
             //foreach (PwDocument document in host.MainWindow.DocumentManager.Documents)
             //{
             //    if (document.Database.IsOpen) 
-            //    dictionary.Add(document.Database, new SearchController(this.qsControl, document.Database, GetMainListViewControl()));
+            //    _dictionary.Add(document.Database, new SearchController(_qsControl, document.Database, GetMainListViewControl()));
             //}
         }
 
@@ -93,19 +93,19 @@ namespace QuickSearch
             Debug.WriteLine("File opened");
             //add a new Controller for the opened Database
 
-            SearchController searchController = new SearchController(qsControl, e.Database, GetMainListViewControl());
-            dictionary.Add(e.Database, searchController);
+            SearchController searchController = new SearchController(_qsControl, e.Database, GetMainListViewControl());
+            _dictionary.Add(e.Database, searchController);
             //assuming the opened Database is also the active Database we subscribe it's SearchController
             //so user input will be handled by that Controller
-            qsControl.TextChanged += searchController.TextUpdateHandler;
-            qsControl.Enabled = true;
+            _qsControl.TextChanged += searchController.TextUpdateHandler;
+            _qsControl.Enabled = true;
             // focus doesn't work if the Form is not yet visible. Use Select instead
-            qsControl.comboBoxSearch.Select();
+            _qsControl.comboBoxSearch.Select();
         }
 
         private ListView GetMainListViewControl()
         {
-            Control.ControlCollection mainWindowControls = host.MainWindow.Controls;
+            Control.ControlCollection mainWindowControls = _host.MainWindow.Controls;
             return (ListView)mainWindowControls.Find("m_lvEntries", true)[0];
         }
     }

@@ -15,37 +15,28 @@ namespace QuickSearch
         /// <summary>
         /// the text the user put into the search box
         /// </summary>
-        private string _userSearchString;
+        private readonly string _userSearchString;
 
         /// <summary>
         /// the splitted user input text
         /// </summary>
-        private string[] _searchStrings;
+        private readonly string[] _searchStrings;
 
-        /// <summary>
-        /// names of the standard fields that will be searched in a Password entry. 
-        /// </summary>
-        private List<string> _searchFields;
+        private readonly StringComparison _searchStringComparison;
 
-        private StringComparison _searchStringComparison;
-
-        private bool _searchInTitle;
-        private bool _searchInUrl;
-        private bool _searchInUserName;
-        private bool _searchInNotes;
-        private bool _searchInPassword;
-        private bool _searchInGroupName;
-        private bool _searchInGroupPath;
-        private bool _searchInTags;
-        private bool _searchInOther;
-        private bool _searchExcludeExpired;
-        private bool _searchIgnoreGroupSettings;
+        private readonly bool _searchInTitle;
+        private readonly bool _searchInUrl;
+        private readonly bool _searchInUserName;
+        private readonly bool _searchInNotes;
+        private readonly bool _searchInPassword;
+        private readonly bool _searchInGroupName;
+        private readonly bool _searchInGroupPath;
+        private readonly bool _searchInTags;
+        private readonly bool _searchInOther;
+        private readonly bool _searchExcludeExpired;
+        private readonly bool _searchIgnoreGroupSettings;
 
         public List<PwEntry> resultEntries;
-
-        private Properties.Settings searchSettings = Properties.Settings.Default;
-
-        private PwGroup rootGroup;
 
         public Search(string userSearchText)
         {
@@ -73,21 +64,6 @@ namespace QuickSearch
             resultEntries = new List<PwEntry>();
         }
 
-        public Search(PwGroup rootGroup)
-        {
-            this.rootGroup = rootGroup;
-
-            _searchInTitle = Settings.Default.SearchInTitle;
-            _searchInUrl = Settings.Default.SearchInUrl;
-            _searchInUserName = Settings.Default.SearchInUserName;
-            _searchInNotes = Settings.Default.SearchInNotes;
-            _searchInGroupName = Settings.Default.SearchInGroupName;
-            _searchInGroupPath = Settings.Default.SearchInGroupPath;
-            _searchInTags = Settings.Default.SearchInTags;
-            _searchInPassword = Program.Config.MainWindow.QuickFindSearchInPasswords;
-            _searchInOther = Settings.Default.SearchInOther;
-        }
-
         public void PerformSearch(List<PwEntry> entries, BackgroundWorker worker)
         {
             SearchInList(entries, worker);
@@ -107,6 +83,21 @@ namespace QuickSearch
                 }
             }
             Debug.WriteLine("End of Search in Group. Worker cancelled: " + worker.CancellationPending + ". elapsed Ticks: " + sw.ElapsedTicks.ToString() + " elapsed ms: " + sw.ElapsedMilliseconds);
+        }
+
+        /// <summary>
+        /// checks if the search specific settings are equal and if the search text is more specific
+        /// </summary>
+        /// <param name="search"></param>
+        /// <returns>true if search is a refinement of this</returns>
+        public bool IsRefinedSearch(Search search)
+        {
+            return SettingsEquals(search) && search._userSearchString.Contains(_userSearchString);
+        }
+
+        public bool ParamEquals(Search search)
+        {
+            return _userSearchString.Equals(search._userSearchString) && SettingsEquals(search);
         }
 
         private bool IsSearchingEnabled(PwGroup group)
@@ -148,7 +139,9 @@ namespace QuickSearch
                         || (_searchInOther && !PwDefs.IsStandardField(pair.Key)))
                         && AddMatchingWords(pair.Value.ReadString(), _searchStrings, matchedWords, worker)
                         && matchedWords.Count == _searchStrings.Length)
-                            break;
+                    {
+                        break;
+                    }
                 }
 
                 // Check tags
@@ -161,7 +154,9 @@ namespace QuickSearch
 
                         if (AddMatchingWords(tag, _searchStrings, matchedWords, worker)
                         && matchedWords.Count == _searchStrings.Length)
+                        {
                             break;
+                        }
                     }
                 }
 
@@ -197,7 +192,7 @@ namespace QuickSearch
             return matchedWords.Count == searchWords.Length;
         }
 
-        public bool SettingsEquals(Search search)
+        private bool SettingsEquals(Search search)
         {
             return _searchInTitle == search._searchInTitle &&
             _searchInUrl == search._searchInUrl &&
@@ -211,21 +206,6 @@ namespace QuickSearch
             _searchExcludeExpired == search._searchExcludeExpired &&
             _searchStringComparison == search._searchStringComparison &&
             _searchIgnoreGroupSettings == search._searchIgnoreGroupSettings;
-        }
-
-        /// <summary>
-        /// checks if the search specific settings are equal and if the search text is more specific
-        /// </summary>
-        /// <param name="search"></param>
-        /// <returns>true if search is a refinement of this</returns>
-        public bool IsRefinedSearch(Search search)
-        {
-            return SettingsEquals(search) && search._userSearchString.Contains(_userSearchString);
-        }
-
-        public bool ParamEquals(Search search)
-        {
-            return _userSearchString.Equals(search._userSearchString) && SettingsEquals(search);
         }
     }
 }

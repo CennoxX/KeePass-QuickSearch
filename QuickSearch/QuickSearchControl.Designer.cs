@@ -326,7 +326,7 @@
             // 
             this.checkBoxGroupSettings.AutoSize = true;
             this.checkBoxGroupSettings.Checked = global::QuickSearch.Properties.Settings.Default.SearchIgnoreGroupSettings;
-            this.checkBoxGroupSettings.DataBindings.Add(new System.Windows.Forms.Binding("Checked",  global::QuickSearch.Properties.Settings.Default, "SearchIgnoreGroupSettings", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBoxGroupSettings.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::QuickSearch.Properties.Settings.Default, "SearchIgnoreGroupSettings", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.checkBoxGroupSettings.Location = new System.Drawing.Point(3, 26);
             this.checkBoxGroupSettings.Name = "checkBoxGroupSettings";
             this.checkBoxGroupSettings.Size = new System.Drawing.Size(135, 17);

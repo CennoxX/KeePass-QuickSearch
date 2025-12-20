@@ -42,7 +42,7 @@ namespace QuickSearch
             if (comboBoxSearch.IsHandleCreated)
                 ComboBoxSearch_HandleCreated();
             else
-                comboBoxSearch.HandleCreated += ComboBoxSearch_HandleCreated; 
+                comboBoxSearch.HandleCreated += ComboBoxSearch_HandleCreated;
 
             Controls.Remove(tableLayoutPanelMain);
 
@@ -88,8 +88,6 @@ namespace QuickSearch
                 case SearchStatus.Normal:
                     SetBackColorNormal();
                     break;
-                default:
-                    break;
             }
         }
 
@@ -130,9 +128,9 @@ namespace QuickSearch
 
         private void SaveEnteredSearch()
         {
-            if (!string.IsNullOrEmpty(this.Text) && !comboBoxSearch.Items.Cast<string>().Any(i => i.StartsWith(this.Text)))
-                comboBoxSearch.Items.Add(this.Text);
-            
+            if (!string.IsNullOrEmpty(Text) && !comboBoxSearch.Items.Cast<string>().Any(i => i.StartsWith(Text)))
+                comboBoxSearch.Items.Add(Text);
+
             if (comboBoxSearch.Items.Count > 8)
                 comboBoxSearch.Items.RemoveAt(0);
         }

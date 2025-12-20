@@ -9,22 +9,22 @@ namespace QuickSearch
         public OptionsControl()
         {
             InitializeComponent();
-            this.ControlWidth.Value = Settings.Default.ControlWidth;
-            this.colorSelectButtonError.SelectedColor = Settings.Default.BackColorOnError;
-            this.colorSelectButtonFocused.SelectedColor = Settings.Default.BackColorNormalFocused;
-            this.colorSelectButtonPending.SelectedColor = Settings.Default.BackColorSearching;
-            this.colorSelectButtonUnfocused.SelectedColor = Settings.Default.BackColorNormalUnFocused;
-            this.colorSelectButtonSuccess.SelectedColor = Settings.Default.BackColorSuccess;
+            ControlWidth.Value = Settings.Default.ControlWidth;
+            colorSelectButtonError.SelectedColor = Settings.Default.BackColorOnError;
+            colorSelectButtonFocused.SelectedColor = Settings.Default.BackColorNormalFocused;
+            colorSelectButtonPending.SelectedColor = Settings.Default.BackColorSearching;
+            colorSelectButtonUnfocused.SelectedColor = Settings.Default.BackColorNormalUnFocused;
+            colorSelectButtonSuccess.SelectedColor = Settings.Default.BackColorSuccess;
         }
 
         public void OKButtonPressed(Object sender, EventArgs e)
         {
-            Settings.Default.ControlWidth = (int)this.ControlWidth.Value;
-            Settings.Default.BackColorOnError = this.colorSelectButtonError.SelectedColor;
-            Settings.Default.BackColorNormalFocused = this.colorSelectButtonFocused.SelectedColor;
-            Settings.Default.BackColorSearching = this.colorSelectButtonPending.SelectedColor;
-            Settings.Default.BackColorNormalUnFocused = this.colorSelectButtonUnfocused.SelectedColor;
-            Settings.Default.BackColorSuccess = this.colorSelectButtonSuccess.SelectedColor;
+            Settings.Default.ControlWidth = (int)ControlWidth.Value;
+            Settings.Default.BackColorOnError = colorSelectButtonError.SelectedColor;
+            Settings.Default.BackColorNormalFocused = colorSelectButtonFocused.SelectedColor;
+            Settings.Default.BackColorSearching = colorSelectButtonPending.SelectedColor;
+            Settings.Default.BackColorNormalUnFocused = colorSelectButtonUnfocused.SelectedColor;
+            Settings.Default.BackColorSuccess = colorSelectButtonSuccess.SelectedColor;
         }
     }
 }

@@ -56,7 +56,7 @@ namespace QuickSearch.Properties
 
         public override void Save()
         {
-            System.Diagnostics.Debug.Fail("Use Save(IPluginHost) method instead, to persist to KeePass settings");
+            Debug.Fail("Use Save(IPluginHost) method instead, to persist to KeePass settings");
         }
     }
 }

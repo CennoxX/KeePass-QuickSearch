@@ -1,6 +1,6 @@
 ﻿namespace QuickSearch
 {
-    public class LocalizedStrings
+    public static class LocalizedStrings
     {
         public static string m_grpSearchIn = "Search in";
         public static string m_cbTitle = "Title";

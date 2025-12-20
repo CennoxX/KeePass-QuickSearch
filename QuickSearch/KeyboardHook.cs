@@ -11,10 +11,10 @@ namespace QuickSearch
         private const int WH_KEYBOARD_LL = 13;
         private const int WM_KEYDOWN = 0x0100;
 
-        private LowLevelKeyboardProc _proc;
-        private IntPtr _hookID = IntPtr.Zero;
-        private IPluginHost _host;
-        public event KeyEventHandler KeyDown;
+        private readonly LowLevelKeyboardProc _proc;
+        private readonly IntPtr _hookID = IntPtr.Zero;
+        private readonly IPluginHost _host;
+        public event EventHandler<KeyEventArgs> KeyDown;
 
         public KeyboardHook(IPluginHost host)
         {

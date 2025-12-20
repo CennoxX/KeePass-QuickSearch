@@ -16,110 +16,104 @@ namespace QuickSearch
 {
     class SearchController
     {
-        static object listViewLock = new object();
-        List<Search> previousSearches = new List<Search>();
-        QuickSearchControl quickSearchControl;
-        BackgroundWorker backgroundWorker = new BackgroundWorker();
-        PwDatabase database;
-        EventHandler textUpdateHandler;
-        ListView listview;
-        delegate void QsUpdateMethod(SearchStatus status, bool cancellationPending);
-        QsUpdateMethod qsUpdateMethod;
-        bool secondEscape = false;
-        bool isTextUpdated = false;
+        private static readonly object _listViewLock = new object();
+        private static readonly object _searchLock = new object();
+        private readonly List<Search> _previousSearches = new List<Search>();
+        private readonly QuickSearchControl _quickSearchControl;
+        private BackgroundWorker _backgroundWorker = new BackgroundWorker();
+        private readonly PwDatabase _database;
+        private readonly ListView _listview;
+        private delegate void QsUpdateMethod(SearchStatus status, bool cancellationPending);
+        private readonly QsUpdateMethod _qsUpdateMethod;
+        private bool _secondEscape;
+        private bool _isTextUpdated;
 
-        public EventHandler TextUpdateHandler
-        {
-            get { return textUpdateHandler; }
-        }
+        public EventHandler TextUpdateHandler { get; private set; }
 
         public SearchController(QuickSearchControl qsControl, PwDatabase database, ListView listview)
         {
-            this.database = database;
-            this.listview = listview;
-            qsUpdateMethod = QsUpdate;
-            quickSearchControl = qsControl;
-            textUpdateHandler = Control_TextUpdate;
+            _database = database;
+            _listview = listview;
+            _qsUpdateMethod = QsUpdate;
+            _quickSearchControl = qsControl;
+            TextUpdateHandler = Control_TextUpdate;
             Debug.Assert(listview != null);
-            backgroundWorker.WorkerSupportsCancellation = true;
-            quickSearchControl.PreviewKeyDown += QuickSearchControl_PreviewKeyDown;
+            _backgroundWorker.WorkerSupportsCancellation = true;
+            _quickSearchControl.PreviewKeyDown += QuickSearchControl_PreviewKeyDown;
         }
 
         private void QuickSearchControl_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                listview.Focus();
+                _listview.Focus();
 
-                quickSearchControl.BeginInvoke((Action)(() =>
-                {
-                    quickSearchControl.ClearSelection();
-                }));
+                _quickSearchControl.BeginInvoke((Action)(() => _quickSearchControl.ClearSelection()));
             }
 
             if (e.KeyCode == Keys.Escape)
             {
-                if (!secondEscape && quickSearchControl.Text == string.Empty)
+                if (!_secondEscape && _quickSearchControl.Text == string.Empty)
                     return;
 
-                secondEscape = !secondEscape;
-                quickSearchControl.Text = string.Empty;
+                _secondEscape = !_secondEscape;
+                _quickSearchControl.Text = string.Empty;
                 e.IsInputKey = true;
-                if (secondEscape)
+                if (_secondEscape)
                     return;
                 ResetSearch();
             }
         }
         public void ClearPreviousSearches()
         {
-            previousSearches.Clear();
+            _previousSearches.Clear();
         }
 
         private void Control_TextUpdate(object sender, EventArgs e)
         {
-            Debug.WriteLine("Text changed to: " + quickSearchControl.Text);
-            if (backgroundWorker.IsBusy)
-                backgroundWorker.CancelAsync();
-            
-            string userText = quickSearchControl.Text.Trim();
+            Debug.WriteLine("Text changed to: " + _quickSearchControl.Text);
+            if (_backgroundWorker.IsBusy)
+                _backgroundWorker.CancelAsync();
+
+            string userText = _quickSearchControl.Text.Trim();
             // if there is no text, don't search
             if (userText.Equals(string.Empty))
             {
-                quickSearchControl.UpdateSearchStatus(SearchStatus.Normal);
-                if (isTextUpdated)
+                _quickSearchControl.UpdateSearchStatus(SearchStatus.Normal);
+                if (_isTextUpdated)
                     ResetSearch();
                 return;
             }
             else
             {
-                isTextUpdated = true;
-                quickSearchControl.UpdateSearchStatus(SearchStatus.Pending);
+                _isTextUpdated = true;
+                _quickSearchControl.UpdateSearchStatus(SearchStatus.Pending);
             }
-            backgroundWorker = new BackgroundWorker();
-            backgroundWorker.WorkerSupportsCancellation = true;
+            _backgroundWorker = new BackgroundWorker();
+            _backgroundWorker.WorkerSupportsCancellation = true;
 
-            backgroundWorker.DoWork += BackgroundWorker_DoWork;
-            backgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
+            _backgroundWorker.DoWork += BackgroundWorker_DoWork;
+            _backgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
 
-            backgroundWorker.RunWorkerAsync(userText);
+            _backgroundWorker.RunWorkerAsync(userText);
         }
 
         private void ResetSearch()
         {
             List<PwEntry> entries = new List<PwEntry>();
-            List<PwGroup> pwGroups = new List<PwGroup> { database.RootGroup };
+            List<PwGroup> pwGroups = new List<PwGroup> { _database.RootGroup };
             while (pwGroups.Count > 0)
             {
-                PwGroup currentGroup = pwGroups.First();
+                PwGroup currentGroup = pwGroups[0];
                 pwGroups.RemoveAt(0);
                 pwGroups.AddRange(currentGroup.Groups);
                 entries.AddRange(currentGroup.Entries);
             }
-            listview.BeginUpdate();
-            listview.Items.Clear();
-            listview.Items.AddRange(entries.Select(pe => AddEntryToList(pe)).ToArray());
-            ApplyAlternatingItemStyles(listview);
-            listview.EndUpdate();
+            _listview.BeginUpdate();
+            _listview.Items.Clear();
+            _listview.Items.AddRange(entries.Select(pe => AddEntryToList(pe)).ToArray());
+            ApplyAlternatingItemStyles(_listview);
+            _listview.EndUpdate();
             ClearPreviousSearches();
         }
 
@@ -134,12 +128,12 @@ namespace QuickSearch
             if (items != null)
             {
                 Stopwatch sw = Stopwatch.StartNew();
-                listview.BeginUpdate();
-                listview.Items.Clear();
-                listview.Items.AddRange(items);
-                listview.Items[0].Selected = true;
-                ApplyAlternatingItemStyles(listview);
-                listview.EndUpdate();
+                _listview.BeginUpdate();
+                _listview.Items.Clear();
+                _listview.Items.AddRange(items);
+                _listview.Items[0].Selected = true;
+                ApplyAlternatingItemStyles(_listview);
+                _listview.EndUpdate();
                 Debug.WriteLine("ListView updated in elapsed Ticks: " + sw.ElapsedTicks.ToString() + ", elapsed ms: " + sw.ElapsedMilliseconds);
             }
         }
@@ -152,26 +146,26 @@ namespace QuickSearch
             Search newSearch = new Search(userText);
 
             bool previousSearchFound = false;
-            lock (this)
+            lock (_searchLock)
             {
-                for (int i = previousSearches.Count - 1; i >= 0; i--)
+                for (int i = _previousSearches.Count - 1; i >= 0; i--)
                 {
-                    if (previousSearches[i].ParamEquals(newSearch))
+                    if (_previousSearches[i].ParamEquals(newSearch))
                     {
                         previousSearchFound = true;
-                        newSearch = previousSearches[i];
+                        newSearch = _previousSearches[i];
                         Debug.WriteLine("found exact match in previousSearches");
                         break;
                     }
                 }
-                if (previousSearchFound == false)
+                if (!previousSearchFound)
                 {
-                    for (int i = previousSearches.Count - 1; i >= 0; i--)
+                    for (int i = _previousSearches.Count - 1; i >= 0; i--)
                     {
-                        if (previousSearches[i].IsRefinedSearch(newSearch))
+                        if (_previousSearches[i].IsRefinedSearch(newSearch))
                         {
                             previousSearchFound = true;
-                            newSearch.PerformSearch(previousSearches[i].resultEntries, worker);
+                            newSearch.PerformSearch(_previousSearches[i].resultEntries, worker);
                             Debug.WriteLine("Search is refined search");
                             break;
                         }
@@ -179,12 +173,12 @@ namespace QuickSearch
                 }
             }
 
-            if (previousSearchFound == false)
-                newSearch.PerformSearch(database.RootGroup, worker);
+            if (!previousSearchFound)
+                newSearch.PerformSearch(_database.RootGroup, worker);
 
-            lock (this)
+            lock (_searchLock)
             {
-                previousSearches.Add(newSearch);
+                _previousSearches.Add(newSearch);
                 if (!worker.CancellationPending)
                 {
                     SearchStatus status;
@@ -196,7 +190,7 @@ namespace QuickSearch
                     {
                         status = SearchStatus.Success;
                     }
-                    quickSearchControl.Invoke(qsUpdateMethod, status, worker.CancellationPending);
+                    _quickSearchControl.Invoke(_qsUpdateMethod, status, worker.CancellationPending);
                 }
             }
 
@@ -216,7 +210,7 @@ namespace QuickSearch
                         items[i] = AddEntryToList(entry);
                         i++;
                     }
-                    lock (listViewLock)
+                    lock (_listViewLock)
                     {
                         if (!worker.CancellationPending)
                         {
@@ -235,7 +229,7 @@ namespace QuickSearch
             if (pe.Expires && DateTime.UtcNow > pe.ExpiryTime)
             {
                 lvi.ImageIndex = (int)PwIcon.Expired;
-                lvi.Font = FontUtil.CreateFont(listview.Font, listview.Font.Style | FontStyle.Strikeout);
+                lvi.Font = FontUtil.CreateFont(_listview.Font, _listview.Font.Style | FontStyle.Strikeout);
             }
             else if (pe.CustomIconUuid.Equals(PwUuid.Zero))
             {
@@ -243,7 +237,7 @@ namespace QuickSearch
             }
             else
             {
-                lvi.ImageIndex = (int)PwIcon.Count + database.GetCustomIconIndex(pe.CustomIconUuid);
+                lvi.ImageIndex = (int)PwIcon.Count + _database.GetCustomIconIndex(pe.CustomIconUuid);
             }
 
             if (!pe.ForegroundColor.IsEmpty)
@@ -254,7 +248,7 @@ namespace QuickSearch
 
             lvi.Text = GetEntryFieldEx(pe, 0, true);
 
-            for (int iColumn = 1; iColumn < listview.Columns.Count; ++iColumn)
+            for (int iColumn = 1; iColumn < _listview.Columns.Count; ++iColumn)
                 lvi.SubItems.Add(GetEntryFieldEx(pe, iColumn, true));
 
             AddGroupToListview(lvi, pe);
@@ -265,9 +259,9 @@ namespace QuickSearch
 
         private void AddGroupToListview(ListViewItem lvi, PwEntry pe)
         {
-            if (listview.InvokeRequired)
+            if (_listview.InvokeRequired)
             {
-                listview.Invoke(new MethodInvoker(delegate
+                _listview.Invoke(new MethodInvoker(delegate
                 {
                     AddGroupToListview(lvi, pe);
                 }));
@@ -277,16 +271,16 @@ namespace QuickSearch
                 var nameGroup = pe.ParentGroup;
                 string groupId = nameGroup.Uuid.ToHexString();
                 string groupName = nameGroup.Name;
-                while(nameGroup.ParentGroup != null && nameGroup.ParentGroup.ParentGroup != null)
+                while (nameGroup.ParentGroup != null && nameGroup.ParentGroup.ParentGroup != null)
                 {
                     nameGroup = nameGroup.ParentGroup;
                     groupName = nameGroup.Name + " → " + groupName;
                 }
-                ListViewGroup group = listview.Groups[groupId];
+                ListViewGroup group = _listview.Groups[groupId];
                 if (group == null)
                 {
                     group = new ListViewGroup(groupId, groupName);
-                    listview.Groups.Add(group);
+                    _listview.Groups.Add(group);
                 }
                 lvi.Group = group;
             }
@@ -349,7 +343,7 @@ namespace QuickSearch
         {
             if (!cancellationPending)
             {
-                quickSearchControl.UpdateSearchStatus(status);
+                _quickSearchControl.UpdateSearchStatus(status);
             }
         }
 
