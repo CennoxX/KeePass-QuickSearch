@@ -97,7 +97,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\KeePass2.x\KeePass\KeePass.csproj">
+    <ProjectReference Include="..\KeePass2.x\KeePass\KeePass_N48.csproj">
       <Project>{10938016-dee2-4a25-9a5a-8fd3444379ca}</Project>
       <Name>KeePass</Name>
     </ProjectReference>
