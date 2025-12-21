@@ -293,7 +293,8 @@ namespace QuickSearch
             if ((iColumnID < 0) || (iColumnID >= l.Count)) { Debug.Assert(false); return string.Empty; }
 
             AceColumn col = l[iColumnID];
-            if (bAsterisksIfHidden && col.HideWithAsterisks) return PwDefs.HiddenPassword;
+            if (!Program.Config.UI.Hiding.UnhideEmptyData && bAsterisksIfHidden && col.HideWithAsterisks)
+                return PwDefs.HiddenPassword;
 
             string str = string.Empty;
             switch (col.Type)
@@ -337,6 +338,10 @@ namespace QuickSearch
                     break;
                 default: Debug.Assert(false); break;
             }
+
+            if (Program.Config.UI.Hiding.UnhideEmptyData && bAsterisksIfHidden && col.HideWithAsterisks)
+                return string.IsNullOrEmpty(str) ? string.Empty : PwDefs.HiddenPassword;
+
             return str;
         }
 
