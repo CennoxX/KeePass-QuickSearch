@@ -99,8 +99,7 @@ namespace QuickSearch
             //so user input will be handled by that Controller
             _qsControl.TextChanged += searchController.TextUpdateHandler;
             _qsControl.Enabled = true;
-            // focus doesn't work if the Form is not yet visible. Use Select instead
-            _qsControl.comboBoxSearch.Select();
+            _qsControl.BeginInvoke((Action)(() => _qsControl.comboBoxSearch.Focus()));
         }
 
         private ListView GetMainListViewControl()
