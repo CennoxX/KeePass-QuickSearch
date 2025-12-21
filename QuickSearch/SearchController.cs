@@ -46,9 +46,10 @@ namespace QuickSearch
         {
             if (e.KeyCode == Keys.Enter)
             {
+                e.IsInputKey = true;
                 _listview.Focus();
-
                 _quickSearchControl.BeginInvoke((Action)(() => _quickSearchControl.ClearSelection()));
+                return;
             }
 
             if (e.KeyCode == Keys.Escape)
