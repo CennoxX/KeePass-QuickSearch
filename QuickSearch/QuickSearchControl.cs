@@ -1,17 +1,19 @@
-﻿using KeePass;
-using KeePass.Resources;
-using QuickSearch.Properties;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using KeePass;
+using KeePass.Resources;
+using QuickSearch.Properties;
 
 namespace QuickSearch
 {
     public partial class QuickSearchControl : UserControl
     {
+        private readonly Settings _lightModeSettings = new Settings();
         public new string Text
         {
             get { return comboBoxSearch.Text; }
@@ -64,11 +66,68 @@ namespace QuickSearch
             // add the ToolStripControlHost to the DropDown
             toolStripDropDownSettings.Items.Add(settingsPanelHost);
 
-            var isDarkThemeEnabled = Program.Config.CustomConfig.GetString("KeeTheme.Enabled");
-            if (isDarkThemeEnabled != null && isDarkThemeEnabled.Equals("true", StringComparison.OrdinalIgnoreCase))
+            var isDarkThemeEnabled = string.Equals(Program.Config.CustomConfig.GetString("KeeTheme.Enabled"), "true", StringComparison.OrdinalIgnoreCase);
+            ApplyThemeColors(isDarkThemeEnabled);
+        }
+
+        private void ApplyThemeColors(bool enableDarkMode)
+        {
+            var darkColors = new Dictionary<string, Color>
+            {
+                { "BackColorSuccess", Color.FromArgb(17, 54, 31) },
+                { "BackColorSearching", Color.FromArgb(61, 52, 0) },
+                { "BackColorOnError", Color.FromArgb(89, 0, 0) },
+                { "BackColorNormalUnFocused", Color.FromArgb(57, 60, 62) },
+                { "BackColorNormalFocused", Color.FromArgb(72, 76, 78) }
+            };
+
+            if (enableDarkMode)
             {
                 groupBoxSearchIn.ForeColor = Color.LightGray;
                 groupBoxOptions.ForeColor = Color.LightGray;
+                bool isUsingLightDefaults = true;
+                foreach (var kvp in darkColors)
+                {
+                    var currentValue = (Color)typeof(Settings).GetProperty(kvp.Key).GetValue(Settings.Default, null);
+                    var defaultValue = (Color)typeof(Settings).GetProperty(kvp.Key).GetValue(_lightModeSettings, null);
+                    if (currentValue.ToArgb() != defaultValue.ToArgb())
+                    {
+                        isUsingLightDefaults = false;
+                        break;
+                    }
+                }
+
+                if (isUsingLightDefaults)
+                {
+                    foreach (var kvp in darkColors)
+                    {
+                        typeof(Settings).GetProperty(kvp.Key).SetValue(Settings.Default, kvp.Value, null);
+                    }
+                }
+            }
+            else
+            {
+                bool isUsingDarkDefaults = true;
+                foreach (var kvp in darkColors)
+                {
+                    var currentValue = (Color)typeof(Settings).GetProperty(kvp.Key).GetValue(Settings.Default, null);
+                    if (currentValue.ToArgb() != kvp.Value.ToArgb())
+                    {
+                        isUsingDarkDefaults = false;
+                        break;
+                    }
+                }
+
+                if (isUsingDarkDefaults)
+                {
+                    foreach (var prop in typeof(Settings).GetProperties())
+                    {
+                        if (prop.PropertyType == typeof(Color))
+                        {
+                            prop.SetValue(Settings.Default, prop.GetValue(_lightModeSettings, null), null);
+                        }
+                    }
+                }
             }
         }
 
