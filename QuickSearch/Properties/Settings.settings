@@ -42,7 +42,7 @@
       <Value Profile="(Default)">255, 192, 192</Value>
     </Setting>
     <Setting Name="BackColorNormalUnFocused" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">WhiteSmoke</Value>
+      <Value Profile="(Default)">245, 245, 245</Value>
     </Setting>
     <Setting Name="BackColorNormalFocused" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">229, 243, 255</Value>
