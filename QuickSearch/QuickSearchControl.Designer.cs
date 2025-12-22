@@ -86,8 +86,6 @@
             // 
             this.imageListSearchButton.TransparentColor = System.Drawing.Color.Transparent;
             this.imageListSearchButton.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-            this.imageListSearchButton.Images.Add(global::QuickSearch.QuickSearchExt.SearchImage);
-            this.imageListSearchButton.Images.Add(global::QuickSearch.QuickSearchExt.OptionsImage);
             // 
             // toolStripDropDownSettings
             // 
@@ -240,8 +238,6 @@
             // checkBoxPassword
             // 
             this.checkBoxPassword.AutoSize = true;
-            this.checkBoxPassword.Checked = global::KeePass.Program.Config.MainWindow.QuickFindSearchInPasswords;
-            this.checkBoxPassword.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::KeePass.Program.Config.MainWindow, "QuickFindSearchInPasswords", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.checkBoxPassword.Location = new System.Drawing.Point(86, 49);
             this.checkBoxPassword.Name = "checkBoxPassword";
             this.checkBoxPassword.Size = new System.Drawing.Size(72, 17);
@@ -312,8 +308,6 @@
             // checkBoxExclude
             // 
             this.checkBoxExclude.AutoSize = true;
-            this.checkBoxExclude.Checked = global::KeePass.Program.Config.MainWindow.QuickFindExcludeExpired;
-            this.checkBoxExclude.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::KeePass.Program.Config.MainWindow, "QuickFindExcludeExpired", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.checkBoxExclude.Location = new System.Drawing.Point(3, 26);
             this.checkBoxExclude.Name = "checkBoxExclude";
             this.checkBoxExclude.Size = new System.Drawing.Size(135, 17);
