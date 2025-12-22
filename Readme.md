@@ -69,7 +69,21 @@ QuickSearch provides instant results as you type. A password entry is a match if
 6. **Ignore assertion errors**:
    - Ignore potential KeePass assertion errors that may occur, for example when using custom DPI scaling settings.
 
-You can skip step 3 by adding the following as a pre-build event: `if "$(BuildingInsideVisualStudio)" == "true" "$(MSBuildBinPath)\msbuild.exe" "$(SolutionDir)QuickSearch.csproj" /p:Configuration=$(Configuration)` and the following as the post-build event: `del /s /q "$(ProjectDir)obj\*.*"` to the Build Events of the KeePass project.
+You can skip step 3 by adding the following to the Build Events of the KeePass project. Pre-build event:
+```bat
+if "$(BuildingInsideVisualStudio)" == "true" "$(MSBuildBinPath)\msbuild.exe" "$(SolutionDir)QuickSearch.csproj" /p:Configuration=$(Configuration)
+```
+Post-build event:
+```bat
+del /s /q "$(ProjectDir)obj\*.*"
+```
+
+You can skip step 6 by adding the following at the start of Main() of KeePass:
+```c#
+#if DEBUG
+  Debug.Listeners.Clear();
+#endif
+```
 
 ## Changelog
 ### [v2.43](../../releases/tag/2.43)
