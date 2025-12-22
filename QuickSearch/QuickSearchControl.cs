@@ -35,6 +35,30 @@ namespace QuickSearch
         public QuickSearchControl()
         {
             InitializeComponent();
+            imageListSearchButton.Images.Add(QuickSearchExt.SearchImage);
+            imageListSearchButton.Images.Add(QuickSearchExt.OptionsImage);
+
+            checkBoxPassword.Checked = Program.Config.MainWindow.QuickFindSearchInPasswords;
+            checkBoxPassword.DataBindings.Add(new Binding("Checked", Program.Config.MainWindow, "QuickFindSearchInPasswords", true, DataSourceUpdateMode.OnPropertyChanged));
+
+            checkBoxExclude.Checked = Program.Config.MainWindow.QuickFindExcludeExpired;
+            checkBoxExclude.DataBindings.Add(new Binding("Checked", Program.Config.MainWindow, "QuickFindExcludeExpired", true, DataSourceUpdateMode.OnPropertyChanged));
+
+            groupBoxSearchIn.Text = LocalizedStrings.m_grpSearchIn;
+            checkBoxTitle.Text = LocalizedStrings.m_cbTitle;
+            checkBoxUserName.Text = LocalizedStrings.m_cbUserName;
+            checkBoxNotes.Text = LocalizedStrings.m_cbNotes;
+            checkBoxGroupName.Text = LocalizedStrings.m_cbGroupName;
+            checkBoxGroupPath.Text = LocalizedStrings.m_cbGroupPath;
+            checkBoxOther.Text = LocalizedStrings.m_cbStringsOther;
+            checkBoxPassword.Text = LocalizedStrings.m_cbPassword;
+            checkBoxUrl.Text = LocalizedStrings.m_cbUrl;
+            groupBoxOptions.Text = LocalizedStrings.m_grpOptions;
+            checkBoxCase.Text = LocalizedStrings.m_cbCaseSensitive;
+            checkBoxExclude.Text = LocalizedStrings.m_cbExcludeExpired;
+            checkBoxGroupSettings.Text = LocalizedStrings.m_cbIgnoreGroupSettings;
+            checkBoxTags.Text = LocalizedStrings.m_cbTags;
+
             UpdateWidth();
             comboBoxSearch.GotFocus += ComboBoxSearch_GotFocus;
             comboBoxSearch.LostFocus += ComboBoxSearch_LostFocus;
@@ -68,6 +92,37 @@ namespace QuickSearch
 
             var isDarkThemeEnabled = string.Equals(Program.Config.CustomConfig.GetString("KeeTheme.Enabled"), "true", StringComparison.OrdinalIgnoreCase);
             ApplyThemeColors(isDarkThemeEnabled);
+        }
+
+        public void UpdateSearchStatus(SearchStatus status)
+        {
+            switch (status)
+            {
+                case SearchStatus.Success:
+                    SetBackColor(Settings.Default.BackColorSuccess);
+                    break;
+                case SearchStatus.Error:
+                    SetBackColor(Settings.Default.BackColorOnError);
+                    break;
+                case SearchStatus.Pending:
+                    SetBackColor(Settings.Default.BackColorSearching);
+                    break;
+                case SearchStatus.Normal:
+                    SetBackColorNormal();
+                    break;
+            }
+        }
+
+        public void UpdateWidth()
+        {
+            Width = Settings.Default.ControlWidth;
+            comboBoxSearch.Invalidate();
+        }
+
+        public void ClearSelection()
+        {
+            comboBoxSearch.SelectionStart = comboBoxSearch.Text.Length;
+            comboBoxSearch.SelectionLength = 0;
         }
 
         private void ApplyThemeColors(bool enableDarkMode)
@@ -129,37 +184,6 @@ namespace QuickSearch
                     }
                 }
             }
-        }
-
-        public void UpdateSearchStatus(SearchStatus status)
-        {
-            switch (status)
-            {
-                case SearchStatus.Success:
-                    SetBackColor(Settings.Default.BackColorSuccess);
-                    break;
-                case SearchStatus.Error:
-                    SetBackColor(Settings.Default.BackColorOnError);
-                    break;
-                case SearchStatus.Pending:
-                    SetBackColor(Settings.Default.BackColorSearching);
-                    break;
-                case SearchStatus.Normal:
-                    SetBackColorNormal();
-                    break;
-            }
-        }
-
-        public void UpdateWidth()
-        {
-            Width = Settings.Default.ControlWidth;
-            comboBoxSearch.Invalidate();
-        }
-
-        public void ClearSelection()
-        {
-            comboBoxSearch.SelectionStart = comboBoxSearch.Text.Length;
-            comboBoxSearch.SelectionLength = 0;
         }
 
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
