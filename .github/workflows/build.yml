@@ -19,7 +19,7 @@ jobs:
 
     - name: Set up .NET Framework
       run: |
-        choco install dotnet4.6.2 --no-progress --ignore-checksums
+        winget install Microsoft.DotNet.Framework.DeveloperPack.4.6 -e -s winget --silent --disable-interactivity --accept-package-agreements --accept-source-agreements
       shell: cmd
       
     - name: Add msbuild to PATH
