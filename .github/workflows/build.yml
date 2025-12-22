@@ -27,7 +27,7 @@ jobs:
   
     - name: Build KeePass submodule
       run: |
-        msbuild KeePass2.x/KeePass/KeePass.csproj /p:Configuration=Release
+        msbuild KeePass2.x/KeePass/KeePass_N48.csproj /p:Configuration=Release
       shell: cmd
 
     - name: Run the .bat file
