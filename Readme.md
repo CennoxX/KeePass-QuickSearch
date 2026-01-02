@@ -29,6 +29,7 @@ QuickSearch provides instant results as you type. A password entry is a match if
 - **Integrates seamlessly with KeePass**: Respects following KeePass settings
   - Search for passwords in quick searches
   - Exclude expired entries in quick searches
+  - Unhide empty data
   - Focus quick search box when restoring from taskbar
   - Focus quick search box when restoring from tray
   - Alternating item background color
@@ -86,17 +87,28 @@ You can skip step 6 by adding the following at the start of Main() of KeePass:
 ```
 
 ## Changelog
+### [v2.44](../../releases/tag/2.44)
+- **Added**: Respect unhide empty data option
+- **Added**: Default colors for dark theme with KeeTheme
+- **Added**: Icon for QuickSearch tab in KeePass options
+- **Changed**: Improved focus and selection behavior
+- **Changed**: Save options directly when closing the options
+- **Changed**: Update KeePass submodule
+- **Fixed**: Color settings not being saved correctly
+- **Fixed**: Search button placement inside the search box for dark mode
+- **Fixed**: Designer serialization errors
+
+<details>
+<summary>Full Changelog</summary>
+
 ### [v2.43](../../releases/tag/2.43)
 - **Added**: Search in group path option
 - **Added**: Ignore search settings of groups option
 - **Changed**: Search word parts in all fields at the same time
 - **Changed**: Use KeePass resources directly
+- **Changed**: Update KeePass submodule
 - **Fixed**: Fix display of line breaks in comments
 - **Fixed**: Update deprecated GitHub actions
-- **Fixed**: Update KeePass submodule
-
-<details>
-<summary>Full Changelog</summary>
 
 ### [v2.42](../../releases/tag/2.42)
 - **Added**: Respect group search options (right click on group > Edit Group... > Properties > Searching entries in this group: ...)

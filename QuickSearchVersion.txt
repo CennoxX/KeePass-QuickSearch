@@ -1,3 +1,3 @@
 :
-QuickSearch:2.43
+QuickSearch:2.44
 :
