@@ -9,7 +9,7 @@ namespace QuickSearch
         public OptionsControl()
         {
             InitializeComponent();
-            ControlWidth.Value = Settings.Default.ControlWidth;
+            controlWidth.Value = Settings.Default.ControlWidth;
             colorSelectButtonError.SelectedColor = Settings.Default.BackColorOnError;
             colorSelectButtonFocused.SelectedColor = Settings.Default.BackColorNormalFocused;
             colorSelectButtonPending.SelectedColor = Settings.Default.BackColorSearching;
@@ -19,7 +19,7 @@ namespace QuickSearch
 
         public void OKButtonPressed(Object sender, EventArgs e)
         {
-            Settings.Default.ControlWidth = (int)ControlWidth.Value;
+            Settings.Default.ControlWidth = (int)controlWidth.Value;
             Settings.Default.BackColorOnError = colorSelectButtonError.SelectedColor;
             Settings.Default.BackColorNormalFocused = colorSelectButtonFocused.SelectedColor;
             Settings.Default.BackColorSearching = colorSelectButtonPending.SelectedColor;

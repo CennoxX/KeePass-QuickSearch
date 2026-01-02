@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuickSearchControl));
-            this.ButtonDropdownSettings = new System.Windows.Forms.Button();
+            this.buttonDropdownSettings = new System.Windows.Forms.Button();
             this.imageListSearchButton = new System.Windows.Forms.ImageList(this.components);
             this.toolStripDropDownSettings = new System.Windows.Forms.ToolStripDropDown();
             this.tableLayoutPanelMain = new System.Windows.Forms.TableLayoutPanel();
@@ -59,29 +59,29 @@
             this.tableLayoutPanelOptions.SuspendLayout();
             this.SuspendLayout();
             // 
-            // ButtonDropdownSettings
+            // buttonDropdownSettings
             // 
-            this.ButtonDropdownSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
-            this.ButtonDropdownSettings.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ButtonDropdownSettings.BackColor = System.Drawing.SystemColors.Window;
-            this.ButtonDropdownSettings.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.ButtonDropdownSettings.FlatAppearance.BorderSize = 0;
-            this.ButtonDropdownSettings.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.ButtonDropdownSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.ButtonDropdownSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonDropdownSettings.ForeColor = System.Drawing.Color.Transparent;
-            this.ButtonDropdownSettings.ImageIndex = 0;
-            this.ButtonDropdownSettings.ImageList = this.imageListSearchButton;
-            this.ButtonDropdownSettings.Location = new System.Drawing.Point(1, 1);
-            this.ButtonDropdownSettings.Margin = new System.Windows.Forms.Padding(0);
-            this.ButtonDropdownSettings.Name = "ButtonDropdownSettings";
-            this.ButtonDropdownSettings.Size = new System.Drawing.Size(17, 17);
-            this.ButtonDropdownSettings.TabStop = false;
-            this.ButtonDropdownSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.ButtonDropdownSettings.UseVisualStyleBackColor = false;
-            this.ButtonDropdownSettings.Click += new System.EventHandler(this.ButtonDropdownSettings_Click);
-            this.ButtonDropdownSettings.MouseEnter += new System.EventHandler(this.ButtonConfig_MouseEnter);
-            this.ButtonDropdownSettings.MouseLeave += new System.EventHandler(this.ButtonConfig_MouseLeave);
+            this.buttonDropdownSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonDropdownSettings.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonDropdownSettings.BackColor = System.Drawing.SystemColors.Window;
+            this.buttonDropdownSettings.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.buttonDropdownSettings.FlatAppearance.BorderSize = 0;
+            this.buttonDropdownSettings.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.buttonDropdownSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.buttonDropdownSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDropdownSettings.ForeColor = System.Drawing.Color.Transparent;
+            this.buttonDropdownSettings.ImageIndex = 0;
+            this.buttonDropdownSettings.ImageList = this.imageListSearchButton;
+            this.buttonDropdownSettings.Location = new System.Drawing.Point(1, 1);
+            this.buttonDropdownSettings.Margin = new System.Windows.Forms.Padding(0);
+            this.buttonDropdownSettings.Name = "ButtonDropdownSettings";
+            this.buttonDropdownSettings.Size = new System.Drawing.Size(17, 17);
+            this.buttonDropdownSettings.TabStop = false;
+            this.buttonDropdownSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.buttonDropdownSettings.UseVisualStyleBackColor = false;
+            this.buttonDropdownSettings.Click += new System.EventHandler(this.ButtonDropdownSettings_Click);
+            this.buttonDropdownSettings.MouseEnter += new System.EventHandler(this.ButtonConfig_MouseEnter);
+            this.buttonDropdownSettings.MouseLeave += new System.EventHandler(this.ButtonConfig_MouseLeave);
             // 
             // imageListSearchButton
             // 
@@ -353,7 +353,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.Controls.Add(this.ButtonDropdownSettings);
+            this.Controls.Add(this.buttonDropdownSettings);
             this.Controls.Add(this.comboBoxSearch);
             this.Controls.Add(this.tableLayoutPanelMain);
             this.MinimumSize = new System.Drawing.Size(180, 0);
@@ -376,7 +376,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button ButtonDropdownSettings;
+        private System.Windows.Forms.Button buttonDropdownSettings;
         private System.Windows.Forms.ToolStripDropDown toolStripDropDownSettings;
         private System.Windows.Forms.ImageList imageListSearchButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMain;

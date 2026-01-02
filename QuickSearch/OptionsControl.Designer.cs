@@ -1,5 +1,3 @@
-using KeePass.UI;
-
 namespace QuickSearch
 {
     partial class OptionsControl
@@ -31,7 +29,7 @@ namespace QuickSearch
         private void InitializeComponent()
         {
             this.labelWidth = new System.Windows.Forms.Label();
-            this.ControlWidth = new System.Windows.Forms.NumericUpDown();
+            this.controlWidth = new System.Windows.Forms.NumericUpDown();
             this.backgroundColorGroupBox = new System.Windows.Forms.GroupBox();
             this.labelBGColorSuccess = new System.Windows.Forms.Label();
             this.colorSelectButtonSuccess = new KeePass.UI.ColorButtonEx();
@@ -43,7 +41,7 @@ namespace QuickSearch
             this.colorSelectButtonUnfocused = new KeePass.UI.ColorButtonEx();
             this.labelBGColorFocused = new System.Windows.Forms.Label();
             this.colorSelectButtonFocused = new KeePass.UI.ColorButtonEx();
-            ((System.ComponentModel.ISupportInitialize)(this.ControlWidth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.controlWidth)).BeginInit();
             this.backgroundColorGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,31 +58,19 @@ namespace QuickSearch
             this.labelWidth.Text = "Search box width:";
             this.labelWidth.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // ControlWidth
+            // controlWidth
             // 
-            this.ControlWidth.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.ControlWidth.AutoSize = true;
-            this.ControlWidth.Location = new System.Drawing.Point(172, 233);
-            this.ControlWidth.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ControlWidth.Maximum = new decimal(new int[] {
-            9999,
-            0,
-            0,
-            0});
-            this.ControlWidth.Minimum = new decimal(new int[] {
-            40,
-            0,
-            0,
-            0});
-            this.ControlWidth.Name = "ControlWidth";
-            this.ControlWidth.Size = new System.Drawing.Size(63, 22);
-            this.ControlWidth.TabIndex = 6;
-            this.ControlWidth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.ControlWidth.Value = new decimal(new int[] {
-            80,
-            0,
-            0,
-            0});
+            this.controlWidth.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.controlWidth.AutoSize = true;
+            this.controlWidth.Location = new System.Drawing.Point(172, 233);
+            this.controlWidth.Margin = new System.Windows.Forms.Padding(4);
+            this.controlWidth.Maximum = new decimal(new int[] {9999, 0, 0, 0});
+            this.controlWidth.Minimum = new decimal(new int[] {40, 0, 0, 0});
+            this.controlWidth.Name = "ControlWidth";
+            this.controlWidth.Size = new System.Drawing.Size(63, 22);
+            this.controlWidth.TabIndex = 6;
+            this.controlWidth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.controlWidth.Value = new decimal(new int[] {80, 0, 0, 0});
             // 
             // backgroundColorGroupBox
             // 
@@ -99,9 +85,9 @@ namespace QuickSearch
             this.backgroundColorGroupBox.Controls.Add(this.labelBGColorFocused);
             this.backgroundColorGroupBox.Controls.Add(this.colorSelectButtonFocused);
             this.backgroundColorGroupBox.Location = new System.Drawing.Point(8, 15);
-            this.backgroundColorGroupBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.backgroundColorGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.backgroundColorGroupBox.Name = "backgroundColorGroupBox";
-            this.backgroundColorGroupBox.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.backgroundColorGroupBox.Padding = new System.Windows.Forms.Padding(4);
             this.backgroundColorGroupBox.Size = new System.Drawing.Size(720, 203);
             this.backgroundColorGroupBox.TabIndex = 0;
             this.backgroundColorGroupBox.TabStop = false;
@@ -124,7 +110,7 @@ namespace QuickSearch
             this.colorSelectButtonSuccess.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.colorSelectButtonSuccess.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.colorSelectButtonSuccess.Location = new System.Drawing.Point(161, 22);
-            this.colorSelectButtonSuccess.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.colorSelectButtonSuccess.Margin = new System.Windows.Forms.Padding(4);
             this.colorSelectButtonSuccess.Name = "colorSelectButtonSuccess";
             this.colorSelectButtonSuccess.Size = new System.Drawing.Size(49, 27);
             this.colorSelectButtonSuccess.TabIndex = 21;
@@ -147,7 +133,7 @@ namespace QuickSearch
             this.colorSelectButtonPending.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.colorSelectButtonPending.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.colorSelectButtonPending.Location = new System.Drawing.Point(161, 57);
-            this.colorSelectButtonPending.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.colorSelectButtonPending.Margin = new System.Windows.Forms.Padding(4);
             this.colorSelectButtonPending.Name = "colorSelectButtonPending";
             this.colorSelectButtonPending.Size = new System.Drawing.Size(49, 27);
             this.colorSelectButtonPending.TabIndex = 22;
@@ -169,7 +155,7 @@ namespace QuickSearch
             this.colorSelectButtonError.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.colorSelectButtonError.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.colorSelectButtonError.Location = new System.Drawing.Point(161, 91);
-            this.colorSelectButtonError.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.colorSelectButtonError.Margin = new System.Windows.Forms.Padding(4);
             this.colorSelectButtonError.Name = "colorSelectButtonError";
             this.colorSelectButtonError.Size = new System.Drawing.Size(49, 27);
             this.colorSelectButtonError.TabIndex = 23;
@@ -191,7 +177,7 @@ namespace QuickSearch
             this.colorSelectButtonUnfocused.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.colorSelectButtonUnfocused.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.colorSelectButtonUnfocused.Location = new System.Drawing.Point(161, 126);
-            this.colorSelectButtonUnfocused.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.colorSelectButtonUnfocused.Margin = new System.Windows.Forms.Padding(4);
             this.colorSelectButtonUnfocused.Name = "colorSelectButtonUnfocused";
             this.colorSelectButtonUnfocused.Size = new System.Drawing.Size(49, 27);
             this.colorSelectButtonUnfocused.TabIndex = 24;
@@ -213,7 +199,7 @@ namespace QuickSearch
             this.colorSelectButtonFocused.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.colorSelectButtonFocused.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.colorSelectButtonFocused.Location = new System.Drawing.Point(161, 160);
-            this.colorSelectButtonFocused.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.colorSelectButtonFocused.Margin = new System.Windows.Forms.Padding(4);
             this.colorSelectButtonFocused.Name = "colorSelectButtonFocused";
             this.colorSelectButtonFocused.Size = new System.Drawing.Size(49, 27);
             this.colorSelectButtonFocused.TabIndex = 25;
@@ -224,14 +210,14 @@ namespace QuickSearch
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.Controls.Add(this.ControlWidth);
+            this.Controls.Add(this.controlWidth);
             this.Controls.Add(this.labelWidth);
             this.Controls.Add(this.backgroundColorGroupBox);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "OptionsControl";
             this.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
             this.Size = new System.Drawing.Size(732, 274);
-            ((System.ComponentModel.ISupportInitialize)(this.ControlWidth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.controlWidth)).EndInit();
             this.backgroundColorGroupBox.ResumeLayout(false);
             this.backgroundColorGroupBox.PerformLayout();
             this.ResumeLayout(false);
@@ -240,18 +226,18 @@ namespace QuickSearch
         }
 
         #endregion
-        private System.Windows.Forms.NumericUpDown ControlWidth;
+        private System.Windows.Forms.NumericUpDown controlWidth;
         private System.Windows.Forms.Label labelWidth;
         private System.Windows.Forms.GroupBox backgroundColorGroupBox;
         private System.Windows.Forms.Label labelBGColorSuccess;
-        private ColorButtonEx colorSelectButtonSuccess;
+        private KeePass.UI.ColorButtonEx colorSelectButtonSuccess;
         private System.Windows.Forms.Label labelSearchPending;
-        private ColorButtonEx colorSelectButtonPending;
+        private KeePass.UI.ColorButtonEx colorSelectButtonPending;
         private System.Windows.Forms.Label labelBGColorError;
-        private ColorButtonEx colorSelectButtonError;
+        private KeePass.UI.ColorButtonEx colorSelectButtonError;
         private System.Windows.Forms.Label labelBGColorNormalUnFocused;
-        private ColorButtonEx colorSelectButtonUnfocused;
+        private KeePass.UI.ColorButtonEx colorSelectButtonUnfocused;
         private System.Windows.Forms.Label labelBGColorFocused;
-        private ColorButtonEx colorSelectButtonFocused;
+        private KeePass.UI.ColorButtonEx colorSelectButtonFocused;
     }
 }

@@ -238,14 +238,14 @@ namespace QuickSearch
 
         private void ButtonConfig_MouseEnter(object sender, EventArgs e)
         {
-            ButtonDropdownSettings.ImageIndex = 1;
+            buttonDropdownSettings.ImageIndex = 1;
         }
 
         private void ButtonConfig_MouseLeave(object sender, EventArgs e)
         {
             if (!toolStripDropDownSettings.Visible)
             {
-                ButtonDropdownSettings.ImageIndex = 0;
+                buttonDropdownSettings.ImageIndex = 0;
             }
         }
 
@@ -256,31 +256,31 @@ namespace QuickSearch
             checkBoxPassword.Checked = Program.Config.MainWindow.QuickFindSearchInPasswords;
 
             // show the DropDown
-            toolStripDropDownSettings.Show(ButtonDropdownSettings, 0, ButtonDropdownSettings.Bottom);
+            toolStripDropDownSettings.Show(buttonDropdownSettings, 0, buttonDropdownSettings.Bottom);
 
             // disable the button so that clicking again will close the DropDown but not raise this event again
-            ButtonDropdownSettings.Enabled = false;
+            buttonDropdownSettings.Enabled = false;
         }
 
         private void ToolStripDropDownSettings_Closed(object sender, ToolStripDropDownClosedEventArgs e)
         {
-            ButtonDropdownSettings.Enabled = true;
+            buttonDropdownSettings.Enabled = true;
             // we need to check if mouse is over config button. Otherwise icon would be resetted although mouse is over config button.
             // get a mouse position relative to the Button
-            Point mousePosition = ButtonDropdownSettings.PointToClient(Control.MousePosition);
-            if (!ButtonDropdownSettings.ClientRectangle.IntersectsWith(new Rectangle(mousePosition, Size.Empty)))
+            Point mousePosition = buttonDropdownSettings.PointToClient(Control.MousePosition);
+            if (!buttonDropdownSettings.ClientRectangle.IntersectsWith(new Rectangle(mousePosition, Size.Empty)))
             {
-                ButtonDropdownSettings.ImageIndex = 0;
+                buttonDropdownSettings.ImageIndex = 0;
             }
-            ButtonDropdownSettings.Enabled = true;
+            buttonDropdownSettings.Enabled = true;
         }
 
         private void SetBackColor(Color color)
         {
             comboBoxSearch.BackColor = color;
-            ButtonDropdownSettings.BackColor = color;
-            ButtonDropdownSettings.FlatAppearance.MouseDownBackColor = color;
-            ButtonDropdownSettings.FlatAppearance.MouseOverBackColor = color;
+            buttonDropdownSettings.BackColor = color;
+            buttonDropdownSettings.FlatAppearance.MouseDownBackColor = color;
+            buttonDropdownSettings.FlatAppearance.MouseOverBackColor = color;
         }
 
         private void SetBackColorNormal()
