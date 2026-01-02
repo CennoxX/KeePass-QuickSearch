@@ -64,7 +64,7 @@ namespace QuickSearch
             // 
             this.ControlWidth.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.ControlWidth.AutoSize = true;
-            this.ControlWidth.Location = new System.Drawing.Point(175, 274);
+            this.ControlWidth.Location = new System.Drawing.Point(172, 233);
             this.ControlWidth.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ControlWidth.Maximum = new decimal(new int[] {
             9999,
@@ -230,7 +230,7 @@ namespace QuickSearch
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "OptionsControl";
             this.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
-            this.Size = new System.Drawing.Size(732, 315);
+            this.Size = new System.Drawing.Size(732, 274);
             ((System.ComponentModel.ISupportInitialize)(this.ControlWidth)).EndInit();
             this.backgroundColorGroupBox.ResumeLayout(false);
             this.backgroundColorGroupBox.PerformLayout();
