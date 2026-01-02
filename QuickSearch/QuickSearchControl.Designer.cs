@@ -50,7 +50,7 @@
             this.checkBoxExclude = new System.Windows.Forms.CheckBox();
             this.checkBoxTags = new System.Windows.Forms.CheckBox();
             this.checkBoxGroupSettings = new System.Windows.Forms.CheckBox();
-            this.comboBoxSearch = new System.Windows.Forms.ComboBox();
+            this.comboBoxSearch = new PaddedComboBox();
             this.toolTipSearch = new System.Windows.Forms.ToolTip();
             this.tableLayoutPanelMain.SuspendLayout();
             this.groupBoxSearchIn.SuspendLayout();
@@ -61,6 +61,7 @@
             // 
             // ButtonDropdownSettings
             // 
+            this.ButtonDropdownSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
             this.ButtonDropdownSettings.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ButtonDropdownSettings.BackColor = System.Drawing.SystemColors.Window;
             this.ButtonDropdownSettings.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -74,8 +75,8 @@
             this.ButtonDropdownSettings.Location = new System.Drawing.Point(1, 1);
             this.ButtonDropdownSettings.Margin = new System.Windows.Forms.Padding(0);
             this.ButtonDropdownSettings.Name = "ButtonDropdownSettings";
-            this.ButtonDropdownSettings.Size = new System.Drawing.Size(19, 19);
-            this.ButtonDropdownSettings.TabIndex = 0;
+            this.ButtonDropdownSettings.Size = new System.Drawing.Size(17, 17);
+            this.ButtonDropdownSettings.TabStop = false;
             this.ButtonDropdownSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.ButtonDropdownSettings.UseVisualStyleBackColor = false;
             this.ButtonDropdownSettings.Click += new System.EventHandler(this.ButtonDropdownSettings_Click);
@@ -334,11 +335,11 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxSearch.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.comboBoxSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBoxSearch.Location = new System.Drawing.Point(19, 0);
+            this.comboBoxSearch.Location = new System.Drawing.Point(0, 0);
             this.comboBoxSearch.Margin = new System.Windows.Forms.Padding(0);
             this.comboBoxSearch.MinimumSize = new System.Drawing.Size(80, 0);
             this.comboBoxSearch.Name = "comboBoxSearch";
-            this.comboBoxSearch.Size = new System.Drawing.Size(412, 21);
+            this.comboBoxSearch.Size = new System.Drawing.Size(432, 21);
             this.comboBoxSearch.TabIndex = 2;
             // 
             // toolTipSearch
@@ -395,7 +396,7 @@
         private System.Windows.Forms.CheckBox checkBoxCase;
         private System.Windows.Forms.CheckBox checkBoxExclude;
         private System.Windows.Forms.CheckBox checkBoxGroupSettings;
-        public System.Windows.Forms.ComboBox comboBoxSearch;
+        public PaddedComboBox comboBoxSearch;
         public System.Windows.Forms.ToolTip toolTipSearch;
 
     }

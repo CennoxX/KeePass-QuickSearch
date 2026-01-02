@@ -62,6 +62,9 @@
       <DependentUpon>OptionsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="KeyboardHook.cs" />
+    <Compile Include="PaddedComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="SearchStatus.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
