@@ -7,7 +7,7 @@ namespace QuickSearch
     public class PaddedComboBox : ComboBox
     {
         const int EM_SETMARGINS = 0xD3, EC_LEFTMARGIN = 0x1, EC_RIGHTMARGIN = 0x2;
-        public int LeftPadding = 23;
+        public int LeftPadding = 17;
 
         [DllImport("user32.dll")]
         static extern IntPtr SendMessage(IntPtr windowHandle, int message, IntPtr wParam, IntPtr lParam);
