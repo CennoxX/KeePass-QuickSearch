@@ -48,7 +48,7 @@ namespace QuickSearch
             {
                 e.IsInputKey = true;
                 _listview.Focus();
-                _quickSearchControl.BeginInvoke((Action)(() => _quickSearchControl.ClearSelection()));
+                _quickSearchControl.ClearSelection();
                 return;
             }
 

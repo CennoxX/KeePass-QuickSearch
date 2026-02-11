@@ -121,8 +121,11 @@ namespace QuickSearch
 
         public void ClearSelection()
         {
-            comboBoxSearch.SelectionStart = comboBoxSearch.Text.Length;
-            comboBoxSearch.SelectionLength = 0;
+            BeginInvoke(new Action(() =>
+            {
+                comboBoxSearch.SelectionStart = comboBoxSearch.Text.Length;
+                comboBoxSearch.SelectionLength = 0;
+            }));
         }
 
         private void ApplyThemeColors(bool enableDarkMode)
