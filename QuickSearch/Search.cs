@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace QuickSearch
 {
@@ -23,6 +24,9 @@ namespace QuickSearch
         private readonly string[] _searchStrings;
 
         private readonly StringComparison _searchStringComparison;
+
+        private readonly bool _isRegexSearch;
+        private readonly Regex _regex;
 
         private readonly bool _searchInTitle;
         private readonly bool _searchInUrl;
@@ -60,7 +64,25 @@ namespace QuickSearch
                 _searchStringComparison = StringComparison.OrdinalIgnoreCase;
             }
             _userSearchString = userSearchText;
-            _searchStrings = _userSearchString.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            if (_userSearchString.StartsWith("//") && _userSearchString.EndsWith("//") && _userSearchString.Length > 4)
+            {
+                _isRegexSearch = true;
+                string pattern = _userSearchString.Substring(2, _userSearchString.Length - 4);
+                try
+                {
+                    RegexOptions options = Settings.Default.SearchCaseSensitive ? RegexOptions.None : RegexOptions.IgnoreCase;
+                    _regex = new Regex(pattern, options);
+                }
+                catch (ArgumentException)
+                {
+                    _regex = null;
+                }
+                _searchStrings = new string[] { pattern };
+            }
+            else
+            {
+                _searchStrings = _userSearchString.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            }
             resultEntries = new List<PwEntry>();
         }
 
@@ -92,7 +114,9 @@ namespace QuickSearch
         /// <returns>true if search is a refinement of this</returns>
         public bool IsRefinedSearch(Search search)
         {
-            return SettingsEquals(search) && search._userSearchString.Contains(_userSearchString);
+            // a longer regex is not necessarily more specific, so never treat it as a refinement
+            return !_isRegexSearch && !search._isRegexSearch &&
+                SettingsEquals(search) && search._userSearchString.Contains(_userSearchString);
         }
 
         public bool ParamEquals(Search search)
@@ -185,8 +209,18 @@ namespace QuickSearch
                 if (worker.CancellationPending)
                     return false;
 
-                if (!matchedWords.Contains(word) && fieldValue.IndexOf(word, StringComparison.OrdinalIgnoreCase) >= 0)
+                if (matchedWords.Contains(word))
+                    continue;
+
+                if (_isRegexSearch)
+                {
+                    if (_regex != null && _regex.IsMatch(fieldValue))
+                        matchedWords.Add(word);
+                }
+                else if (fieldValue.IndexOf(word, StringComparison.OrdinalIgnoreCase) >= 0)
+                {
                     matchedWords.Add(word);
+                }
             }
 
             return matchedWords.Count == searchWords.Length;
