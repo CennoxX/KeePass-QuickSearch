@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -14,6 +16,7 @@ namespace QuickSearch
     public partial class QuickSearchControl : UserControl
     {
         private readonly Settings _lightModeSettings = new Settings();
+
         public new string Text
         {
             get { return comboBoxSearch.Text; }
@@ -35,8 +38,7 @@ namespace QuickSearch
         public QuickSearchControl()
         {
             InitializeComponent();
-            imageListSearchButton.Images.Add(QuickSearchExt.SearchImage);
-            imageListSearchButton.Images.Add(QuickSearchExt.OptionsImage);
+            ScaleImageButton();
 
             checkBoxPassword.Checked = Program.Config.MainWindow.QuickFindSearchInPasswords;
             checkBoxPassword.DataBindings.Add(new Binding("Checked", Program.Config.MainWindow, "QuickFindSearchInPasswords", true, DataSourceUpdateMode.OnPropertyChanged));
@@ -117,6 +119,40 @@ namespace QuickSearch
         {
             Width = Settings.Default.ControlWidth;
             comboBoxSearch.Invalidate();
+        }
+
+        private void ScaleImageButton()
+        {
+            // ComboBox height 21 pixels at 100% dpi scaling
+            float scale = Math.Max(1f, comboBoxSearch.Height / 21f);
+            int imageSize = (int)Math.Round(16 * scale);
+
+            imageListSearchButton.ImageSize = new Size(imageSize, imageSize);
+            imageListSearchButton.Images.Add(ScaleImage(QuickSearchExt.SearchImage, imageSize));
+            imageListSearchButton.Images.Add(ScaleImage(QuickSearchExt.OptionsImage, imageSize));
+
+            int buttonSize = imageSize + 1;
+            int inset = Math.Max(1, (comboBoxSearch.Height - buttonSize) / 2);
+            buttonDropdownSettings.Size = new Size(buttonSize, buttonSize);
+            buttonDropdownSettings.Location = new Point(inset, inset);
+            comboBoxSearch.LeftPadding = (int)Math.Round(comboBoxSearch.LeftPadding * scale);
+        }
+
+        private static Image ScaleImage(Image image, int imageSize)
+        {
+            if (image.Width == imageSize && image.Height == imageSize)
+                return image;
+            Bitmap scaledImage = new Bitmap(imageSize, imageSize, PixelFormat.Format32bppArgb);
+            using (Graphics graphics = Graphics.FromImage(scaledImage))
+            using (ImageAttributes imageAttributes = new ImageAttributes())
+            {
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+                imageAttributes.SetWrapMode(WrapMode.TileFlipXY);
+                graphics.DrawImage(image, new Rectangle(0, 0, imageSize, imageSize),
+                    0, 0, image.Width, image.Height, GraphicsUnit.Pixel, imageAttributes);
+            }
+            return scaledImage;
         }
 
         public void ClearSelection()
